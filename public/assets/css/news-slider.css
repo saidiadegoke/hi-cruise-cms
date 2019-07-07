@@ -1,0 +1,97 @@
+.carousel-inner>.item>a>img, .carousel-inner>.item>img, .img-responsive, .thumbnail a>img, .thumbnail>img{ max-width: none;}
+#myCarousel .carousel-caption {
+left: 0%;
+height: 100%;
+bottom: 0%;
+text-align: left;
+padding: 10px 80px;
+/*background: rgba(0, 0, 0, 0.6);
+background: linear-gradient(to right, rgba(0, 0, 0, 0.84) 1.68%, rgba(30, 30, 30, 0.63) 35.71%, rgba(87, 87, 87, 0.37) 69.33%, rgba(255, 255, 255, 0));*/
+text-shadow: none;
+width: 100%;
+/*border-top-left-radius: 100px;
+border-bottom-left-radius: 100px;*/
+}
+.carousel-caption div.banner-content{ display: block;margin: 20% auto;}
+.carousel-caption p{width: 50%;font-size: 16px; margin-bottom: 22px; margin:15px 0px;}
+.carousel-caption h4{font-size: 32px; text-transform: uppercase; margin-bottom: 45px;} .carousel-caption h4:after{display: block; content: ''; width: 100px; height: 2px; background: #09f; margin: 10px 0px; position: relative; } .carousel-caption a{ color: #eee;}
+.carousel-caption span.call-to-action{ position: relative;
+float: none;
+font-size: 16px;
+padding: 10px 10px;
+border: 1px solid #fff;
+margin: 5px 0px;
+display: block;
+width: 15%;} 
+.carousel-caption span.call-to-action:hover{background:rgba(18, 19, 19, 0.34);}
+span.call-to-action a{ /*color: #25272e;*/ color: #fff; text-align: center; width: 100%; height: 100%; display: block; position: relative; font-size: 16px; padding: 0px 25px; text-transform: uppercase;}
+span.call-to-action a i{ display: block; position: relative; float: right; color: #e7a34b; font-size: 25px; margin-left: 7px;}
+#myCarousel .list-group {
+	position:absolute;
+	top:0;
+	right:0;
+}
+#myCarousel .list-group-item {
+	border-radius:0px;
+	cursor:pointer;
+}
+#myCarousel .list-group .active {
+	background-color:#000;	
+}
+.list-group-item.active, .list-group-item.active:focus, .list-group-item.active:hover{ border:thin solid;}
+.carousel-control{width: 5%;}
+.carousel-control.left{background-image: none; background: none;right: 10%; left: auto;}
+.carousel-control.right{background-image: none; background: none;right: 5%;}
+@media (min-width: 992px) { 
+	#myCarousel {/*padding-right:33.3333%;*/}
+	#myCarousel .carousel-controls {display:block;} 	
+    .carousel-controls i.fa{font-size: 70px; margin: auto;
+line-height: 10; color: #fff;}
+}
+@media (max-width: 991px) { 
+	.carousel-caption p,
+	#myCarousel .list-group {display:none;} 
+}
+.carousel-inner{height: 700px;} .carousel-inner a{color:#eee;}
+div.item{height: 700px; overflow: hidden;}
+.carousel-inner>.item>a>img, .carousel-inner>.item>img{ width:100%; opacity: .3; position: absolute;  top: 50%;   left: 50%;   transform: translate3d(-50%, -50%, 0);   transition: all 20s linear;}
+div.active > img{width: 130% !important;}
+.simple-ticker {
+	position: relative;
+	width: 80%;
+	padding: 5px;
+	overflow: hidden;
+	float:left;
+	display:block;
+	margin-left:10px;
+}
+.simple-ticker	ul {
+		position: relative;
+		width: 100%;
+		margin: 0;
+		padding: 0;
+		list-style: none;
+}
+.simple-ticker li {
+			display: none;
+			width: 100%;
+			margin: 0;
+			padding: 0;
+}
+
+@media (max-width:640px){
+	.carousel-inner{ height:auto;}
+	.carousel-control{ display:none;}
+	div.site-logo{width:35%;}
+	nav{ margin-top: 20px;}
+	nav ul{display:none;}
+	div.news-update{ padding-left: 0%; padding-top: 10%; margin-left: -15px;} div.news-update span{padding: 5px 12px;}
+	.simple-ticker{ width: 100%; margin-left: 0px;}
+	span.breaking{ font-size: 50px; font-weight:100; padding: 0px;}
+	div.postings div{float:left;}
+	div.head-banner{height: 60px; width: 100%;}
+	div.ad-banner-1{height: 60px; width: 100%;}
+	div.mk-green{min-height: 100px;}
+	div.ad-banner-2{ width: 98%; position: relative; margin: 10px 0px; display: block;  float: left;}
+	div.cls-vid-thumb{display:none;} div.cls-vid-thumb:first-child{display:block;}
+}
