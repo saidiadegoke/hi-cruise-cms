@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+!DOCTYPE html>
 <html>
   <head>
     <meta charset="UTF-8" />
@@ -39,7 +39,7 @@
       <div class="container">
         <div id="ini">
           <div class="col-md-4 main-menu">
-            <img class="logo" src="img/logo.png" />
+            <img class="logo" src="{{asset('assets/img/logo.png')}}" />
           </div>
           <div class="col-md-8 main-menu">
             <nav>
@@ -66,7 +66,7 @@
         </div>
         <div id="scrl">
           <div class="col-md-4 main-menu">
-            <img class="logo" src="img/logo.png" />
+            <img class="logo" src="{{asset('assets/img/logo.png')}}" />
           </div>
           <div class="col-md-8 main-menu">
             <nav class="scrolled">
@@ -92,7 +92,7 @@
         </div>
         <div class="mobile-menu">
           <div class="col-md-4">
-            <img class="logo" src="img/logo.png" />
+            <img class="logo" src="{{asset('assets/img/logo.png')}}" />
           </div>
           <i class="fa fa-bars bar-open"></i>
           <i class="fa fa-bars bar-close"></i>
@@ -124,7 +124,7 @@
       <div class="container">
         <div class="col-md-12">
           <div class="col-md-6 floater-img">
-            <img src="img/register.jpg" alt="" class="floater-img" />
+            <img src="{{asset('assets/img/register.jpg')}}" alt="" class="floater-img" />
           </div>
           <div class="col-md-6">
             <div class="col-md-12 bordered">

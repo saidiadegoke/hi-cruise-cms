@@ -1,93 +1,13 @@
 @extends('layouts.cruise')
 @section("content")
-    <header id="header">
-        <div class="container">
-            <div id="ini">
-                <div class="col-md-4 main-menu">
-                    <img class="logo" src="img/logo.png" />
-                </div>
-                <div class="col-md-8 main-menu">
-                    <nav>
-                        <ul>
-                            <li><a href="index.html">home</a></li>
-                            <li><a href="about.html">About Us</a></li>
-                            <li>
-                                <a href="packages.html">Packages <i class="fa fa-angle-down"></i>
-                                    <ul class="dropdown downUp">
-                                        <li><a href="eugene1.html">Eugene 1</a></li>
-                                        <li><a href="eugene.html">Eugene </a></li>
-                                    </ul>
-                                </a>
-                            </li>
-                            <li><a href="gallery.html">Gallery</a></li>
-                            <li><a href="contact.html">contact</a></li>
-                            <li><a href="register.html">register</a></li>
-                            <li><a href="login.html">Login</a></li>
-                        </ul>
-                        <!--a href="#" class="book-btn">Bookings &amp; Reservations</a-->
-                    </nav>
-                </div>
-            </div>
-            <div id="scrl">
-                <div class="col-md-4 main-menu">
-                    <img class="logo" src="img/logo.png" />
-                </div>
-                <div class="col-md-8 main-menu">
-                    <nav class="scrolled">
-                        <ul>
-                            <li><a href="index.html">home</a></li>
-                            <li><a href="about.html">About Us</a></li>
-                            <li>
-                                <a href="packages.html">Packages <i class="fa fa-angle-down"></i>
-                                    <ul class="dropdown downUp">
-                                        <li><a href="eugene1.html">Eugene 1</a></li>
-                                        <li><a href="eugene.html">Eugene </a></li>
-                                    </ul>
-                                </a>
-                            </li>
-                            <li><a href="gallery.html">Gallery</a></li>
-                            <li><a href="contact.html">contact</a></li>
-                            <li><a href="register.html">register</a></li>
-                            <li><a href="login.html">Login</a></li>
-                        </ul>
-                    </nav>
-                </div>
-            </div>
-            <div class="mobile-menu">
-                <div class="col-md-4">
-                    <img class="logo" src="img/logo.png" />
-                </div>
-                <i class="fa fa-bars bar-open"></i>
-                <i class="fa fa-bars bar-close"></i>
-                <div class="menu">
-                    <ul class="mbl-menu">
-                        <li><a href="index.html">home</a></li>
-                        <li><a href="about.html">About Us</a></li>
-                        <li>
-                            <a href="packages.html">Packages <i class="fa fa-angle-down"></i>
-                                <ul class="dropdown downUp">
-                                    <li><a href="eugene1.html">Eugene 1</a></li>
-                                    <li><a href="eugene.html">Eugene </a></li>
-                                </ul>
-                            </a>
-                        </li>
-                        <li><a href="gallery.html">Gallery</a></li>
-                        <li><a href="contact.html">contact</a></li>
-                        <li><a href="register.html">register</a></li>
-                        <li><a href="login.html">Login</a></li>
-                        <i class="fa fa-times" id="close"></i>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </header>
+    
     <section class="banner">
         <div id="myCarousel" class="carousel slide" data-ride="carousel">
             <!-- Wrapper for slides -->
             <div class="carousel-inner">
 
                 <div class="item active">
-                    <img src="img/banners/bn01.jpg">
+                    <img src="{{asset('assets/img/banners/bn01.jpg')}}">
                     <!--div class="carousel-caption downUp">
                 <div class="banner-content">
                     <h4 class="fallDown">get business credit and financing for your company</h4>
@@ -99,7 +19,7 @@
                 </div><!-- End Item -->
 
                 <div class="item">
-                    <img src="img/banners/bn02.jpg">
+                    <img src="{{asset('assets/img/banners/bn02.jpg')}}">
                     <!--div class="carousel-caption downUp">
                 <div class="banner-content">
                     <h4 class="fallDown">asset, business and project financing</h4>
@@ -111,7 +31,7 @@
                 </div><!-- End Item -->
 
                 <div class="item">
-                    <img src="img/banners/bn03.jpg">
+                    <img src="{{asset('assets/img/banners/bn03.jpg')}}">
                     <div class="carousel-caption downUp">
                         <!--div class="banner-content">
                     <h4 class="fallDown">fund management</h4>
@@ -138,12 +58,14 @@
     </section>
     <section class="no-margin">
         <div class="container">
-            <form action="" class="bookings" method="POST">
+            <form action="{{route('details')}}" class="bookings" method="POST">
+                @csrf
+                
                 <div class="col-md-4 form-group">
                     <select class="form-control" name="type" id="selectPackage" required>
                         <option value="">Select Yacht</option>
-                        <option value="1">Eugene 1</option>
-                        <option value="2">Eugene</option>
+                        <option value="eugene1">Eugene 1</option>
+                        <option value="eugene">Eugene</option>
                     </select>
                 </div>
                 <div class="col-md-4 form-group">
@@ -168,7 +90,7 @@
                         <p>Eugene 1 is our luxury 140ft three-storey yacht which comes with top of the range features such as; Exquisite interior design, Fully air-conditioned interior with chilling capacity of 528,000BTU, Guest capacity: 600 (Banquet) & 1000 (standing), Automated sunroof, In-built 32 CCTV Cameras, Automated Sensor Doors, Hygienic Toilets, 230KW power generation, 4 Cabin rooms and so much more...</p>
                         <a href="#" class="btn btn-primary">Learn more</a>
                     </div>
-                    <img src="img/banners/bn01.jpg" alt="" class="base-pic">
+                    <img src="{{asset('assets/img/banners/bn01.jpg')}}" alt="" class="base-pic">
                 </div>
             </div>
             <div class="col-md-6">
@@ -178,7 +100,7 @@
                         <p>Eugene is a private luxurious yacht with a capacity of 8 to 10 people.The beautiful leather interior piece sailing at 8 to 10 knots cruising speed has a black water tank capacity of 220litres and fully air conditioned with 8000 BTU with bathroom shower and kitchenette.</p>
                         <a href="#" class="btn btn-primary">Learn more</a>
                     </div>
-                    <img src="img/banners/b1.jpg" alt="" class="base-pic">
+                    <img src="{{asset('assets/img/banners/b1.jpg')}}" alt="" class="base-pic">
                 </div>
             </div>
         </div>
@@ -254,32 +176,32 @@
                         <div class="item active">
                             <div class="row">
                                 <div class="col-md-3 img-holder">
-                                    <img src="img/banners/b11.jpg" alt="" class="thumbs-list">
+                                    <img src="{{asset('assets/img/banners/b11.jpg')}}" alt="" class="thumbs-list">
                                 </div>
                                 <div class="col-md-3 img-holder">
-                                    <img src="img/banners/b12.jpg" alt="" class="thumbs-list">
+                                    <img src="{{asset('assets/img/banners/b12.jpg')}}" alt="" class="thumbs-list">
                                 </div>
                                 <div class="col-md-3 img-holder">
-                                    <img src="img/banners/bn01.jpg" alt="" class="thumbs-list">
+                                    <img src="{{asset('assets/img/banners/bn01.jpg')}}" alt="" class="thumbs-list">
                                 </div>
                                 <div class="col-md-3 img-holder">
-                                    <img src="img/banners/bn02.jpg" alt="" class="thumbs-list">
+                                    <img src="{{asset('assets/img/banners/bn02.jpg')}}" alt="" class="thumbs-list">
                                 </div>
                             </div>
                         </div>
                         <div class="item">
                             <div class="row">
                                 <div class="col-md-3 img-holder">
-                                    <img src="img/banners/bn03.jpg" alt="" class="thumbs-list">
+                                    <img src="{{asset('assets/img/banners/bn03.jpg')}}" alt="" class="thumbs-list">
                                 </div>
                                 <div class="col-md-3 img-holder">
-                                    <img src="img/banners/bn04.jpg" alt="" class="thumbs-list">
+                                    <img src="{{asset('assets/img/banners/bn04.jpg')}}" alt="" class="thumbs-list">
                                 </div>
                                 <div class="col-md-3 img-holder">
-                                    <img src="img/banners/bn05.jpg" alt="" class="thumbs-list">
+                                    <img src="{{asset('assets/img/banners/bn05.jpg')}}" alt="" class="thumbs-list">
                                 </div>
                                 <div class="col-md-3 img-holder">
-                                    <img src="img/banners/bn06.jpg" alt="" class="thumbs-list">
+                                    <img src="{{asset('assets/img/banners/bn06.jpg')}}" alt="" class="thumbs-list">
                                 </div>
                             </div>
                         </div>
@@ -345,7 +267,7 @@
                 const package = target.val();
 
                 const packages = {
-                    1: [{
+                    'eugene1': [{
                         id: '',
                         name: "Select Package"
                     }, {
@@ -358,14 +280,14 @@
                         id: 3,
                         name: "Royal Package"
                     }],
-                    2: [{
+                    'eugene': [{
                         id: '',
                         name: "Select Package"
                     }, {
-                        id: 4,
+                        id: 1,
                         name: "Silver Package"
                     }, {
-                        id: 5,
+                        id: 2,
                         name: "Gold Package"
                     }],
                 }

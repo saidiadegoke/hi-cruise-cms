@@ -13,23 +13,23 @@
     <link type="shortcut" rel="icon" href="{{asset('assets/img/fav.png')}}">
     <link type="text/css" href="{{asset('assets/css/bootstrap.min.css')}}" rel="stylesheet" />
     <link rel="stylesheet" href="{{asset('assets/css/font-awesome/css/fontawesome-all.css')}}" type="text/css" />
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    {{-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous"> --}}
     <link type="text/css" href="{{asset('assets/css/slider.css')}}" rel="stylesheet">
     <link type="text/css" href="{{asset('assets/css/main.css')}}" rel="stylesheet">
     <link type="text/css" href="{{asset('assets/css/responsive.css')}}" rel="stylesheet">
-    <script src="https://kit.fontawesome.com/459a83cc19.js"></script>
+    {{-- <script src="https://kit.fontawesome.com/459a83cc19.js"></script> --}}
     @yield("styles")
 </head>
 
 <body>
-
     @yield("content")
 
+    @include('cruise.includes._footer')
     <script type="text/javascript" src="{{asset('assets/js/jquery.js')}}"></script>
     <script type="text/javascript" src="{{asset('assets/js/bootstrap.min.js')}}"></script>
     <script type="text/javascript" src="{{asset('assets/js/news-ticker.js')}}"></script>
     <script type="text/javascript" src="{{asset('assets/js/main.js')}}"></script>
     @yield("scripts")
 </body>
-
+@include('cruise.includes._header')
 </html>

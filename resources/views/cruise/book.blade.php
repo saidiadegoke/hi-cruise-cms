@@ -55,61 +55,60 @@
         </div>
       </div>
     </section>
-    <section class="primary-color no-margin pad-10 mid-space set-bg-base">
-      <div class="container">
-        <h4 class="all-caps">Eugene PACKAGES</h4>
-        <div class="col-md-12">
-          <div class="col-md-6 package-listing">
-            <h4 class="center no-float">SILVER PACKAGE</h4>
-            <span>&#8358; 300,000 flat</span>
-            <ul>
-              <li>CAPACITY OF 10 GUESTS</li>
-              <li>FRIDAY - SUNDAY</li>
-              <li>2 hour cruise across Lagos waters.</li>
-              <li>Ideal for:</li>
-              <li>Private parties</li>
-              <li>Retreats</li>
-              <li>Re-unions</li>
-              <li>Bridal showers.</li>
-              <li>Marriage proposals.</li>
-              <li>Honeymoon.</li>
-              <li>and Get-together</li>
-              <li>Complimentary bottle of Fine wine.</li>
-              <li>Top grade sound system</li>
-              <li>Serene and secure ambience.</li>
-              <li>*Extra cruise time attracts =N=100,000 per hour.</li>
-            </ul>
-            <a href="#" class="btn btn-primary">Book Now</a>
-          </div>
-          <div class="col-md-6 package-listing">
-            <h4 class="center no-float">GOLD PACKAGE</h4>
-            <span>&#8358; 500,000 Flat </span>
-            <ul>
-              <li>MAXIMUM OF 10 GUESTS</li>
-              <li>FRIDAY - SUNDAY</li>
-              <li>4 hour cruise across Lagos waters.</li>
-              <li>Ideal for:</li>
-              <li>Private parties</li>
-              <li>Retreats</li>
-              <li>Re-unions</li>
-              <li>Bridal showers.</li>
-              <li>Marriage proposals.</li>
-              <li>Honeymoon.</li>
-              <li>and Get-together</li>
-              <li>Complimentary bottle of Fine wine.</li>
-              <li>Top grade sound system</li>
-              <li>Serene and secure ambience.</li>
-              <li>*Extra cruise time attracts =N=100,000 per hour.</li>
-            </ul>
-            <a href="#" class="btn btn-primary">Book Now</a>
-          </div>
-        </div>
-      </div>
-    </section>
     <section class="pattern1 no-margin pad-10 mid-space">
       <div class="container">
         <img src="{{asset('assets/img/logo-icon.png')}}" alt="" class="logo-icon-section" />
-        <h3 class="all-caps">Dream, Discover, Explore</h3>
+        <h3 class="all-caps">Make Reservations</h3>
+        
+            <div class="card">
+                <div class="card-body">
+                    <div class="container-fluid">
+                    <form action="{{route('pay')}}" method="post">
+                            @csrf
+                    <input type="hidden" name="package" value="{{$yatch_info['package']}}">
+                    <input type="hidden" name="amount" value="{{$yatch_info['amount']}}">
+                    <input type="hidden" name="yatch" value="{{$yatch_info['yatch']}}">
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-5 col-md-offset-1">
+                                        <input type="number" class="form-control" placeholder="No of Seat" name="num_seat">
+                                    </div>
+
+                                    <div class="col-md-5">
+                                        <input type="date" class="form-control" placeholder="Reservation Date" name="start_date">
+                                    </div>
+                                </div>
+                            </div>   
+                            
+                            <div class="form-group">
+                                <div class="col-md-10 col-md-offset-1">
+                                    <h4>Select Preferred Payment Method</h4>
+                                </div>
+                                <div class="row">
+                                    <div class="form-check form-check-inline col-md-5 col-md-offset-1">
+                                        <label class="form-check-label">
+                                            <input class="form-check-input" type="radio" name="payment_method" id="payment_method" value="offline"> Offline Payment
+                                        </label>
+                                    </div>
+
+                                    <div class="form-check form-check-inline col-md-5">
+                                        <label class="form-check-label">
+                                            <input class="form-check-input" type="radio" name="payment_method" id="payment_method" value="paystack"> Paystack
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-md-10 col-md-offset-1">
+                                    <button type="submit" class="btn btn-primary">Book Reservation</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                    
+            </div>
       </div>
     </section>
         @endsection

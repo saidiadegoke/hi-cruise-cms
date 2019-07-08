@@ -12,4 +12,15 @@ class Customer extends Model
     protected $fillable = [
         'user_id', 'firstname', 'lastname', 'phone', 'email', 'address', 'city', 'state', 'country_id',
     ];
+
+
+    public function reservations()
+    {
+        return $this->hasMany(Reservation::class);
+    }
+
+    public function payments()
+    {
+        return $this->hasMany(Payment::class);
+    }
 }
