@@ -63,9 +63,10 @@
                 
                 <div class="col-md-4 form-group">
                     <select class="form-control" name="type" id="selectPackage" required>
-                        <option value="">Select Yacht</option>
+                        <option value="">Select Yacht/Event</option>
                         <option value="eugene1">Eugene 1</option>
                         <option value="eugene">Eugene</option>
+                        <option value="event">Event</option>
                     </select>
                 </div>
                 <div class="col-md-4 form-group">
@@ -289,6 +290,16 @@
                     }, {
                         id: 2,
                         name: "Gold Package"
+                    }],
+                    'event': [{
+                        id: '',
+                        name: "Select Event"
+                    }, {
+                        id: 1,
+                        name: "Corporate Event"
+                    }, {
+                        id: 2,
+                        name: "Social Event"
                     }],
                 }
 
