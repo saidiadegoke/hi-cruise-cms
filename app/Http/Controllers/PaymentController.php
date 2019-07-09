@@ -23,12 +23,20 @@ class PaymentController extends Controller
         return view('cruise.response', compact('reservation'));
     }
 
+    public function offlinePayment(Request $request)
+    {
+        return view('cruise.offline');
+    }
+
     /**
      * Redirect the User to Paystack Payment Page
      * @return Url
      */
     public function redirectToGateway(Request $request)
     {
+        if (request('payment_method') !== 'paystack') {
+            return redirect()->route('offline_payment');
+        }
 
         $totalPayable = (int) $request->amount * (int) request('num_seat') * 100;
         $request->request->set('email', auth()->user()->email);

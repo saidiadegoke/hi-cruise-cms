@@ -29,8 +29,10 @@ Route::post('/details', 'ReservationController@fetchDetails')->name('details');
 Route::get('/details/{yatch}/{package}', 'ReservationController@details')->name('package_details');
 
 Route::post('/pay', 'PaymentController@redirectToGateway')->name('pay');
+Route::get('/payment/offline', 'PaymentController@offlinePayment')->name('offline_payment');
 Route::get('/payment/callback', 'PaymentController@handleGatewayCallback');
 Route::get('/{customer}/reservations', 'ReservationController@all')->name('reservations');
+Route::post('/reservations/new', 'ReservationController@store')->name('reserve');
 Route::get('payments/{reference?}/{reservation?}', "PaymentController@response")->name('response');
 
 Route::get('/print_receipt/{reservation}', "ReservationController@printReciept")->name('print_receipt');
