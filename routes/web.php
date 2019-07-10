@@ -36,3 +36,9 @@ Route::post('/reservations/new', 'ReservationController@store')->name('reserve')
 Route::get('payments/{reference?}/{reservation?}', "PaymentController@response")->name('response');
 
 Route::get('/print_receipt/{reservation}', "ReservationController@printReciept")->name('print_receipt');
+
+Route::prefix('admin')->middleware('auth')->group(function() {
+	Route::get('/', 'Admin\AdminController@index')->name('admin');
+	Route::resource('slides', 'Admin\SlidesController');
+
+});
