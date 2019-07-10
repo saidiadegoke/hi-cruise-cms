@@ -7,7 +7,7 @@
             <div class="carousel-inner">
 
                 <div class="item active">
-                    <img src="{{asset('assets/img/banners/bn01.jpg')}}">
+                    <img src="{{asset('public/assets/img/banners/bn01.jpg')}}">
                     <!--div class="carousel-caption downUp">
                 <div class="banner-content">
                     <h4 class="fallDown">get business credit and financing for your company</h4>
@@ -19,11 +19,11 @@
                 </div><!-- End Item -->
 
                 <div class="item">
-                    <img src="{{asset('assets/img/banners/bn02.jpg')}}">
+                    <img src="{{asset('public/assets/img/banners/bn02.jpg')}}">
                     <!--div class="carousel-caption downUp">
                 <div class="banner-content">
                     <h4 class="fallDown">asset, business and project financing</h4>
-                    <p class="downUp">we provide financial support for private individuals and business who require funding for assets aquisition, business finance and project financing.</p>
+                    <p class="downUp">we provide financial support for private individuals and business who require funding for public/assets aquisition, business finance and project financing.</p>
                     <span class="call-to-action"> <a href="about.html"> learn more </a></span> 
                     <span class="call-to-action green-btn"> <a href="about.html"> apply now </a></span>
                 </div>
@@ -31,7 +31,7 @@
                 </div><!-- End Item -->
 
                 <div class="item">
-                    <img src="{{asset('assets/img/banners/bn03.jpg')}}">
+                    <img src="{{asset('public/assets/img/banners/bn03.jpg')}}">
                     <div class="carousel-caption downUp">
                         <!--div class="banner-content">
                     <h4 class="fallDown">fund management</h4>
@@ -91,7 +91,7 @@
                         <p>Eugene 1 is our luxury 140ft three-storey yacht which comes with top of the range features such as; Exquisite interior design, Fully air-conditioned interior with chilling capacity of 528,000BTU, Guest capacity: 600 (Banquet) & 1000 (standing), Automated sunroof, In-built 32 CCTV Cameras, Automated Sensor Doors, Hygienic Toilets, 230KW power generation, 4 Cabin rooms and so much more...</p>
                         <a href="#" class="btn btn-primary">Learn more</a>
                     </div>
-                    <img src="{{asset('assets/img/banners/bn01.jpg')}}" alt="" class="base-pic">
+                    <img src="{{asset('public/assets/img/banners/bn01.jpg')}}" alt="" class="base-pic">
                 </div>
             </div>
             <div class="col-md-6">
@@ -101,7 +101,7 @@
                         <p>Eugene is a private luxurious yacht with a capacity of 8 to 10 people.The beautiful leather interior piece sailing at 8 to 10 knots cruising speed has a black water tank capacity of 220litres and fully air conditioned with 8000 BTU with bathroom shower and kitchenette.</p>
                         <a href="#" class="btn btn-primary">Learn more</a>
                     </div>
-                    <img src="{{asset('assets/img/banners/b1.jpg')}}" alt="" class="base-pic">
+                    <img src="{{asset('public/assets/img/banners/b1.jpg')}}" alt="" class="base-pic">
                 </div>
             </div>
         </div>
@@ -177,32 +177,32 @@
                         <div class="item active">
                             <div class="row">
                                 <div class="col-md-3 img-holder">
-                                    <img src="{{asset('assets/img/banners/b11.jpg')}}" alt="" class="thumbs-list">
+                                    <img src="{{asset('public/assets/img/banners/b11.jpg')}}" alt="" class="thumbs-list">
                                 </div>
                                 <div class="col-md-3 img-holder">
-                                    <img src="{{asset('assets/img/banners/b12.jpg')}}" alt="" class="thumbs-list">
+                                    <img src="{{asset('public/assets/img/banners/b12.jpg')}}" alt="" class="thumbs-list">
                                 </div>
                                 <div class="col-md-3 img-holder">
-                                    <img src="{{asset('assets/img/banners/bn01.jpg')}}" alt="" class="thumbs-list">
+                                    <img src="{{asset('public/assets/img/banners/bn01.jpg')}}" alt="" class="thumbs-list">
                                 </div>
                                 <div class="col-md-3 img-holder">
-                                    <img src="{{asset('assets/img/banners/bn02.jpg')}}" alt="" class="thumbs-list">
+                                    <img src="{{asset('public/assets/img/banners/bn02.jpg')}}" alt="" class="thumbs-list">
                                 </div>
                             </div>
                         </div>
                         <div class="item">
                             <div class="row">
                                 <div class="col-md-3 img-holder">
-                                    <img src="{{asset('assets/img/banners/bn03.jpg')}}" alt="" class="thumbs-list">
+                                    <img src="{{asset('public/assets/img/banners/bn03.jpg')}}" alt="" class="thumbs-list">
                                 </div>
                                 <div class="col-md-3 img-holder">
-                                    <img src="{{asset('assets/img/banners/bn04.jpg')}}" alt="" class="thumbs-list">
+                                    <img src="{{asset('public/assets/img/banners/bn04.jpg')}}" alt="" class="thumbs-list">
                                 </div>
                                 <div class="col-md-3 img-holder">
-                                    <img src="{{asset('assets/img/banners/bn05.jpg')}}" alt="" class="thumbs-list">
+                                    <img src="{{asset('public/assets/img/banners/bn05.jpg')}}" alt="" class="thumbs-list">
                                 </div>
                                 <div class="col-md-3 img-holder">
-                                    <img src="{{asset('assets/img/banners/bn06.jpg')}}" alt="" class="thumbs-list">
+                                    <img src="{{asset('public/assets/img/banners/bn06.jpg')}}" alt="" class="thumbs-list">
                                 </div>
                             </div>
                         </div>

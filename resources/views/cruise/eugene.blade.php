@@ -13,7 +13,7 @@
           </p>
         </div>
         <div class="col-md-6">
-          <img src="{{asset('assets/img/banners/eugene_bn.jpg')}}" />
+          <img src="{{asset('public/assets/img/banners/eugene_bn.jpg')}}" />
         </div>
         <div class="listing-cont">
             <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
@@ -21,32 +21,32 @@
                     <div class="item active">
                         <div class="row">
                             <div class="col-md-3 img-holder">
-                                <img src="{{asset('assets/img/banners/b1.jpg')}}" alt="" class="thumbs-list">
+                                <img src="{{asset('public/assets/img/banners/b1.jpg')}}" alt="" class="thumbs-list">
                             </div>
                             <div class="col-md-3 img-holder">
-                                <img src="{{asset('assets/img/banners/b2.jpg')}}" alt="" class="thumbs-list">
+                                <img src="{{asset('public/assets/img/banners/b2.jpg')}}" alt="" class="thumbs-list">
                             </div>
                             <div class="col-md-3 img-holder">
-                                <img src="{{asset('assets/img/banners/b3.jpg')}}" alt="" class="thumbs-list">
+                                <img src="{{asset('public/assets/img/banners/b3.jpg')}}" alt="" class="thumbs-list">
                             </div>
                             <div class="col-md-3 img-holder">
-                                <img src="{{asset('assets/img/banners/bn04.jpg')}}" alt="" class="thumbs-list">
+                                <img src="{{asset('public/assets/img/banners/bn04.jpg')}}" alt="" class="thumbs-list">
                             </div>
                         </div>
                     </div>
                     <div class="item">
                         <div class="row">
                                 <div class="col-md-3 img-holder">
-                                    <img src="{{asset('assets/img/banners/bn05.jpg')}}" alt="" class="thumbs-list">
+                                    <img src="{{asset('public/assets/img/banners/bn05.jpg')}}" alt="" class="thumbs-list">
                                 </div>
                                 <div class="col-md-3 img-holder">
-                                    <img src="{{asset('assets/img/banners/b1.jpg')}}" alt="" class="thumbs-list">
+                                    <img src="{{asset('public/assets/img/banners/b1.jpg')}}" alt="" class="thumbs-list">
                                 </div>
                                 <div class="col-md-3 img-holder">
-                                    <img src="{{asset('assets/img/banners/b2.jpg')}}" alt="" class="thumbs-list">
+                                    <img src="{{asset('public/assets/img/banners/b2.jpg')}}" alt="" class="thumbs-list">
                                 </div>
                                 <div class="col-md-3 img-holder">
-                                    <img src="{{asset('assets/img/banners/b3.jpg')}}" alt="" class="thumbs-list">
+                                    <img src="{{asset('public/assets/img/banners/b3.jpg')}}" alt="" class="thumbs-list">
                                 </div>
                         </div>
                     </div>
@@ -108,7 +108,7 @@
     </section>
     <section class="pattern1 no-margin pad-10 mid-space">
       <div class="container">
-        <img src="{{asset('assets/img/logo-icon.png')}}" alt="" class="logo-icon-section" />
+        <img src="{{asset('public/assets/img/logo-icon.png')}}" alt="" class="logo-icon-section" />
         <h3 class="all-caps">Dream, Discover, Explore</h3>
       </div>
     </section>

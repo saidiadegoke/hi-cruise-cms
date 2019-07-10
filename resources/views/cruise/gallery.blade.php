@@ -13,7 +13,7 @@
           >
             <div class="col">
               <div class="blog">
-                <img src="{{asset('assets/img/banners/bn01.jpg')}}" />
+                <img src="{{asset('public/assets/img/banners/bn01.jpg')}}" />
               </div>
             </div>
           </a>
@@ -24,7 +24,7 @@
           >
             <div class="col">
               <div class="blog">
-                <img src="{{asset('assets/img/banners/bn02.jpg')}}" />
+                <img src="{{asset('public/assets/img/banners/bn02.jpg')}}" />
               </div>
             </div>
           </a>
@@ -35,7 +35,7 @@
           >
             <div class="col">
               <div class="blog">
-                <img src="{{asset('assets/img/banners/bn03.jpg')}}" />
+                <img src="{{asset('public/assets/img/banners/bn03.jpg')}}" />
               </div>
             </div>
           </a>
@@ -46,7 +46,7 @@
           >
             <div class="col">
               <div class="blog">
-                <img src="{{asset('assets/img/banners/bn04.jpg')}}" />
+                <img src="{{asset('public/assets/img/banners/bn04.jpg')}}" />
               </div>
             </div>
           </a>
@@ -57,7 +57,7 @@
           >
             <div class="col">
               <div class="blog">
-                <img src="{{asset('assets/img/banners/bn01.jpg')}}" />
+                <img src="{{asset('public/assets/img/banners/bn01.jpg')}}" />
               </div>
             </div>
           </a>
@@ -68,7 +68,7 @@
           >
             <div class="col">
               <div class="blog">
-                <img src="{{asset('assets/img/banners/bn02.jpg')}}" />
+                <img src="{{asset('public/assets/img/banners/bn02.jpg')}}" />
               </div>
             </div>
           </a>
@@ -79,7 +79,7 @@
           >
             <div class="col">
               <div class="blog">
-                <img src="{{asset('assets/img/banners/bn03.jpg')}}" />
+                <img src="{{asset('public/assets/img/banners/bn03.jpg')}}" />
               </div>
             </div>
           </a>
@@ -90,7 +90,7 @@
           >
             <div class="col">
               <div class="blog">
-                <img src="{{asset('assets/img/banners/bn04.jpg')}}" />
+                <img src="{{asset('public/assets/img/banners/bn04.jpg')}}" />
               </div>
             </div>
           </a>
@@ -101,28 +101,28 @@
       <i class="fa fa-times" id="clsModal" onclick="clsModal()"></i>
       <div class="pic-holder" id="holder">
         <img
-          src="{{asset('assets/img/banners/bn01.jpg')}}"
+          src="{{asset('public/assets/img/banners/bn01.jpg')}}"
           class="galImg"
           alt=""
           data-id="1"
           style="display: none;"
         />
         <img
-          src="{{asset('assets/img/banners/bn02.jpg')}}"
+          src="{{asset('public/assets/img/banners/bn02.jpg')}}"
           class="galImg current"
           alt=""
           data-id="2"
           style="display: none;"
         />
         <img
-          src="{{asset('assets/img/banners/bn03.jpg')}}"
+          src="{{asset('public/assets/img/banners/bn03.jpg')}}"
           class="galImg"
           alt=""
           data-id="3"
           style="display: none;"
         />
         <img
-          src="{{asset('assets/img/banners/bn04.jpg')}}"
+          src="{{asset('public/assets/img/banners/bn04.jpg')}}"
           class="galImg current"
           alt=""
           data-id="4"

@@ -13,25 +13,41 @@
     <div class="container">
         <div class="col-md-12">
           <div class="col-md-6 floater-img">
-              <img src="{{asset('assets/img/register.jpg')}}" alt="" class="floater-img" />
+              <img src="{{asset('public/assets/img/register.jpg')}}" alt="" class="floater-img" />
           </div>
           <div class="col-md-6">
               <div class="col-md-12 bordered">
                   <div class="container">
+                  <h4 class="center">Registration Form</h4>
                       <form action="{{route('register')}}" method="post">
                             @csrf
-                            <h4 class="center">Registration Form</h4>
-                            @include('layouts.partials.errors')
+                            
+                            <div class="row">
+                              @include('layouts.partials.errors')
+                            </div>
                   <div class="form-group">
-                    <label for="name" class="col-form-label">{{ __('Full Name') }}</label>
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                    <div class="col-md-6">
+                    <label for="fname" class="col-form-label">{{ __('First Name') }}</label>
+                                <input id="fname" type="text" class="form-control @error('firstname') is-invalid @enderror" name="firstname" value="{{ old('firstname') }}" required autocomplete="name" autofocus>
                             <div>
-                                @error('name')
+                                @error('firstname')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
                             </div>
+                        </div>
+                        <div class="col-md-6">
+                    <label for="lname" class="col-form-label">{{ __('Last Name') }}</label>
+                                <input id="lname" type="text" class="form-control @error('lastname') is-invalid @enderror" name="lastname" value="{{ old('lastname') }}" required autocomplete="name" autofocus>
+                            <div>
+                                @error('lastname')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
                   </div>
 
                   <div class="form-group">
@@ -85,7 +101,7 @@
     </section>
     <section class="pattern1 no-margin pad-10 mid-space">
       <div class="container">
-        <img src="{{asset('assets/img/logo-icon.png')}}" alt="" class="logo-icon-section" />
+        <img src="{{asset('public/assets/img/logo-icon.png')}}" alt="" class="logo-icon-section" />
         <h3 class="all-caps">Dream, Discover, Explore</h3>
       </div>
     </section>

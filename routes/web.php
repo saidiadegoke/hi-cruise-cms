@@ -37,7 +37,13 @@ Route::get('payments/{reference?}/{reservation?}', "PaymentController@response")
 
 Route::get('/print_receipt/{reservation}', "ReservationController@printReciept")->name('print_receipt');
 
-
+Route::prefix('admin')->middleware('auth')->group(function () {
+    Route::get('/', 'Admin\AdminController@index')->name('admin');
+    Route::resource('slides', 'Admin\SlidesController');
+    Route::resource('yatchs', 'Admin\YatchController');
+    Route::resource('packages', 'Admin\PackageController');
+    Route::resource('events', 'Admin\EventController');
+});
 
 
 // Todos

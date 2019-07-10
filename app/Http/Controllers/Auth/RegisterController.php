@@ -44,7 +44,8 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
+            'firstname' => ['required', 'string', 'max:255'],
+            'lastname' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'phone' => ['required', 'min:10', 'max:15']
@@ -60,22 +61,23 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         $user =  User::create([
-            'name' => $data['name'],
             'email' => $data['email'],
-            'password' => Hash::make($data['password'])
+            'password' => Hash::make($data['password']),
+            'usertype' => isset($data['usertype'])? $data['usertype']: 2,
         ]);
 
         // Create a new Customer In Here and hen return the user so you can log them in by default;
-
-        $names = explode(" ", trim($data['name']));
-        Customer::create([
-            'user_id' => $user->id,
-            'firstname' => $names[0],
-            'lastname' => $names[1],
-            'phone' => $data['phone'],
-            'email' => $data['email']
-        ]);
-
+        
+        if($user) {
+            Customer::create([
+                'user_id' => $user->id,
+                'firstname' => $data['firstname'],
+                'lastname' => $data['lastname'],
+                'phone' => $data['phone'],
+                'email' => $data['email']
+            ]);
+        }
+        
         return $user;
     }
 }
