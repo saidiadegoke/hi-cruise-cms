@@ -355,7 +355,7 @@
                                         </a>
                                         <div class="kt-footer__copyright">
                                             2019&nbsp;&copy;&nbsp;
-                                            <a href="http://www.hi-impactstudios.com">Hi-Impact Studios</a>
+                                            <a href="http://www.hi-impactcruise.com">Hi-Impact Cruise</a>
                                         </div>
                                     </div>
                                     <div class="kt-footer__menu">
