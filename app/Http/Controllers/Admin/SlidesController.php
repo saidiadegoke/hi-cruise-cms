@@ -32,10 +32,9 @@ class SlidesController extends Controller
     public function create()
     {
         /**
-        * Call the form view
-        */
+         * Call the form view
+         */
         return view('slides.create');
-
     }
 
     /**
@@ -45,27 +44,27 @@ class SlidesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    { 
+    {
         Validator::make($request->all(), [
             'slide' => ['required', 'file'],
             'title' => 'required',
             'published' => 'required',
         ])->validate();
-        
+
         $path = $request->slide->store('/slides', 'public');
-        if($path) {
+        if ($path) {
             $imageUpload = new UploadedFile();
             $imageUpload->filename = $path;
             $imageUpload->extension = $request->slide->getClientOriginalExtension();
             $imageUpload->mime = $request->slide->getClientOriginalExtension();
             $imageUpload->save();
 
-            if($imageUpload) {
-                
+            if ($imageUpload) {
+
                 $data = $request->all();
                 $data['source'] = $imageUpload->id;
                 $slide = Slide::create($data);
-                if($slide) {
+                if ($slide) {
                     return redirect()->route('slides.show', ['slide' => $slide->id]);
                 }
             }
@@ -111,11 +110,11 @@ class SlidesController extends Controller
             'title' => 'required',
             'published' => 'required',
         ])->validate();
-        
-        if($request->hasFile('slide')) {
+
+        if ($request->hasFile('slide')) {
             Storage::delete($slide->file->filename);
             $path = $request->slide->store('/slides', 'public');
-            if($path) {
+            if ($path) {
                 $imageUpload = $slide->file;
                 $imageUpload->filename = $path;
                 $imageUpload->extension = $request->slide->getClientOriginalExtension();
@@ -123,14 +122,15 @@ class SlidesController extends Controller
                 $imageUpload->save();
             }
         }
-        
+
         $data = $request->all();
         $data['source'] = ($request->hasFile('slide') && $path)? $imageUpload->id: $slide->source;
+
         $slide->update($data);
-        if($slide) {
+        if ($slide) {
             return redirect()->route('slides.show', ['slide' => $slide->id]);
         }
-        
+
 
         return redirect()->back();
     }
@@ -146,5 +146,4 @@ class SlidesController extends Controller
         $slide->delete();
         return redirect()->route('slides.index');
     }
-
 }

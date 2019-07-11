@@ -8,6 +8,17 @@ class Questionaire extends Model
 {
     //
 
-    protected $guarded = [];
-    protected $casts = ['decoration' => 'array', 'entertainment' => 'array'];
+    protected $fillable = ["fullname", "organization", "contact_email", "contact_number", "event_type", "guests", "event_date", "catering", "yatch_state", "event_duration", "event_setup_duration"];
+
+
+
+    public function decorations()
+    {
+        return $this->hasMany(Decoration::class);
+    }
+
+    public function entertainments()
+    {
+        return $this->hasMany(EventEntertainment::class);
+    }
 }

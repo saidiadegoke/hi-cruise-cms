@@ -4,7 +4,7 @@
       
     <section class="pattern1 no-margin pad-10 mid-space" style="margin-top: 200px">
       <div class="container">
-        <img src="{{asset('assets/img/logo-icon.png')}}" alt="" class="logo-icon-section" />
+        <img src="{{asset('public/assets/img/logo-icon.png')}}" alt="" class="logo-icon-section" />
         <h3 class="all-caps">Event Reservations</h3>
         
             <div class="card">

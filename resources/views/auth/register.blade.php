@@ -13,7 +13,7 @@
     <div class="container">
         <div class="col-md-12">
           <div class="col-md-6 floater-img">
-              <img src="{{asset('assets/img/register.jpg')}}" alt="" class="floater-img" />
+              <img src="{{asset('public/assets/img/register.jpg')}}" alt="" class="floater-img" />
           </div>
           <div class="col-md-6">
               <div class="col-md-12 bordered">
@@ -101,7 +101,7 @@
     </section>
     <section class="pattern1 no-margin pad-10 mid-space">
       <div class="container">
-        <img src="{{asset('assets/img/logo-icon.png')}}" alt="" class="logo-icon-section" />
+        <img src="{{asset('public/assets/img/logo-icon.png')}}" alt="" class="logo-icon-section" />
         <h3 class="all-caps">Dream, Discover, Explore</h3>
       </div>
     </section>

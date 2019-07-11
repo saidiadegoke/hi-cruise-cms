@@ -1,13 +1,12 @@
 @extends('layouts.cruise')
 @section("content")
-    
     <section class="banner">
         <div id="myCarousel" class="carousel slide" data-ride="carousel">
             <!-- Wrapper for slides -->
             <div class="carousel-inner">
 
                 <div class="item active">
-                    <img src="{{asset('assets/img/banners/bn01.jpg')}}">
+                    <img src="{{asset('public/assets/img/banners/bn01.jpg')}}">
                     <!--div class="carousel-caption downUp">
                 <div class="banner-content">
                     <h4 class="fallDown">get business credit and financing for your company</h4>
@@ -19,11 +18,11 @@
                 </div><!-- End Item -->
 
                 <div class="item">
-                    <img src="{{asset('assets/img/banners/bn02.jpg')}}">
+                    <img src="{{asset('public/assets/img/banners/bn02.jpg')}}">
                     <!--div class="carousel-caption downUp">
                 <div class="banner-content">
                     <h4 class="fallDown">asset, business and project financing</h4>
-                    <p class="downUp">we provide financial support for private individuals and business who require funding for assets aquisition, business finance and project financing.</p>
+                    <p class="downUp">we provide financial support for private individuals and business who require funding for public/assets aquisition, business finance and project financing.</p>
                     <span class="call-to-action"> <a href="about.html"> learn more </a></span> 
                     <span class="call-to-action green-btn"> <a href="about.html"> apply now </a></span>
                 </div>
@@ -31,7 +30,7 @@
                 </div><!-- End Item -->
 
                 <div class="item">
-                    <img src="{{asset('assets/img/banners/bn03.jpg')}}">
+                    <img src="{{asset('public/assets/img/banners/bn03.jpg')}}">
                     <div class="carousel-caption downUp">
                         <!--div class="banner-content">
                     <h4 class="fallDown">fund management</h4>
@@ -64,8 +63,9 @@
                 <div class="col-md-4 form-group">
                     <select class="form-control" name="type" id="selectPackage" required>
                         <option value="">Select Yacht/Event</option>
-                        <option value="eugene1">Eugene 1</option>
-                        <option value="eugene">Eugene</option>
+                        @foreach ($yatchs as $yatch)
+                            <option value="{{$yatch->id}}">{{$yatch->name}}</option>
+                        @endforeach
                         <option value="event">Event</option>
                     </select>
                 </div>
@@ -91,7 +91,7 @@
                         <p>Eugene 1 is our luxury 140ft three-storey yacht which comes with top of the range features such as; Exquisite interior design, Fully air-conditioned interior with chilling capacity of 528,000BTU, Guest capacity: 600 (Banquet) & 1000 (standing), Automated sunroof, In-built 32 CCTV Cameras, Automated Sensor Doors, Hygienic Toilets, 230KW power generation, 4 Cabin rooms and so much more...</p>
                         <a href="#" class="btn btn-primary">Learn more</a>
                     </div>
-                    <img src="{{asset('assets/img/banners/bn01.jpg')}}" alt="" class="base-pic">
+                    <img src="{{asset('public/assets/img/banners/bn01.jpg')}}" alt="" class="base-pic">
                 </div>
             </div>
             <div class="col-md-6">
@@ -101,7 +101,7 @@
                         <p>Eugene is a private luxurious yacht with a capacity of 8 to 10 people.The beautiful leather interior piece sailing at 8 to 10 knots cruising speed has a black water tank capacity of 220litres and fully air conditioned with 8000 BTU with bathroom shower and kitchenette.</p>
                         <a href="#" class="btn btn-primary">Learn more</a>
                     </div>
-                    <img src="{{asset('assets/img/banners/b1.jpg')}}" alt="" class="base-pic">
+                    <img src="{{asset('public/assets/img/banners/b1.jpg')}}" alt="" class="base-pic">
                 </div>
             </div>
         </div>
@@ -177,32 +177,32 @@
                         <div class="item active">
                             <div class="row">
                                 <div class="col-md-3 img-holder">
-                                    <img src="{{asset('assets/img/banners/b11.jpg')}}" alt="" class="thumbs-list">
+                                    <img src="{{asset('public/assets/img/banners/b11.jpg')}}" alt="" class="thumbs-list">
                                 </div>
                                 <div class="col-md-3 img-holder">
-                                    <img src="{{asset('assets/img/banners/b12.jpg')}}" alt="" class="thumbs-list">
+                                    <img src="{{asset('public/assets/img/banners/b12.jpg')}}" alt="" class="thumbs-list">
                                 </div>
                                 <div class="col-md-3 img-holder">
-                                    <img src="{{asset('assets/img/banners/bn01.jpg')}}" alt="" class="thumbs-list">
+                                    <img src="{{asset('public/assets/img/banners/bn01.jpg')}}" alt="" class="thumbs-list">
                                 </div>
                                 <div class="col-md-3 img-holder">
-                                    <img src="{{asset('assets/img/banners/bn02.jpg')}}" alt="" class="thumbs-list">
+                                    <img src="{{asset('public/assets/img/banners/bn02.jpg')}}" alt="" class="thumbs-list">
                                 </div>
                             </div>
                         </div>
                         <div class="item">
                             <div class="row">
                                 <div class="col-md-3 img-holder">
-                                    <img src="{{asset('assets/img/banners/bn03.jpg')}}" alt="" class="thumbs-list">
+                                    <img src="{{asset('public/assets/img/banners/bn03.jpg')}}" alt="" class="thumbs-list">
                                 </div>
                                 <div class="col-md-3 img-holder">
-                                    <img src="{{asset('assets/img/banners/bn04.jpg')}}" alt="" class="thumbs-list">
+                                    <img src="{{asset('public/assets/img/banners/bn04.jpg')}}" alt="" class="thumbs-list">
                                 </div>
                                 <div class="col-md-3 img-holder">
-                                    <img src="{{asset('assets/img/banners/bn05.jpg')}}" alt="" class="thumbs-list">
+                                    <img src="{{asset('public/assets/img/banners/bn05.jpg')}}" alt="" class="thumbs-list">
                                 </div>
                                 <div class="col-md-3 img-holder">
-                                    <img src="{{asset('assets/img/banners/bn06.jpg')}}" alt="" class="thumbs-list">
+                                    <img src="{{asset('public/assets/img/banners/bn06.jpg')}}" alt="" class="thumbs-list">
                                 </div>
                             </div>
                         </div>
@@ -234,29 +234,6 @@
             </div>
         </div>
     </section>
-    <footer>
-        <div class="container" style="padding:30px 0px;">
-            <div class="col-md-12">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3963.7763434619374!2d3.359796114683554!3d6.549898224673285!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x103b8d9460a7be7b%3A0x64caf3a2460e953e!2s32+Coker+Rd%2C+Ilupeju%2C+Lagos!5e0!3m2!1sen!2sng!4v1562360908061!5m2!1sen!2sng" width="100%" height="300" frameborder="0" style="border:0" allowfullscreen></iframe>
-                <h4 class="center">Contact</h4>
-                <p style="text-align: center">32, Coker road, Ilupeju, Lagos.</p>
-                <p style="text-align: center">info@hi-impactcruise.com</p>
-                <p style="text-align: center">0818 8245 734, 0806 4831 491</p>
-            </div>
-        </div>
-        <div class="footer">
-            <div class="container">
-                <div class="col-md-6">
-                    Copyright &copy; 2019 All rights reserved <a href="#"> | Privacy Policy </a> <a href="#"> | Terms and Condition</a>
-                </div>
-                <div class="col-md-6 pull-right socials">
-                    <li><a href="#"> <i class="fab fa-facebook-f"></i></a></li>
-                    <li><a href="#"> <i class="fab fa-twitter"></i></a></li>
-                    <li><a href="#"> <i class="fab fa-instagram"></i></a></li>
-                </div>
-            </div>
-        </div>
-    </footer>
 @endsection
 
 @section("scripts")
@@ -267,45 +244,41 @@
                 const target = $(e.target);
                 const package = target.val();
 
-                const packages = {
-                    'eugene1': [{
-                        id: '',
-                        name: "Select Package"
-                    }, {
-                        id: 1,
-                        name: "Prestige Package"
-                    }, {
-                        id: 2,
-                        name: "Deluxe Package"
-                    }, {
-                        id: 3,
-                        name: "Royal Package"
-                    }],
-                    'eugene': [{
-                        id: '',
-                        name: "Select Package"
-                    }, {
-                        id: 1,
-                        name: "Silver Package"
-                    }, {
-                        id: 2,
-                        name: "Gold Package"
-                    }],
-                    'event': [{
-                        id: '',
-                        name: "Select Event"
-                    }, {
-                        id: 1,
-                        name: "Corporate Event"
-                    }, {
-                        id: 2,
-                        name: "Social Event"
-                    }],
+                if(package == ''){
+                    const options = "<option value=''>Select Package</option>";
+                        $('#listPackage').html(options);
+                }
+               
+                let url = "";
+                if(package === "event"){
+                    url = "/events";
+                }
+                else{
+                    url = "/packages/" + package;
                 }
 
-                const options = packages[package].map(item => '<option value="' + item.id + '">' + item.name + '</option>');
+                $.ajax({
+                    type: 'get',
+                    url: '/hi-cruise'+url,
+                    contentType: 'application/json',
+                    dataType: 'json',
+                    failure:function(err){
+                        const options = "<option value=''>No Package At the Moment</option>";
+                        $('#listPackage').html(options);
+                    },
+                    success: function(resp){
+                        let options = "";
+                        if(resp.length < 1){
+                            options = "<option value=''>No Package At the Moment</option>";
+                        }else{
+                            options = resp.map(item => '<option value="' + item.id + '">' + item.name + '</option>');
+                        }
+                        $('#listPackage').html(options);
+                    }
+                })
 
-                $('#listPackage').html(options);
+                // const options = packages[package].map(item => '<option value="' + item.id + '">' + item.name + '</option>');
+
             })
         })
     </script>

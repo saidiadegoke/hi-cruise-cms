@@ -2,7 +2,7 @@
       <div class="container">
         <div id="ini">
           <div class="col-md-4 main-menu">
-            <img class="logo" src="{{asset('assets/img/logo.png')}}" />
+            <img class="logo" src="{{asset('public/assets/img/logo.png')}}" />
           </div>
           <div class="col-md-8 main-menu">
             <nav>
@@ -21,6 +21,7 @@
                 <li><a href="{{route('gallery')}}">Gallery</a></li>
                 <li><a href="{{route('contact')}}">contact</a></li>
                 @auth
+                <li><a href="{{route('support')}}">Contact Support</a></li>
                   <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                       @csrf
                     </form>    
@@ -43,7 +44,7 @@
         </div>
         <div id="scrl">
           <div class="col-md-4 main-menu">
-            <img class="logo" src="{{asset('assets/img/logo.png')}}" />
+            <img class="logo" src="{{asset('public/assets/img/logo.png')}}" />
           </div>
           <div class="col-md-8 main-menu">
             <nav class="scrolled">
@@ -69,7 +70,7 @@
         </div>
         <div class="mobile-menu">
           <div class="col-md-4">
-            <img class="logo" src="{{asset('assets/img/logo.png')}}" />
+            <img class="logo" src="{{asset('public/assets/img/logo.png')}}" />
           </div>
           <i class="fa fa-bars bar-open"></i>
           <i class="fa fa-bars bar-close"></i>

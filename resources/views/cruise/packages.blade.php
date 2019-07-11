@@ -9,7 +9,7 @@
           <div class="container product-box-cont">
             <div class="product-box">
               <h4>Eugene 1</h4>
-              <img src="{{asset('assets/img/banners/eugene1_bn.jpg')}}" alt="" />
+              <img src="{{asset('public/assets/img/banners/eugene1_bn.jpg')}}" alt="" />
               <p class="opaque">
                 Eugene 1 is our luxury 140ft three-storey yacht which comes with
                 top of the range features such as; Exquisite interior design,
@@ -40,7 +40,7 @@
           <div class="container product-box-cont">
             <div class="product-box">
               <h4>Eugene</h4>
-              <img src="{{asset('assets/img/banners/eugene_bn.jpg')}}" alt="" />
+              <img src="{{asset('public/assets/img/banners/eugene_bn.jpg')}}" alt="" />
               <p class="opaque">
                 Eugene is a private luxurious yacht with a capacity of 8 to 10
                 people.The beautiful leather interior piece sailing at 8 to 10

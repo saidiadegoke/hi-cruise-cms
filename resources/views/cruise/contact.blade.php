@@ -6,7 +6,7 @@
         <div class="col-md-12">
           <div class="col-md-6 floater-img">
             <span class="sp-cap">We will love to hear from you</span>
-            <img src="{{asset('assets/img/contact.jpg')}}" alt="" class="floater-img" />
+            <img src="{{asset('public/assets/img/contact.jpg')}}" alt="" class="floater-img" />
           </div>
           <div class="col-md-6">
             <div class="col-md-12 bordered">
