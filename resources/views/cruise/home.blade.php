@@ -1,6 +1,5 @@
 @extends('layouts.cruise')
 @section("content")
-    
     <section class="banner">
         <div id="myCarousel" class="carousel slide" data-ride="carousel">
             <!-- Wrapper for slides -->
@@ -64,8 +63,9 @@
                 <div class="col-md-4 form-group">
                     <select class="form-control" name="type" id="selectPackage" required>
                         <option value="">Select Yacht/Event</option>
-                        <option value="eugene1">Eugene 1</option>
-                        <option value="eugene">Eugene</option>
+                        @foreach ($yatchs as $yatch)
+                            <option value="{{$yatch->id}}">{{$yatch->name}}</option>
+                        @endforeach
                         <option value="event">Event</option>
                     </select>
                 </div>
@@ -244,45 +244,41 @@
                 const target = $(e.target);
                 const package = target.val();
 
-                const packages = {
-                    'eugene1': [{
-                        id: '',
-                        name: "Select Package"
-                    }, {
-                        id: 1,
-                        name: "Prestige Package"
-                    }, {
-                        id: 2,
-                        name: "Deluxe Package"
-                    }, {
-                        id: 3,
-                        name: "Royal Package"
-                    }],
-                    'eugene': [{
-                        id: '',
-                        name: "Select Package"
-                    }, {
-                        id: 1,
-                        name: "Silver Package"
-                    }, {
-                        id: 2,
-                        name: "Gold Package"
-                    }],
-                    'event': [{
-                        id: '',
-                        name: "Select Event"
-                    }, {
-                        id: 1,
-                        name: "Corporate Event"
-                    }, {
-                        id: 2,
-                        name: "Social Event"
-                    }],
+                if(package == ''){
+                    const options = "<option value=''>Select Package</option>";
+                        $('#listPackage').html(options);
+                }
+               
+                let url = "";
+                if(package === "event"){
+                    url = "/events";
+                }
+                else{
+                    url = "/packages/" + package;
                 }
 
-                const options = packages[package].map(item => '<option value="' + item.id + '">' + item.name + '</option>');
+                $.ajax({
+                    type: 'get',
+                    url: '/hi-cruise'+url,
+                    contentType: 'application/json',
+                    dataType: 'json',
+                    failure:function(err){
+                        const options = "<option value=''>No Package At the Moment</option>";
+                        $('#listPackage').html(options);
+                    },
+                    success: function(resp){
+                        let options = "";
+                        if(resp.length < 1){
+                            options = "<option value=''>No Package At the Moment</option>";
+                        }else{
+                            options = resp.map(item => '<option value="' + item.id + '">' + item.name + '</option>');
+                        }
+                        $('#listPackage').html(options);
+                    }
+                })
 
-                $('#listPackage').html(options);
+                // const options = packages[package].map(item => '<option value="' + item.id + '">' + item.name + '</option>');
+
             })
         })
     </script>

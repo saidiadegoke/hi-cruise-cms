@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use App\Yatch;
+use App\Models\Yatch;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 class YatchController extends Controller
@@ -15,6 +16,8 @@ class YatchController extends Controller
     public function index()
     {
         //
+        $yatches = Yatch::paginate(10);
+        return view('yatchs.index', compact('yatches'));
     }
 
     /**
@@ -25,6 +28,7 @@ class YatchController extends Controller
     public function create()
     {
         //
+        return view('yatchs.create');
     }
 
     /**
@@ -35,7 +39,15 @@ class YatchController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $this->validate(request(), [
+            'name' => 'required',
+            'description' => 'required',
+        ]);
+
+        $yatch = Yatch::create(request()->all());
+
+        return redirect()->route('yatchs.show', ['yatch' => $yatch->id]);
     }
 
     /**
@@ -47,6 +59,8 @@ class YatchController extends Controller
     public function show(Yatch $yatch)
     {
         //
+
+        return view('yatchs.show', compact('yatch'));
     }
 
     /**
@@ -58,6 +72,7 @@ class YatchController extends Controller
     public function edit(Yatch $yatch)
     {
         //
+        return view('yatchs.edit', compact('yatch'));
     }
 
     /**
@@ -70,6 +85,12 @@ class YatchController extends Controller
     public function update(Request $request, Yatch $yatch)
     {
         //
+        $this->validate(request(), [
+            'name' => 'required',
+            'description' => 'required',
+        ]);
+        $yatch->update(request()->all());
+        return redirect()->route('yatchs.show', ['yatch' => $yatch->id]);
     }
 
     /**
@@ -81,5 +102,12 @@ class YatchController extends Controller
     public function destroy(Yatch $yatch)
     {
         //
+        $yatch->delete();
+        return redirect()->route('yatchs.index');
+    }
+
+    public function all(Yatch $yatch)
+    {
+        return $yatch->packages;
     }
 }

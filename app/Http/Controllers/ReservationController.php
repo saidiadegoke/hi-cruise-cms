@@ -13,6 +13,11 @@ use App\Models\Questionaire;
 use Paystack;
 use PDF;
 use function GuzzleHttp\json_encode;
+use App\Models\Yatch;
+use App\Models\Package;
+use Illuminate\Support\Arr;
+use App\Models\Decoration;
+use App\Models\EventEntertainment;
 
 class ReservationController extends Controller
 {
@@ -26,13 +31,37 @@ class ReservationController extends Controller
 
     public function store(Request $request)
     {
+
+        $this->validate(request(), [
+            "fullname" => "required",
+            "organization" => "required",
+            "contact_email" => "required|email",
+            "contact_number" => "required",
+            "event_type" => "required",
+            "guests" => "required",
+            "event_date" => "required",
+            "catering" => "required",
+            "yatch_state" => "required",
+            "event_duration" => "required",
+            "event_setup_duration" => "filled",
+        ]);
+
+
         $decoration = request('decoration');
         $entertainment = request('entertainment');
+        $questionaire = Questionaire::create(request()->all());
 
-        $request->request->set('decoration', json_encode($decoration));
-        $request->request->set('entertainment', json_encode($entertainment));
 
-        Questionaire::create(request()->all());
+        foreach ($entertainment as $key => $value) {
+            if ($value === null) continue;
+            $questionaire->entertainments()->save(new EventEntertainment(["name" => $value]));
+        }
+
+        foreach ($decoration as $key => $value) {
+            if ($value === null) continue;
+            $questionaire->decorations()->save(new Decoration(["name" => $value]));
+        }
+
         return view('cruise.bookings_confirmation');
     }
 
@@ -57,27 +86,12 @@ class ReservationController extends Controller
         if ($type == 'event') {
             return view('cruise.event');
         }
-        return redirect()->route('package_details', ['yatch' => request('type'), 'package' => request('package')]);
+        return redirect()->route('package_details', ['package' => request('package')]);
     }
 
 
-    public function details($yatch, $package)
+    public function details(Package $package)
     {
-        $prices = [
-            "eugene"  => [
-                "1" => 30000,
-                "2" => 35000
-            ],
-            "eugene1" => [
-                "1" => 35000,
-                "2" => 40000,
-                "3" => 50000
-            ]
-        ];
-
-        $amount = (float) $prices[request('yatch')][request('package')];
-
-        $yatch_info = ["yatch" => $yatch, "package" => $package, 'amount' => $amount];
-        return view('cruise.book', compact('yatch_info'));
+        return view('cruise.book', compact('package'));
     }
 }

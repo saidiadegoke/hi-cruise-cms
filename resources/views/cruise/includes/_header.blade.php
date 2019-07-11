@@ -21,6 +21,7 @@
                 <li><a href="{{route('gallery')}}">Gallery</a></li>
                 <li><a href="{{route('contact')}}">contact</a></li>
                 @auth
+                <li><a href="{{route('support')}}">Contact Support</a></li>
                   <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                       @csrf
                     </form>    

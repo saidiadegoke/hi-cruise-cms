@@ -1,9 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use App\Package;
+use App\Models\Package;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Yatch;
 
 class PackageController extends Controller
 {
@@ -15,6 +17,8 @@ class PackageController extends Controller
     public function index()
     {
         //
+        $packages = Package::Paginate(10);
+        return view('packages.index', compact('packages'));
     }
 
     /**
@@ -25,6 +29,13 @@ class PackageController extends Controller
     public function create()
     {
         //
+
+        $yatchs = Yatch::all();
+        if (count($yatchs) < 1) {
+            return view('packages.create')->with('message', 'No Yatch Please Add a Yatch and return to this page');
+        }
+
+        return view('packages.create', compact('yatchs'));
     }
 
     /**
@@ -36,6 +47,22 @@ class PackageController extends Controller
     public function store(Request $request)
     {
         //
+        $this->validate(request(), [
+            "name" => "required",
+            "price" => "required|integer",
+            "available_days" => "required|string",
+            "yatch" => "required|integer",
+            "description" => "required|string"
+        ]);
+
+        $yatch = Yatch::find(request('yatch'));
+
+        if ($yatch) {
+            $package = new Package(request()->except("yatch"));
+            $yatch->packages()->save($package);
+            return redirect()->route("packages.index");
+        }
+        return redirect()->back();
     }
 
     /**
@@ -47,6 +74,8 @@ class PackageController extends Controller
     public function show(Package $package)
     {
         //
+
+        return view('packages.show', compact('package'));
     }
 
     /**
@@ -58,6 +87,8 @@ class PackageController extends Controller
     public function edit(Package $package)
     {
         //
+        $yatchs = Yatch::all();
+        return view('packages.edit', compact('package', 'yatchs'));
     }
 
     /**
@@ -69,7 +100,16 @@ class PackageController extends Controller
      */
     public function update(Request $request, Package $package)
     {
-        //
+        $this->validate(request(), [
+            "name" => "required",
+            "price" => "required|integer",
+            "available_days" => "filled|string",
+            "yatch" => "required|integer",
+            "description" => "required|string"
+        ]);
+
+        $package->update(request()->all());
+        return redirect()->route('packages.show', ['package' => $package->id]);
     }
 
     /**
@@ -81,5 +121,12 @@ class PackageController extends Controller
     public function destroy(Package $package)
     {
         //
+        $package->delete();
+        return redirect()->route('packages.index');
+    }
+
+    public function single(Package $package)
+    {
+        return $package;
     }
 }

@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Support\Facades\DB;
 
 class CreatePackagesTable extends Migration
 {
@@ -15,6 +16,11 @@ class CreatePackagesTable extends Migration
     {
         Schema::create('packages', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->bigInteger('yatch_id')->unsigned();
+            $table->string('name');
+            $table->string('description');
+            $table->bigInteger('price');
+            $table->string('available_days');
             $table->timestamps();
         });
     }

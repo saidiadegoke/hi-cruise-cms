@@ -1,12 +1,14 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use App\Event;
+use App\Models\Event;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 class EventController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
@@ -15,6 +17,8 @@ class EventController extends Controller
     public function index()
     {
         //
+        $events = Event::Paginate(10);
+        return view('events.index', compact('events'));
     }
 
     /**
@@ -25,6 +29,7 @@ class EventController extends Controller
     public function create()
     {
         //
+        return view('events.create');
     }
 
     /**
@@ -36,6 +41,14 @@ class EventController extends Controller
     public function store(Request $request)
     {
         //
+        $this->validate(request(), [
+            'name' => 'required',
+            'description' => 'required',
+        ]);
+
+        $event = Event::create(request(["name", "description"]));
+
+        return redirect()->route('events.show', ["event" => $event->id]);
     }
 
     /**
@@ -47,6 +60,7 @@ class EventController extends Controller
     public function show(Event $event)
     {
         //
+        return view('events.show', compact('event'));
     }
 
     /**
@@ -58,6 +72,7 @@ class EventController extends Controller
     public function edit(Event $event)
     {
         //
+        return view('events.edit', compact('event'));
     }
 
     /**
@@ -70,6 +85,13 @@ class EventController extends Controller
     public function update(Request $request, Event $event)
     {
         //
+        $this->validate(request(), [
+            'name' => 'required',
+            'description' => 'required',
+        ]);
+
+        $event->update(request()->all());
+        return redirect()->route('events.show', ["event" => $event->id]);
     }
 
     /**
@@ -81,5 +103,12 @@ class EventController extends Controller
     public function destroy(Event $event)
     {
         //
+        $event->delete();
+        return redirect()->route('events.index');
+    }
+
+    public function all()
+    {
+        return Event::all();
     }
 }

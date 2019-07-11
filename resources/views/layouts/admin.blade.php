@@ -83,6 +83,8 @@
 
         <!--end::Layout Skins -->
         <link rel="shortcut icon" href="{{ asset('public/portal/media/logos/favicon.ico') }}" />
+        
+        @yield("styles")
     </head>
 
     <!-- end::Head -->
@@ -239,7 +241,8 @@
                                         <li class="kt-menu__item"><a href="{{route('events.index')}}" class="kt-menu__link"><span class="kt-menu__link-text">Event</span><i class="kt-menu__ver-arrow la la-angle-right"></i></a>
                                             </li>
 
-
+                                            <li class="kt-menu__item"><a href="{{route('packages.index')}}" class="kt-menu__link"><span class="kt-menu__link-text">Packages</span><i class="kt-menu__ver-arrow la la-angle-right"></i></a>
+                                            </li>
                                         </ul>
                                     </div>
                                     <div class="kt-header-toolbar">
