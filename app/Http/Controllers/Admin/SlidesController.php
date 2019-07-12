@@ -124,7 +124,8 @@ class SlidesController extends Controller
         }
 
         $data = $request->all();
-        $data['source'] = ($request->hasFile('slide') && $path) ? $imageUpload->id : $slide->cover;
+        $data['source'] = ($request->hasFile('slide') && $path)? $imageUpload->id: $slide->source;
+
         $slide->update($data);
         if ($slide) {
             return redirect()->route('slides.show', ['slide' => $slide->id]);
