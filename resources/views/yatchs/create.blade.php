@@ -1,5 +1,26 @@
 @extends('layouts.admin')
 
+@section("content_header")
+    <div class="kt-subheader   kt-grid__item" id="kt_subheader">
+        <div class="kt-subheader__main">
+            <h3 class="kt-subheader__title">Dashboard</h3>
+            <span class="kt-subheader__separator kt-subheader__separator--v"></span>
+            <a href="{{ route('yatchs.create') }}" class="btn btn-label-primary btn-bold btn-icon-h kt-margin-l-10">
+                Add New Yacht
+            </a>
+        </div>
+        <div class="kt-subheader__toolbar">
+            <div class="kt-subheader__wrapper">
+                <a href="#" class="btn kt-subheader__btn-daterange" id="kt_dashboard_daterangepicker" data-toggle="kt-tooltip" title="Select dashboard daterange" data-placement="left">
+                    <span class="kt-subheader__btn-daterange-title" id="kt_dashboard_daterangepicker_title">Today</span>&nbsp;
+                    <span class="kt-subheader__btn-daterange-date" id="kt_dashboard_daterangepicker_date">Aug 16</span>
+                    <i class="flaticon2-calendar-1"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+@endsection
 @section('content')
 
 <div class="row">
@@ -16,7 +37,7 @@
 			</div>
 
 			<!--begin::Form-->
-			<form class="kt-form" method="post" action="{{ route('yatchs.store') }}">
+			<form class="kt-form" method="post" enctype="multipart/form-data" action="{{ route('yatchs.store') }}">
 				@csrf
 				<div class="kt-portlet__body">
 					@if(count($errors->all()) > 0)
@@ -29,12 +50,20 @@
 						<!--div class="form-group">
 							<img src="#" />
 						</div-->
-						{{-- <div class="form-group row">
-							<label class="col-form-label col-sm-12">Select Yatch Image</label>
+						<div class="form-group row">
+							<label class="col-form-label col-sm-12">Select Yatch Banner Image</label>
 							<div class="col-sm-12">
-								<input type="file" name="slide">
+								<input type="file" name="banner">
 							</div>
-						</div> --}}
+						</div>
+
+						<div class="form-group row">
+							<label class="col-form-label col-sm-12">Select Yatch Slider Images</label>
+							<div class="col-sm-12">
+								<input type="file" name="slides[]" multiple>
+							</div>
+						</div>
+
 						<div class="form-group">
 							<label>Title</label>
 							<input type="text" class="form-control" name="name" placeholder="Yatch title" value="{{ old('title') }}">

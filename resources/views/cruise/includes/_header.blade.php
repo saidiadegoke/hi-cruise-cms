@@ -13,8 +13,9 @@
                   <a href="{{route('packages')}}"
                     >Packages <i class="fa fa-angle-down"></i>
                     <ul class="dropdown downUp">
-                      <li><a href="{{route('eugene1')}}">Eugene 1</a></li>
-                      <li><a href="{{route('eugene')}}">Eugene </a></li>
+                      @foreach ($yachts as $yatch)
+                      <li><a href="{{route('package',['yatch'=>$yatch->id])}}">{{$yatch->name}}</a></li>
+                      @endforeach
                     </ul>
                   </a>
                 </li>
@@ -51,12 +52,13 @@
               <ul>
                 <li><a href="{{route('home')}}">home</a></li>
                 <li><a href="{{route('about')}}">About Us</a></li>
-                <li>
+                 <li>
                   <a href="{{route('packages')}}"
                     >Packages <i class="fa fa-angle-down"></i>
                     <ul class="dropdown downUp">
-                      <li><a href="{{route('eugene1')}}">Eugene 1</a></li>
-                      <li><a href="{{route('eugene')}}">Eugene </a></li>
+                      @foreach ($yachts as $yatch)
+                      <li><a href="{{route('package',['yatch'=>$yatch->id])}}">{{$yatch->name}}</a></li>
+                      @endforeach
                     </ul>
                   </a>
                 </li>

@@ -84,26 +84,20 @@
         <div class="container">
             <h4 class="all-caps">Our Yachts</h4>
             <!--h4 class="center">Our Yatchs</h4-->
-            <div class="col-md-6">
+            {{-- {{dd($yatchs)}} --}}
+            @foreach ($yatchs as $yatch)
+                 <div class="col-md-6">
                 <div class="container product-box-cont">
                     <div class="product-box">
-                        <h4>Eugene 1</h4>
-                        <p>Eugene 1 is our luxury 140ft three-storey yacht which comes with top of the range features such as; Exquisite interior design, Fully air-conditioned interior with chilling capacity of 528,000BTU, Guest capacity: 600 (Banquet) & 1000 (standing), Automated sunroof, In-built 32 CCTV Cameras, Automated Sensor Doors, Hygienic Toilets, 230KW power generation, 4 Cabin rooms and so much more...</p>
-                        <a href="#" class="btn btn-primary">Learn more</a>
+                        <h4>{{$yatch->name}}</h4>
+                        <p>{!! $yatch->description !!}</p>
+                        <a href="{{route('package',['yatch'=>$yatch->id])}}" class="btn btn-primary">Learn more</a>
                     </div>
                     <img src="{{asset('public/assets/img/banners/bn01.jpg')}}" alt="" class="base-pic">
                 </div>
             </div>
-            <div class="col-md-6">
-                <div class="container product-box-cont">
-                    <div class="product-box">
-                        <h4>Eugene </h4>
-                        <p>Eugene is a private luxurious yacht with a capacity of 8 to 10 people.The beautiful leather interior piece sailing at 8 to 10 knots cruising speed has a black water tank capacity of 220litres and fully air conditioned with 8000 BTU with bathroom shower and kitchenette.</p>
-                        <a href="#" class="btn btn-primary">Learn more</a>
-                    </div>
-                    <img src="{{asset('public/assets/img/banners/b1.jpg')}}" alt="" class="base-pic">
-                </div>
-            </div>
+
+            @endforeach
         </div>
     </section>
     <section class="primary-color no-margin pad-10 mid-space">

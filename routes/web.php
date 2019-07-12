@@ -52,5 +52,12 @@ Route::prefix('admin')->middleware('auth')->group(function () {
 // Ajax Endpoints for Client Side Consumptions
 
 Route::get('/events', "Admin\EventController@all");
-Route::get('/packages/{yatch}', "Admin\YatchController@all");
+Route::get('/packages/{yatch}', "Admin\YatchController@packages");
+// Route::get('/packagess', "Admin\PackageController@all");
+// Route::get('/yatchss', "Admin\YatchController@all");
 Route::get('/package_details/{package}', "Admin\PackageController@single");
+
+
+// Todo
+// Package Page
+Route::get('/yatch/{yatch}', "Admin\YatchController@detail")->name('package');

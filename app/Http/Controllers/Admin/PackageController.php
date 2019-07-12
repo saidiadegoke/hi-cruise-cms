@@ -50,13 +50,15 @@ class PackageController extends Controller
         $this->validate(request(), [
             "name" => "required",
             "price" => "required|integer",
-            "available_days" => "required|string",
+            "available_days" => "required|array",
             "yatch" => "required|integer",
             "description" => "required|string"
         ]);
 
         $yatch = Yatch::find(request('yatch'));
-
+        $available_days = request('available_days');
+        $available_days = implode(" , ", $available_days);
+        $request->request->set('available_days', $available_days);
         if ($yatch) {
             $package = new Package(request()->except("yatch"));
             $yatch->packages()->save($package);
@@ -128,5 +130,10 @@ class PackageController extends Controller
     public function single(Package $package)
     {
         return $package;
+    }
+
+    public function all()
+    {
+        return Package::all();
     }
 }

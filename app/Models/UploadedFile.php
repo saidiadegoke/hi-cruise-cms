@@ -10,6 +10,6 @@ class UploadedFile extends Model
      * Fillables
      */
     protected $fillable = [
-        'filename', 'extension', 'mime',
+        'filename', 'extension', 'mime', "type"
     ];
 }
