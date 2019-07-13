@@ -222,6 +222,7 @@
                         <input type="text" class="form-control" name="" placeholder="Please, enter your email address">
                     </div>
                     <div>
+                    <input type="hidden" name="baseURL" value="{{url('/')}}" id="baseURL" />
                         <input type="submit" class="btn btn-primary" value="Subscribe">
                     </div>
                 </form>
@@ -233,7 +234,7 @@
 @section("scripts")
     <script>
         $(document).ready(function() {
-
+            const baseURL = $('#baseURL').val();
             $('#selectPackage').change(function(e) {
                 const target = $(e.target);
                 const package = target.val();
@@ -244,16 +245,19 @@
                 }
                
                 let url = "";
+                let p = '';
                 if(package === "event"){
                     url = "/events";
+                    p = 'Event Type'
                 }
                 else{
                     url = "/packages/" + package;
+                    p = 'Package'
                 }
 
                 $.ajax({
                     type: 'get',
-                    url: '/hi-cruise'+url,
+                    url: baseURL+url,
                     contentType: 'application/json',
                     dataType: 'json',
                     failure:function(err){
@@ -265,7 +269,9 @@
                         if(resp.length < 1){
                             options = "<option value=''>No Package At the Moment</option>";
                         }else{
+                            opts = '<option value="">Please Select ' + p + '</option>';
                             options = resp.map(item => '<option value="' + item.id + '">' + item.name + '</option>');
+                            options = [opts, ...options];
                         }
                         $('#listPackage').html(options);
                     }

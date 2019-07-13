@@ -105,10 +105,15 @@ class PackageController extends Controller
         $this->validate(request(), [
             "name" => "required",
             "price" => "required|integer",
-            "available_days" => "filled|string",
+            //"available_days" => "filled|string",
+            "available_days" => "required|array",
             "yatch" => "required|integer",
             "description" => "required|string"
         ]);
+
+        $available_days = request('available_days');
+        $available_days = implode(" , ", $available_days);
+        $request->request->set('available_days', $available_days);
 
         $package->update(request()->all());
         return redirect()->route('packages.show', ['package' => $package->id]);

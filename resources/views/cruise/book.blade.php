@@ -45,15 +45,23 @@
                                 <input type="hidden" name="yatch" value="{{$package->yatch->id}}">
                                     <div class="form-group">
                                 <div class="row">
-                                    <div class="col-md-5 col-md-offset-1">
+                                    <div class="col-md-12">
                                         <input type="number" class="form-control" placeholder="No of Seat" name="num_seat">
+                                    </div>
+                                </div>
+                                
+                            </div>  
+                            <div class="form-group">
+                            <div class="row">
+                                    <div class="col-md-5 col1-md-offset-0">
+                                    <input style="color: black;" type="text" class="form-control date pick_date" name="start_date" id="start_date" disabled>
                                     </div>
 
                                     <div class="col-md-5">
-                                        <input type="text" class="form-control date" name="start_date" id="start_date" disabled>
+                                        <input style="color: black;" type="text" class="form-control date pick_date" name="finish_date" id="finish_date" disabled>
                                     </div>
                                 </div>
-                            </div>   
+                                </div>
                             
                             <div class="form-group">
                                 <div class="col-md-10 col-md-offset-1">
@@ -76,6 +84,7 @@
 
                             <div class="form-group">
                                 <div class="col-md-10 col-md-offset-1">
+                                <input type="hidden" name="baseURL" value="{{url('/')}}" id="baseURL" />
                                     <button type="submit" class="btn btn-primary">Book Reservation</button>
                                 </div>
                             </div>
@@ -97,7 +106,7 @@
         <script>
             $(function(){            
         $.ajax({
-            url: '/hi-cruise/package_details/{{$package->id}}',
+            url: $('#baseURL').val() + '/package_details/{{$package->id}}',
             type: 'get',
             contentType: 'application/json',
             dataType: 'json',
@@ -150,7 +159,7 @@
             ]
                 
             });
-            $('#start_date').attr("disabled",false);
+            $('.pick_date').attr("disabled",false);
             }
         })
 
