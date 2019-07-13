@@ -5,42 +5,28 @@
             <!-- Wrapper for slides -->
             <div class="carousel-inner">
 
-                <div class="item active">
-                    <img src="{{asset('public/assets/img/banners/bn01.jpg')}}">
-                    <!--div class="carousel-caption downUp">
-                <div class="banner-content">
-                    <h4 class="fallDown">get business credit and financing for your company</h4>
-                    <p class="downUp">we finance both local and international trades. Our robust loan packages are designed to adapt and enable swift and smooth trading both locally and internationally</p>
-                    <span class="call-to-action"> <a href="about.html"> learn more </a></span> 
-                    <span class="call-to-action green-btn"> <a href="about.html"> apply now </a></span>
-                </div>
-            </div-->
-                </div><!-- End Item -->
+            <div class="item active">
+            <img src="{{ asset('public/assets/img/banners/bn10.jpg') }}">
+            </div><!-- End Item -->
 
-                <div class="item">
-                    <img src="{{asset('public/assets/img/banners/bn02.jpg')}}">
-                    <!--div class="carousel-caption downUp">
-                <div class="banner-content">
-                    <h4 class="fallDown">asset, business and project financing</h4>
-                    <p class="downUp">we provide financial support for private individuals and business who require funding for public/assets aquisition, business finance and project financing.</p>
-                    <span class="call-to-action"> <a href="about.html"> learn more </a></span> 
-                    <span class="call-to-action green-btn"> <a href="about.html"> apply now </a></span>
-                </div>
-            </div-->
-                </div><!-- End Item -->
+            <div class="item">
+                <img src="{{ asset('public/assets/img/banners/bn7.jpg') }}">
+            </div>
 
-                <div class="item">
-                    <img src="{{asset('public/assets/img/banners/bn03.jpg')}}">
-                    <div class="carousel-caption downUp">
-                        <!--div class="banner-content">
-                    <h4 class="fallDown">fund management</h4>
-                    <p class="downUp">with years of experience managing our own funds, we also help businesses manage their funding as well. by employing proven methodologies, you are guaranteed to succeed.</p>
-                    <span class="call-to-action"> <a href="about.html"> learn more </a></span> 
-                    <span class="call-to-action green-btn"> <a href="about.html"> apply now </a></span>
-                </div-->
-                    </div>
-                </div><!-- End Item -->
+            <div class="item">
+                <img src="{{ asset('public/assets/img/banners/bn8.jpg') }}">
+            </div>
 
+            <div class="item">
+                <img src="{{ asset('public/assets/img/banners/bn9.jpg') }}">
+            </div>
+    
+            <div class="item">
+                <img src="{{ asset('public/assets/img/banners/bn02.jpg') }}">
+            </div><!-- End Item -->
+            
+            <div class="item">
+                <img src="{{ asset('public/assets/img/banners/bn01.jpg') }}">
             </div><!-- End Carousel Inner -->
 
             <!-- Controls -->
@@ -83,7 +69,6 @@
     <section class="">
         <div class="container">
             <h4 class="all-caps">Our Yachts</h4>
-            <!--h4 class="center">Our Yatchs</h4-->
             {{-- {{dd($yatchs)}} --}}
             @foreach ($yatchs as $yatch)
                  <div class="col-md-6">
@@ -93,7 +78,11 @@
                         <p>{!! $yatch->description !!}</p>
                         <a href="{{route('package',['yatch'=>$yatch->id])}}" class="btn btn-primary">Learn more</a>
                     </div>
+                    @if($yatch->id == 1)
                     <img src="{{asset('public/assets/img/banners/bn01.jpg')}}" alt="" class="base-pic">
+                    @else
+                    <img src="{{asset('public/assets/img/banners/b1.jpg')}}" alt="" class="base-pic">
+                    @endif
                 </div>
             </div>
 
@@ -207,7 +196,7 @@
     </section>
     <section class="pattern1 no-margin pad-10 mid-space">
         <div class="container">
-            <img src="img/logo-icon.png" alt="" class="logo-icon-section">
+            <img src="{{ asset('public/assets/img/logo-icon.png') }}" alt="" class="logo-icon-section">
             <h3 class="all-caps">Dream, Discover, Explore</h3>
         </div>
     </section>

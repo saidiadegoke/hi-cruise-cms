@@ -54,10 +54,12 @@
                             <div class="form-group">
                             <div class="row">
                                     <div class="col-md-5 col1-md-offset-0">
+                                    <label>Start date</label>
                                     <input style="color: black;" type="text" class="form-control date pick_date" name="start_date" id="start_date" disabled>
                                     </div>
 
                                     <div class="col-md-5">
+                                        <label>Finish date</label>
                                         <input style="color: black;" type="text" class="form-control date pick_date" name="finish_date" id="finish_date" disabled>
                                     </div>
                                 </div>

@@ -227,9 +227,6 @@
   section.product {
     height: auto !important;
   }
-  .carousel-control {
-    font-size: 60px;
-  }
   div.col-md-6.pull-right.socials {
     position: relative;
     right: 0;
@@ -417,7 +414,7 @@
     margin-top: 0%;
   }
   ul.dropdown li:last-child {
-    background: #f4f1f1;
+    background: #1f1f1f;
   }
   #loader {
     position: fixed;
@@ -825,14 +822,14 @@
     top: 20%;
   }
   #myCarousel .carousel-controls {
-    width: 100px;
-    bottom: 200px;
-    right: 10%;
-    height: 80px;
+    width: 90%;
+    bottom: 255px;
+    right: 5%;
+    height: 50px;
   }
   .carousel-control i.fa {
-    font-size: 35px;
-    line-height: 60px;
+    font-size: 25px;
+    line-height: 50px;
   }
   section.banner-inner h4 {
     font-size: 20px;

@@ -44,25 +44,25 @@
                                                 <div class="kt-widget14">
                                                     <div class="kt-widget14__header">
                                                         <h3 class="kt-widget14__title">
-                                                            News
+                                                            Slides
                                                         </h3>
                                                         <span class="kt-widget14__desc">
-                                                            Add, edit, or delete news
+                                                            Add, edit, or delete slides
                                                         </span>
                                                     </div>
                                                     <div class="kt-widget14__content">
                                                         <div class="kt-widget14__chart">
-                                                            <div class="kt-widget14__stat">45</div>
+                                                            <div class="kt-widget14__stat"></div>
                                                             <canvas id="kt_chart_profit_share" style="height: 140px; width: 140px;"></canvas>
                                                         </div>
                                                         <div class="kt-widget14__legends">
                                                             <div class="kt-widget14__legend">
                                                                 <span class="kt-widget14__bullet kt-bg-success"></span>
-                                                                <span class="kt-widget14__stats">News around the globe</span>
+                                                                <span class="kt-widget14__stats"></span>
                                                             </div>
                                                             <div class="kt-widget14__legend">
                                                                 <span class="kt-widget14__bullet kt-bg-warning"></span>
-                                                                <span class="kt-widget14__stats">Hi-Impact Specials</span>
+                                                                <span class="kt-widget14__stats"></span>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -95,7 +95,7 @@
                                                             </div>
                                                             <div class="kt-widget14__legend">
                                                                 <span class="kt-widget14__bullet kt-bg-warning"></span>
-                                                                <span class="kt-widget14__stats">Programme categories</span>
+                                                                <span class="kt-widget14__stats">Package categories</span>
                                                             </div>
                                                             <div class="kt-widget14__legend">
                                                                 <span class="kt-widget14__bullet kt-bg-brand"></span>
