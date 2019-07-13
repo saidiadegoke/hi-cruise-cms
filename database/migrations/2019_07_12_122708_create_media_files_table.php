@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateUploadedFilesTable extends Migration
+class CreateMediaFilesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,11 @@ class CreateUploadedFilesTable extends Migration
      */
     public function up()
     {
-        Schema::create('uploaded_files', function (Blueprint $table) {
+        Schema::create('media_files', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('filename');
-            $table->string('extension');
-            $table->string('mime');
-            $table->string('type')->nullable();
+            $table->string('type');
+            $table->integer('yatch_id')->unsigned();
+            $table->integer('source')->unsigned();
             $table->timestamps();
         });
     }
@@ -30,6 +29,6 @@ class CreateUploadedFilesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('uploaded_files');
+        Schema::dropIfExists('media_files');
     }
 }

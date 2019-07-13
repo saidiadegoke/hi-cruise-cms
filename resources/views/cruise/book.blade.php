@@ -21,8 +21,9 @@
                             <h4>Package Description</h4>
                             <div class="card">
                                 <div class="card-body">
+                                    <p>Package: {{$package->name}}</p>
                                     <p>Yatch : {{ $package->yatch->name}}</p>
-                                        {{$package->description}} 
+                                        {!! $package->description !!} 
                                 <p> Price (Per Seat) : {{$package->price}}</p>
                                     {{-- <ul class="list-group">
                                         <li>{{$package->yatch->name}}</li>
@@ -105,7 +106,8 @@
             },
             success: function(resp){
                 let available_days = resp.available_days;
-                available_days = available_days.split(" to ");
+                
+                available_days = available_days.split(" , ");
                 let daysMap = {
                     "Sunday": 0,
                     "Monday" : 1,
@@ -115,19 +117,25 @@
                     "Friday" : 5,
                     "Saturday" : 6
                 }
-                let start_date = daysMap[available_days[0]], end_date = daysMap[available_days[1]];
+
+                let daysMapEquiv = []
+                available_days.forEach(function(day){
+                    daysMapEquiv.push(daysMap[day]);
+                });
+
+                // let start_date = daysMap[available_days[0]], end_date = daysMap[available_days[1]];
                 // console.log(start_date);
-                available_days = [];
-                if(end_date == 0){
-                    available_days.push(end_date);
-                    for(let i = start_date; i <= 6; i++){    
-                        available_days.push(i);
-                    }
-                }else{
-                    for(let i = start_date; i <= end_date; i++){
-                    available_days.push(i);
-                    }
-                }
+                // available_days = [];
+                // if(end_date == 0){
+                //     available_days.push(end_date);
+                //     for(let i = start_date; i <= 6; i++){    
+                //         available_days.push(i);
+                //     }
+                // }else{
+                //     for(let i = start_date; i <= end_date; i++){
+                //     available_days.push(i);
+                //     }
+                // }
                 
                 $('.date').flatpickr({
             mode: 'single',
@@ -136,7 +144,7 @@
             enable: [
                 function(date) {
                     // return true to disable
-                    return (available_days.includes(date.getDay()));
+                    return (daysMapEquiv.includes(date.getDay()));
                     
                 }
             ]

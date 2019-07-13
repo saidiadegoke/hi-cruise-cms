@@ -7,13 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 class Slide extends Model
 {
     /**
-    * Fillables
-    */
+     * Fillables
+     */
     protected $fillable = [
-    	'title', 'description', 'source', 'published', 'page',
+        'title', 'description', 'source', 'published', 'page',
     ];
 
-    public function file() {
-    	return $this->belongsTo('App\Models\UploadedFile', 'source');
+    public function file()
+    {
+        return $this->belongsTo('App\Models\UploadedFile', 'source');
     }
 }

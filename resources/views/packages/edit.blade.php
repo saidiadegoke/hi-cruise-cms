@@ -1,5 +1,27 @@
 @extends('layouts.admin')
 
+@section("content_header")
+    <div class="kt-subheader   kt-grid__item" id="kt_subheader">
+        <div class="kt-subheader__main">
+            <h3 class="kt-subheader__title">Dashboard</h3>
+            <span class="kt-subheader__separator kt-subheader__separator--v"></span>
+            <a href="{{ route('packages.create') }}" class="btn btn-label-primary btn-bold btn-icon-h kt-margin-l-10">
+                Add New Package
+            </a>
+        </div>
+        <div class="kt-subheader__toolbar">
+            <div class="kt-subheader__wrapper">
+                <a href="#" class="btn kt-subheader__btn-daterange" id="kt_dashboard_daterangepicker" data-toggle="kt-tooltip" title="Select dashboard daterange" data-placement="left">
+                    <span class="kt-subheader__btn-daterange-title" id="kt_dashboard_daterangepicker_title">Today</span>&nbsp;
+                    <span class="kt-subheader__btn-daterange-date" id="kt_dashboard_daterangepicker_date">Aug 16</span>
+                    <i class="flaticon2-calendar-1"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+@endsection
+
 @section("styles")
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 @endsection
@@ -64,10 +86,45 @@
 						</div>
 
 						<div class="form-group">
-							<label>Package Available Days</label><br>
-							<label>Current: {{ $package->available_days }}</label>
-						<input type="input" class="form-control date" name="available_days">
-							<span class="form-text text-muted">Select Availability Days</span>
+							<label>Package Available Days</label>
+							<br />
+							<label>Current Selection ({{$package->available_days}})</label>
+							<div class="col-md-5 col-md-offset-1">
+                                        <div class="form-check">
+                                            <input id="projector" class="form-check-input" type="checkbox" name="available_days[]" value="Sunday">
+                                            <label for="projector" class="form-check-label">Sunday</label>
+                                        </div>
+
+                                        <div class="form-check">
+                                            <input id="outdoor_sofas" class="form-check-input" type="checkbox" name="available_days[]" value="Monday">
+                                            <label for="outdoor_sofas" class="form-check-label">Monday</label>
+                                        </div>
+
+                                        <div class="form-check">
+                                            <input id="entrance_carpet" class="form-check-input" type="checkbox" name="available_days[]" value="Tuesday">
+                                            <label for="entrance_carpet" class="form-check-label">Tuesday</label>
+                                        </div>
+
+                                        <div class="form-check">
+                                            <input id="table_settings" class="form-check-input" type="checkbox" name="available_days[]" value="Wednesday">
+                                            <label for="table_settings" class="form-check-label">Wednesday</label>
+                                        </div>
+
+                                        <div class="form-check">
+                                            <input id="branded_graphics" class="form-check-input" type="checkbox" name="available_days[]" value="Thursday">
+                                            <label for="branded_graphics" class="form-check-label">Thursday</label>
+                                        </div>
+
+                                        <div class="form-check">
+                                            <input id="show_lights" class="form-check-input" type="checkbox" name="available_days[]" value="Friday">
+                                            <label for="show_lights" class="form-check-label">Friday</label>
+                                        </div>
+                                        <div class="form-check">
+											<input id="show_lights" class="form-check-input" type="checkbox" name="available_days[]" value="Saturday">
+                                          <label for="others">Saturday</label>
+                                        </div>
+                                    </div>
+							<span class="form-text text-muted">Select Multiple Where Applicable</span>
 						</div>
 
 					</div>

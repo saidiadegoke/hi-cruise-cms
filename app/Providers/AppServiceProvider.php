@@ -5,7 +5,9 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Controllers\HomeController;
+use App\Models\Yatch;
+use App\Http\Controllers\Admin\PackageController;
+use App\Http\Controllers\Admin\YatchController;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -31,8 +33,12 @@ class AppServiceProvider extends ServiceProvider
         view()->composer('*', function ($view) {
             $view->with('sessionUser', Auth::user());
         });
-        // view()->composer('cruise.home', function ($view) {
-        //     $view->with('data', HomeController::yatchEventDetails());
-        // });
+        view()->composer('cruise.includes._header', function ($view) {
+            $view->with('yachts', Yatch::all());
+        });
+
+        view()->composer('cruise.packages', function ($view) {
+            $view->with('yachts', Yatch::all());
+        });
     }
 }

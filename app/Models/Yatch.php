@@ -13,4 +13,14 @@ class Yatch extends Model
     {
         return $this->hasMany(Package::class);
     }
+
+    public function images()
+    {
+        return $this->hasManyThrough(UploadedFile::class, MediaFile::class, 'yatch_id', 'id');
+    }
+
+    // public function media()
+    // {
+    //     return $this->hasMany(MediaFile::class);
+    // }
 }
