@@ -13,8 +13,8 @@
                   <a href="{{route('packages')}}"
                     >Packages <i class="fa fa-angle-down"></i>
                     <ul class="dropdown downUp">
-                      @foreach ($yachts as $yatch)
-                      <li><a href="{{route('package',['yatch'=>$yatch->id])}}">{{$yatch->name}}</a></li>
+                      @foreach ($yachts as $yacht)
+                      <li><a href="{{route('package',['yacht'=>$yacht->id])}}">{{$yacht->name}}</a></li>
                       @endforeach
                     </ul>
                   </a>
@@ -56,8 +56,8 @@
                   <a href="{{route('packages')}}"
                     >Packages <i class="fa fa-angle-down"></i>
                     <ul class="dropdown downUp">
-                      @foreach ($yachts as $yatch)
-                      <li><a href="{{route('package',['yatch'=>$yatch->id])}}">{{$yatch->name}}</a></li>
+                      @foreach ($yachts as $yacht)
+                      <li><a href="{{route('package',['yacht'=>$yacht->id])}}">{{$yacht->name}}</a></li>
                       @endforeach
                     </ul>
                   </a>

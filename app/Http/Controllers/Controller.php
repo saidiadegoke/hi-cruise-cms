@@ -20,6 +20,9 @@ class Controller extends BaseController
 
     public function redirectTo()
     {
+        if (session('url.intended')) {
+            return session('url.intended');
+        }
         return '/';
     }
 }

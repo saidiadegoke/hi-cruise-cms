@@ -79,7 +79,7 @@
             </ul>
             <form class="form-horizontal" action="{{route('details')}}" method="post">
               @csrf
-            <input type="hidden" name="type" value="{{$yatch->id}}">
+            <input type="hidden" name="type" value="{{$yacht->id}}">
             <input type="hidden" name="package" value="1">
             <button class="btn btn-primary" style="width: 100%; margin-top: 1.2em;">Book Now</button>
             </form>
@@ -106,7 +106,7 @@
             </ul>
             <form class="form-horizontal" action="{{route('details')}}" method="post">
               @csrf
-            <input type="hidden" name="type" value="{{$yatch->id}}">
+            <input type="hidden" name="type" value="{{$yacht->id}}">
             <input type="hidden" name="package" value="1">
             <button class="btn btn-primary" style="width: 100%; margin-top: 1.2em;">Book Now</button>
             </form>

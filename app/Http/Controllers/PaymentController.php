@@ -34,6 +34,13 @@ class PaymentController extends Controller
      */
     public function redirectToGateway(Request $request)
     {
+        $this->validate(request(), [
+            "start_date" => "required|string",
+            "finish_date" => "required|string",
+            "num_seat" => "required|integer",
+            "payment_method" => "required|string"
+        ]);
+
         if (request('payment_method') !== 'paystack') {
             return redirect()->route('offline_payment');
         }

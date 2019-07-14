@@ -6,7 +6,6 @@
     <section class="set-bg-base">
       <div class="container">
         <h4 class="all-caps">Packages</h4>
-        <!--h4 class="center">Our Yatchs</h4-->
 
         @foreach ($yachts as $yacht)
         
@@ -33,7 +32,7 @@
                 <li>Hygienic Toilets</li>
                 <li>4 Cabin rooms and so much more</li>
               </ul>
-              <a href="{{route('package',['yatch'=>$yacht->id])}}" class="btn btn-primary">view packages</a>
+              <a href="{{route('package',['yacht'=>$yacht->id])}}" class="btn btn-primary">view packages</a>
             </div>
           </div>
         </div>

@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\Yatch;
+use App\Models\Yacht;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\MediaFile;
 use App\Models\UploadedFile;
 use Illuminate\Support\Facades\Storage;
 
-class YatchController extends Controller
+class YachtController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -21,8 +21,8 @@ class YatchController extends Controller
     public function index()
     {
         //
-        $yatches = Yatch::paginate(10);
-        return view('yatchs.index', compact('yatches'));
+        $yachts = Yacht::paginate(10);
+        return view('yachts.index', compact('yachts'));
     }
 
     /**
@@ -33,7 +33,7 @@ class YatchController extends Controller
     public function create()
     {
         //
-        return view('yatchs.create');
+        return view('yachts.create');
     }
 
     /**
@@ -54,47 +54,47 @@ class YatchController extends Controller
             'banner.*' => 'mimes:png,jpg,jpeg,gif'
         ]);
 
-        $yatch = Yatch::create(request()->all());
+        $yacht = Yacht::create(request()->all());
 
 
 
-        $this->uploadImages($request, $yatch);
-        return redirect()->route('yatchs.show', ['yatch' => $yatch->id]);
+        $this->uploadImages($request, $yacht);
+        return redirect()->route('yachts.show', ['yacht' => $yacht->id]);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Yatch  $yatch
+     * @param  \App\Yacht  $yacht
      * @return \Illuminate\Http\Response
      */
-    public function show(Yatch $yatch)
+    public function show(Yacht $yacht)
     {
         //
 
-        return view('yatchs.show', compact('yatch'));
+        return view('yachts.show', compact('yacht'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Yatch  $yatch
+     * @param  \App\Yacht  $yacht
      * @return \Illuminate\Http\Response
      */
-    public function edit(Yatch $yatch)
+    public function edit(Yacht $yacht)
     {
         //
-        return view('yatchs.edit', compact('yatch'));
+        return view('yachts.edit', compact('yacht'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Yatch  $yatch
+     * @param  \App\Yacht  $yacht
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Yatch $yatch)
+    public function update(Request $request, Yacht $yacht)
     {
         //
         $this->validate(request(), [
@@ -102,9 +102,9 @@ class YatchController extends Controller
             'description' => 'required',
         ]);
 
-        $yatch->update(request()->all());
+        $yacht->update(request()->all());
 
-        $images = $yatch->images;
+        $images = $yacht->images;
         $deletedFiles = [];
         $deleteLinks = [];
         if ($request->hasFile('slides')) {
@@ -115,6 +115,7 @@ class YatchController extends Controller
                 }
             }
         }
+
         if ($request->hasFile('banner')) {
             foreach ($images as $image) {
                 if ($image->type === 'banner') {
@@ -126,11 +127,11 @@ class YatchController extends Controller
 
 
         // Delete Images from db;
-        $yatch->images()->delete($deletedFiles);
+        $yacht->images()->delete($deletedFiles);
         //Store the new File
 
 
-        $this->uploadImages($request, $yatch);
+        $this->uploadImages($request, $yacht);
 
 
 
@@ -138,40 +139,40 @@ class YatchController extends Controller
         // dd($update);
         Storage::delete($deletedFiles);
 
-        return redirect()->route('yatchs.show', ['yatch' => $yatch->id]);
+        return redirect()->route('yachts.show', ['yacht' => $yacht->id]);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Yatch  $yatch
+     * @param  \App\Yacht  $yacht
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Yatch $yatch)
+    public function destroy(Yacht $yacht)
     {
         //
-        $yatch->delete();
-        return redirect()->route('yatchs.index');
+        $yacht->delete();
+        return redirect()->route('yachts.index');
     }
 
     public static function all()
     {
-        return Yatch::all();
+        return Yacht::all();
     }
 
-    public function packages(Yatch $yatch)
+    public function packages()
     {
-        return $yatch->packages;
+        return Yacht::with('packages')->get();
     }
 
-    public function detail(Yatch $yatch)
+    public function detail(Yacht $yacht)
     {
-        return view('cruise.package', compact('yatch'));
+        return view('cruise.package', compact('yacht'));
     }
 
-    public function uploadImages($request, $yatch)
+    public function uploadImages($request, $yacht)
     {
-        $bannerPath = $request->banner->store('/yatch/banner', 'public');
+        $bannerPath = $request->banner->store('/yacht/banner', 'public');
 
         if ($bannerPath) {
             $bannerUpload = new UploadedFile();
@@ -181,13 +182,13 @@ class YatchController extends Controller
             $bannerUpload->type = "banner";
             $bannerUpload->save();
             if ($bannerUpload) {
-                MediaFile::create(["type" => "banner", "yatch_id" => $yatch->id, "source" => $bannerUpload->id]);
+                MediaFile::create(["type" => "banner", "yacht_id" => $yacht->id, "source" => $bannerUpload->id]);
             }
         }
 
 
         foreach ($request->file('slides') as $file) {
-            $slidesPath = $file->store('/yatch/slides', 'public');
+            $slidesPath = $file->store('/yacht/slides', 'public');
             $slidesUpload = new UploadedFile();
             $slidesUpload->filename = $slidesPath;
             $slidesUpload->extension = $request->banner->getClientOriginalExtension();
@@ -196,7 +197,7 @@ class YatchController extends Controller
             $slidesUpload->save();
 
             if ($slidesUpload) {
-                MediaFile::create(["type" => "slide", "yatch_id" => $yatch->id, "source" => $slidesUpload->id]);
+                MediaFile::create(["type" => "slide", "yacht_id" => $yacht->id, "source" => $slidesUpload->id]);
             }
         }
     }

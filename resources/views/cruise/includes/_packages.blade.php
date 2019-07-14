@@ -1,7 +1,6 @@
 <section class="set-bg-base">
       <div class="container">
         <h4 class="all-caps">Packages</h4>
-        <!--h4 class="center">Our Yatchs</h4-->
         <div class="col-md-6 flyInRight">
           <div class="container product-box-cont">
             <div class="product-box">
@@ -29,7 +28,7 @@
                 <li>Hygienic Toilets</li>
                 <li>4 Cabin rooms and so much more</li>
               </ul>
-              <a href="{{ url('/yatch/1') }}" class="btn btn-primary">view packages</a>
+              <a href="{{ url('/yacht/1') }}" class="btn btn-primary">view packages</a>
             </div>
           </div>
         </div>
@@ -57,7 +56,7 @@
                 <li>Bridal showers for 10</li>
                 <li>Private disco party with Superb Music system</li>
               </ul>
-              <a href="{{ url('/yatch/2') }}" class="btn btn-primary">view packages</a>
+              <a href="{{ url('/yacht/2') }}" class="btn btn-primary">view packages</a>
             </div>
           </div>
         </div>

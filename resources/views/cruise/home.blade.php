@@ -48,11 +48,10 @@
                 
                 <div class="col-md-4 form-group">
                     <select class="form-control" name="type" id="selectPackage" required>
-                        <option value="">Select Yacht/Event</option>
-                        @foreach ($yatchs as $yatch)
-                            <option value="{{$yatch->id}}">{{$yatch->name}}</option>
+                        <option value="">Select Yacht</option>
+                        @foreach ($yachts as $yacht)
+                            <option value="{{$yacht->id}}">{{$yacht->name}}</option>
                         @endforeach
-                        <option value="event">Event</option>
                     </select>
                 </div>
                 <div class="col-md-4 form-group">
@@ -69,16 +68,15 @@
     <section class="">
         <div class="container">
             <h4 class="all-caps">Our Yachts</h4>
-            {{-- {{dd($yatchs)}} --}}
-            @foreach ($yatchs as $yatch)
+            @foreach ($yachts as $yacht)
                  <div class="col-md-6">
                 <div class="container product-box-cont">
                     <div class="product-box">
-                        <h4>{{$yatch->name}}</h4>
-                        <p>{!! $yatch->description !!}</p>
-                        <a href="{{route('package',['yatch'=>$yatch->id])}}" class="btn btn-primary">Learn more</a>
+                        <h4>{{$yacht->name}}</h4>
+                        <p>{!! $yacht->description !!}</p>
+                        <a href="{{route('package',['yacht'=>$yacht->id])}}" class="btn btn-primary">Learn more</a>
                     </div>
-                    @if($yatch->id == 1)
+                    @if($yacht->id == 1)
                     <img src="{{asset('public/assets/img/banners/bn01.jpg')}}" alt="" class="base-pic">
                     @else
                     <img src="{{asset('public/assets/img/banners/b1.jpg')}}" alt="" class="base-pic">
@@ -222,53 +220,54 @@
 
 @section("scripts")
     <script>
-        $(document).ready(function() {
+        
+
+
+
+        //On page load fetch all events and packages from db;
+
+        $(function(){
+            let packages =[], events = [];
+
             const baseURL = $('#baseURL').val();
-            $('#selectPackage').change(function(e) {
-                const target = $(e.target);
-                const package = target.val();
+                url = "/packagess";
+                p = 'Package'
 
-                if(package == ''){
-                    const options = "<option value=''>Select Package</option>";
-                        $('#listPackage').html(options);
+            // fetch packages
+            $.ajax({
+                type: 'get',
+                url: baseURL+url,
+                contentType: 'application/json',
+                dataType: 'json',
+                success: function(resp){
+                    console.log(resp);
+                    packages = resp;
+                        // options = "<option value=''>No Package At the Moment</option>";
                 }
-               
-                let url = "";
-                let p = '';
-                if(package === "event"){
-                    url = "/events";
-                    p = 'Event Type'
-                }
-                else{
-                    url = "/packages/" + package;
-                    p = 'Package'
-                }
-
-                $.ajax({
-                    type: 'get',
-                    url: baseURL+url,
-                    contentType: 'application/json',
-                    dataType: 'json',
-                    failure:function(err){
-                        const options = "<option value=''>No Package At the Moment</option>";
-                        $('#listPackage').html(options);
-                    },
-                    success: function(resp){
-                        let options = "";
-                        if(resp.length < 1){
-                            options = "<option value=''>No Package At the Moment</option>";
-                        }else{
-                            opts = '<option value="">Please Select ' + p + '</option>';
-                            options = resp.map(item => '<option value="' + item.id + '">' + item.name + '</option>');
-                            options = [opts, ...options];
-                        }
-                        $('#listPackage').html(options);
-                    }
-                })
-
-                // const options = packages[package].map(item => '<option value="' + item.id + '">' + item.name + '</option>');
-
             })
-        })
+
+            // fetch events
+
+         $('#selectPackage1').change(function(e) {
+                const target = $(e.target);
+                let package = target.val();
+                console.log(package);
+                let options;
+                // const packages = {
+                //     1: [{id: '', name: "Select Package"}, {id: 1, name: "Prestige Package"}, {id: 2, name: "Deluxe Package"}, {id: 3, name: "Royal Package"}],
+                //     2: [{id: '', name: "Select Package"}, {id: 4, name: "Silver Package"}, {id: 5, name: "Gold Package"}],
+                // }
+
+                if(package == 'event'){
+                    options = events[package].map( item => '<option value="' + item.id + '">' + item.name + '</option>' );
+                }else{
+                    options = packages[package].map( item => '<option value="' + item.id + '">' + item.name + '</option>' );
+                }
+
+                $('#listPackage').html(options);
+            });
+
+        });
+
     </script>
 @endsection

@@ -36,7 +36,7 @@ Route::get('payments/{reference?}/{reservation?}', "PaymentController@response")
 Route::get('/print_receipt/{reservation}', "ReservationController@printReciept")->name('print_receipt');
 
 
-Route::get('/support', "HomeController@support")->name('support');
+Route::get('/support', "HomeController@support")->name('support')->middleware('auth');
 Route::post('/support', "HomeController@contactSupport")->name('support');
 
 
@@ -44,7 +44,7 @@ Route::post('/support', "HomeController@contactSupport")->name('support');
 Route::prefix('admin')->middleware('auth')->group(function () {
     Route::get('/', 'Admin\AdminController@index')->name('admin');
     Route::resource('slides', 'Admin\SlidesController');
-    Route::resource('yatchs', 'Admin\YatchController');
+    Route::resource('yachts', 'Admin\YachtController');
     Route::resource('packages', 'Admin\PackageController');
     Route::resource('events', 'Admin\EventController');
 });
@@ -52,12 +52,16 @@ Route::prefix('admin')->middleware('auth')->group(function () {
 // Ajax Endpoints for Client Side Consumptions
 
 Route::get('/events', "Admin\EventController@all");
-Route::get('/packages/{yatch}', "Admin\YatchController@packages");
+Route::get('/packagess', "Admin\YachtController@packages");
 // Route::get('/packagess', "Admin\PackageController@all");
-// Route::get('/yatchss', "Admin\YatchController@all");
+// Route::get('/yachtss', "Admin\YachtController@all");
 Route::get('/package_details/{package}', "Admin\PackageController@single");
-
 
 // Todo
 // Package Page
-Route::get('/yatch/{yatch}', "Admin\YatchController@detail")->name('package');
+Route::get('/yacht/{yacht}', "Admin\YachtController@detail")->name('package');
+
+// Todo
+
+
+// Pre-Fetch all events and Package from the database and store locally on homepage

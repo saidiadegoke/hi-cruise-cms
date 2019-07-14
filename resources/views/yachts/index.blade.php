@@ -5,7 +5,7 @@
         <div class="kt-subheader__main">
             <h3 class="kt-subheader__title">Dashboard</h3>
             <span class="kt-subheader__separator kt-subheader__separator--v"></span>
-            <a href="{{ route('yatchs.create') }}" class="btn btn-label-primary btn-bold btn-icon-h kt-margin-l-10">
+            <a href="{{ route('yachts.create') }}" class="btn btn-label-primary btn-bold btn-icon-h kt-margin-l-10">
                 Add New Yacht
             </a>
         </div>
@@ -30,7 +30,7 @@
             <div class="kt-portlet__head">
                 <div class="kt-portlet__head-label">
                     <h3 class="kt-portlet__head-title">
-                        Yatches
+                        Yachts
                     </h3>
                 </div>
                 
@@ -39,29 +39,29 @@
                 <div class="tab-content">
                     <div class="tab-pane active" id="kt_widget5_tab1_content" aria-expanded="true">
                         <div class="kt-widget5">
-                            @if(count($yatches) > 0)
-                            @foreach($yatches as $yatch)
+                            @if(count($yachts) > 0)
+                            @foreach($yachts as $yacht)
                             <div class="kt-widget5__item">
                                 <div class="kt-widget5__content">
                                     <div class="kt-widget5__section">
                                         <a href="#" class="kt-widget5__title">
-                                            {{$yatch->name}}
+                                            {{$yacht->name}}
                                         </a>
                                         <p class="kt-widget5__desc">
-                                            {!! $yatch->description !!}
+                                            {!! $yacht->description !!}
                                         </p>
                                         <div class="kt-widget5__info">
                                             <span>Date:</span> 
-                                            <span class="kt-font-info">{{ date('d F, Y', strtotime($yatch->created_at)) }}</span>
+                                            <span class="kt-font-info">{{ date('d F, Y', strtotime($yacht->created_at)) }}</span>
                                          </div>
                                     </div>
                                 </div>
                                 <div class="kt-widget5__content">
                                     <div class="kt-widget5__stats">
-                                        <span class="kt-widget5__sales"><a href="{{ route('yatchs.show', ['yatch' => $yatch->id]) }}">view</a></span>
+                                        <span class="kt-widget5__sales"><a href="{{ route('yachts.show', ['yacht' => $yacht->id]) }}">view</a></span>
                                     </div>
                                     <div class="kt-widget5__stats">
-                                        <span class="kt-widget5__sales"><a href="{{ route('yatchs.edit', ['yatch' => $yatch->id]) }}">edit</a></span>
+                                        <span class="kt-widget5__sales"><a href="{{ route('yachts.edit', ['yacht' => $yacht->id]) }}">edit</a></span>
                                     </div>
                                 </div>
                             </div> 
@@ -69,7 +69,7 @@
                             @else
                                 <div class="row">
                                     <div class="col-xl-12 text-center">
-                                        <p class="lead">No Yatch found. <a href="{{ route('yatchs.create') }}">Click here</a> to add yatch</p>
+                                        <p class="lead">No Yacht found. <a href="{{ route('yachts.create') }}">Click here</a> to add yacht</p>
                                     </div>
                                 </div>
                             @endif
@@ -78,7 +78,7 @@
                 </div>
                 <div class="kt-portlet__foot">
 					<div class="kt-form__actions">
-						{{ $yatches->links() }}
+						{{ $yachts->links() }}
 					</div>
 				</div>
             </div>

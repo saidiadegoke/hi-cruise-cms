@@ -169,17 +169,17 @@
 
                             <div class="form-group">
                                 <div class="col-md-3 col-md-offset-1">
-                                        <label for="them">For the event the yatch will be: </label>
+                                        <label for="them">For the event the yacht will be: </label>
                                     <div class="form-check">
                                   <label class="form-check-label">
-                                    <input type="checkbox" class="form-check-input" name="yatch_state" value="static">
+                                    <input type="checkbox" class="form-check-input" name="yacht_state" value="static">
                                     Static
                                   </label>
                                 </div>
 
                                 <div class="form-check">
                                   <label class="form-check-label">
-                                    <input type="checkbox" class="form-check-input" name="yatch_state" id="" value="sailing">
+                                    <input type="checkbox" class="form-check-input" name="yacht_state" id="" value="sailing">
                                     Sailing
                                   </label>
                                 </div>

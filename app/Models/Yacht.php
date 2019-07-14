@@ -4,11 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Yatch extends Model
+class Yacht extends Model
 {
     //
     protected $fillable = ["name", "description"];
 
+    protected $with = ["packages"];
     public function packages()
     {
         return $this->hasMany(Package::class);
@@ -16,7 +17,7 @@ class Yatch extends Model
 
     public function images()
     {
-        return $this->hasManyThrough(UploadedFile::class, MediaFile::class, 'yatch_id', 'id');
+        return $this->hasManyThrough(UploadedFile::class, MediaFile::class, 'yacht_id', 'id');
     }
 
     // public function media()

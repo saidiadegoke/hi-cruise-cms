@@ -8,7 +8,7 @@ class Questionaire extends Model
 {
     //
 
-    protected $fillable = ["fullname", "organization", "contact_email", "contact_number", "event_type", "guests", "event_date", "catering", "yatch_state", "event_duration", "event_setup_duration"];
+    protected $fillable = ["fullname", "organization", "contact_email", "contact_number", "event_type", "guests", "event_date", "catering", "yacht_state", "event_duration", "event_setup_duration"];
 
 
 

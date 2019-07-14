@@ -59,9 +59,9 @@
 								<td>{!! $package->description !!}</td>
 							</tr>
 							<tr>
-								<th>Yatch</th>
+								<th>Yacht</th>
 								<td>
-									{{$package->yatch->name}}
+									{{$package->yacht->name}}
 
 								</td>
 							</tr>
@@ -74,7 +74,10 @@
 							<tr>
 								<th>Available Days</th>
 								<td>
-									{{$package->available_days }}
+									{{-- {{$package->available_days) }} --}}
+									@foreach ($package->available_days as $day)
+										{{$day->name}}
+									@endforeach
 								</td>
 							</tr>
 						</table>

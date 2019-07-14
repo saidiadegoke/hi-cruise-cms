@@ -13,7 +13,6 @@
       <div class="container">
         <img src="{{asset('public/assets/img/logo-icon.png')}}" alt="" class="logo-icon-section" />
         <h3 class="all-caps">Make Reservations</h3>
-        
             <div class="card">
                 <div class="card-body">
                     <div class="container-fluid">
@@ -22,11 +21,11 @@
                             <div class="card">
                                 <div class="card-body">
                                     <p>Package: {{$package->name}}</p>
-                                    <p>Yatch : {{ $package->yatch->name}}</p>
+                                    <p>Yacht : {{ $package->yacht->name}}</p>
                                         {!! $package->description !!} 
                                 <p> Price (Per Seat) : {{$package->price}}</p>
                                     {{-- <ul class="list-group">
-                                        <li>{{$package->yatch->name}}</li>
+                                        <li>{{$package->yacht->name}}</li>
                                         <li>Free Lunch</li>
                                         <li>4 Hours Cruise</li>
                                         <li>Complementary Wine</li>
@@ -39,14 +38,19 @@
 
                         <div class="col-md-6">
                             <form action="{{route('pay')}}" method="post">
-                            @csrf
-                                <input type="hidden" name="package" value="{{$package->id}}">
-                                <input type="hidden" name="amount" value="{{$package->price}}">
-                                <input type="hidden" name="yatch" value="{{$package->yatch->id}}">
+                                @csrf
+                                @if(count($errors->all()) > 0)
+                                    @foreach($errors->all() as $error)
+                                    <p class="alert alert-danger">{{$error}}</p>
+                                    @endforeach
+                                @endif
+                                <input type="hidden" name="package" value="{{ old('package') ? old('package') : $package->id}}">
+                                <input type="hidden" name="amount" value="{{ old('amount') ? old('amount') : $package->price}}">
+                                <input type="hidden" name="yacht" value="{{ old('yacht') ? old('yacht') : $package->yacht->id}}">
                                     <div class="form-group">
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <input type="number" class="form-control" placeholder="No of Seat" name="num_seat">
+                                    <input type="number" class="form-control" placeholder="No of Seat" name="num_seat" value="{{ old('package') ? old('package') : '' }}">
                                     </div>
                                 </div>
                                 

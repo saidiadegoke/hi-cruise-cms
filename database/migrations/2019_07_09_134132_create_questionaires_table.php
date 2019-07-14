@@ -23,7 +23,7 @@ class CreateQuestionairesTable extends Migration
             $table->unsignedTinyInteger('guests');
             $table->date('event_date');
             $table->string('catering');
-            $table->string('yatch_state');
+            $table->string('yacht_state');
             $table->string('event_duration');
             $table->string('event_setup_duration');
             $table->timestamps();

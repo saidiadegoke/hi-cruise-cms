@@ -7,10 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 class MediaFile extends Model
 {
     //
-    protected $fillable = ["type", "yatch_id", "source"];
+    protected $fillable = ["type", "yacht_id", "source"];
 
-    public function yatch()
+    public function yacht()
     {
-        return $this->belongsTo(Yatch::class);
+        return $this->belongsTo(Yacht::class);
     }
 }
