@@ -82,7 +82,7 @@
         <!--begin::Layout Skins(used by all pages) -->
 
         <!--end::Layout Skins -->
-        <link rel="shortcut icon" href="{{ asset('public/portal/media/logos/favicon.ico') }}" />
+        <link rel="shortcut icon" href="{{ asset('public/favicon.ico') }}" />
         
         @yield("styles")
     </head>
