@@ -48,11 +48,10 @@
                 
                 <div class="col-md-4 form-group">
                     <select class="form-control" name="type" id="selectPackage" required>
-                        <option value="">Select Yacht/Event</option>
+                        <option value="">Select Yacht</option>
                         @foreach ($yatchs as $yatch)
                             <option value="{{$yatch->id}}">{{$yatch->name}}</option>
                         @endforeach
-                        <option value="event">Event</option>
                     </select>
                 </div>
                 <div class="col-md-4 form-group">
@@ -253,14 +252,17 @@
                         const options = "<option value=''>No Package At the Moment</option>";
                         $('#listPackage').html(options);
                     },
-                    success: function(resp){
+                    success: function(resp) {
                         let options = "";
-                        if(resp.length < 1){
+                        if(resp.length < 1) {
                             options = "<option value=''>No Package At the Moment</option>";
-                        }else{
+                        } else {
                             opts = '<option value="">Please Select ' + p + '</option>';
                             options = resp.map(item => '<option value="' + item.id + '">' + item.name + '</option>');
-                            options = [opts, ...options];
+                            const events = (package == 1)? ['<option value="6">Social Event</option>', '<option value="7">Corporate Event</option>']: [];
+                            options = [opts, ...options, ...events];
+
+                            console.log(package)
                         }
                         $('#listPackage').html(options);
                     }
