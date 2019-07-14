@@ -11,6 +11,7 @@
           <th scope="col">Start Date</th>
           <th scope="col">Finish Date</th>
           <th scope="col">No of Seats</th>
+          <th>&nbsp;</th>
         </tr>
         
     </thead>
@@ -24,6 +25,7 @@
         <td>{{$reservation->start_date}}</td>
         <td>{{$reservation->finish_date}}</td>
         <td>{{$reservation->seats}}</td>
+        <td><a href="#">View</a></td>
         </tr>
         @php 
             $index++;

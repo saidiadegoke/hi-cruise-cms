@@ -43,24 +43,49 @@
                                 <input type="hidden" name="package" value="{{$package->id}}">
                                 <input type="hidden" name="amount" value="{{$package->price}}">
                                 <input type="hidden" name="yatch" value="{{$package->yatch->id}}">
-                                    <div class="form-group">
+                                <div class="form-group">
+                                @if(count($errors->all()) > 0)
+		              @foreach($errors->all() as $error)
+		              <p class="alert alert-danger">{{$error}}</p>
+		              @endforeach
+		            @endif
+                                </div>
+                                <div class="form-group">
                                 <div class="row">
-                                    <div class="col-md-12">
-                                        <input type="number" class="form-control" placeholder="No of Seat" name="num_seat">
+                                    <div class="col-md-7">
+                                    <label>Full name</label>
+                                        <input type="text" value="{{ old('name') }}" class="form-control" placeholder="Name" name="name">
+                                    </div>
+                                    <div class="col-md-5">
+                                    <label>Phone number</label>
+                                        <input type="text" value="{{ old('phone') }}" class="form-control" placeholder="Phone number" name="phone">
                                     </div>
                                 </div>
                                 
-                            </div>  
+                            </div> 
+                                    <div class="form-group">
+                                <div class="row">
+                                <div class="col-md-7">
+                                <label>Email address</label>
+                                        <input type="email" value="{{ old('email') }}" class="form-control" placeholder="Email address" name="email">
+                                    </div>
+                                    <div class="col-md-5">
+                                    <label>No of seats</label>
+                                        <input type="number" value="{{ old('num_seat') }}" class="form-control" placeholder="No of Seat" name="num_seat">
+                                    </div>
+                                </div>
+                                
+                            </div> 
                             <div class="form-group">
                             <div class="row">
-                                    <div class="col-md-5 col1-md-offset-0">
+                                    <div class="col-md-5">
                                     <label>Start date</label>
-                                    <input style="color: black;" type="text" class="form-control date pick_date" name="start_date" id="start_date" disabled>
+                                    <input style="color: black;" value="{{ old('start_date') }}" type="text" class="form-control date pick_date" name="start_date" id="start_date" disabled>
                                     </div>
 
-                                    <div class="col-md-5">
+                                    <div class="col-md-7">
                                         <label>Finish date</label>
-                                        <input style="color: black;" type="text" class="form-control date pick_date" name="finish_date" id="finish_date" disabled>
+                                        <input style="color: black;" value="{{ old('finish_date') }}" type="text" class="form-control date pick_date" name="finish_date" id="finish_date" disabled>
                                     </div>
                                 </div>
                                 </div>
@@ -72,17 +97,31 @@
                                 <div class="row">
                                     <div class="form-check form-check-inline col-md-5 col-md-offset-1">
                                         <label class="form-check-label">
-                                            <input class="form-check-input" type="radio" name="payment_method" id="payment_method" value="offline"> Offline Payment
+                                            <input class="form-check-input" type="radio" {{ old('payment_method') == 'offline'? 'checked': '' }} name="payment_method" id="payment_method" value="offline"> Offline Payment
                                         </label>
                                     </div>
 
                                     <div class="form-check form-check-inline col-md-5">
                                         <label class="form-check-label">
-                                            <input class="form-check-input" type="radio" name="payment_method" id="payment_method" value="paystack"> Paystack
+                                            <input class="form-check-input" type="radio" {{ old('payment_method') == 'paystack'? 'checked': '' }} name="payment_method" id="payment_method" value="paystack"> Paystack
                                         </label>
                                     </div>
                                 </div>
                             </div>
+                            <div class="form-group">
+                            <div class="row">
+                                    <div class="col-md-12">
+                                    <label>Address</label>
+                                    <textarea
+                                        class="form-control"
+                                        name="address"
+                                        id="address"
+                                        cols="30"
+                                        rows="10"
+                                    >{{ old('address') }}</textarea>
+                                    </div>
+                                </div>
+                                </div>
 
                             <div class="form-group">
                                 <div class="col-md-10 col-md-offset-1">

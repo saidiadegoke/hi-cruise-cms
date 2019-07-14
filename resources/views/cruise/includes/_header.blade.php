@@ -27,10 +27,14 @@
                       @csrf
                     </form>    
                     <li>
-                      <a href="{{route('contact')}}"
-                          onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
+                      <a class="" href="{{ route('logout') }}"
+                          onclick="event.preventDefault();
+                                          document.getElementById('logout-form').submit();"><i class="fa fa-user-lock"></i>
+                          {{ __('Logout') }}
                       </a>
+                      <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                          @csrf
+                      </form>
                     </li>
                 @endauth
 
@@ -64,8 +68,27 @@
                 </li>
                 <li><a href="{{route('gallery')}}">Gallery</a></li>
                 <li><a href="{{route('contact')}}">contact</a></li>
-                <li><a href="{{route('register')}}">register</a></li>
-                <li><a href="{{route('login')}}">Login</a></li>
+                @auth
+                <li><a href="{{route('support')}}">Contact Support</a></li>
+                  <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                      @csrf
+                    </form>    
+                    <li>
+                      <a class="" href="{{ route('logout') }}"
+                          onclick="event.preventDefault();
+                                          document.getElementById('logout-form').submit();"><i class="fa fa-user-lock"></i>
+                          {{ __('Logout') }}
+                      </a>
+                      <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                          @csrf
+                      </form>
+                    </li>
+                @endauth
+
+                @guest
+                    <li><a href="{{route('register')}}">register</a></li>
+                    <li><a href="{{route('login')}}">Login</a></li>
+                @endguest
               </ul>
             </nav>
           </div>
@@ -91,8 +114,27 @@
               </li>
               <li><a href="{{route('gallery')}}">Gallery</a></li>
               <li><a href="{{route('contact')}}">contact</a></li>
-              <li><a href="{{route('register')}}">register</a></li>
-              <li><a href="{{route('register')}}">Login</a></li>
+              @auth
+                <li><a href="{{route('support')}}">Contact Support</a></li>
+                  <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                      @csrf
+                    </form>    
+                    <li>
+                      <a class="" href="{{ route('logout') }}"
+                          onclick="event.preventDefault();
+                                          document.getElementById('logout-form').submit();"><i class="fa fa-user-lock"></i>
+                          {{ __('Logout') }}
+                      </a>
+                      <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                          @csrf
+                      </form>
+                    </li>
+                @endauth
+
+                @guest
+                    <li><a href="{{route('register')}}">register</a></li>
+                    <li><a href="{{route('login')}}">Login</a></li>
+                @endguest
               <i class="fa fa-times" id="close"></i>
             </ul>
           </div>

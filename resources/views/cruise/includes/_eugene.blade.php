@@ -80,7 +80,7 @@
             <form class="form-horizontal" action="{{route('details')}}" method="post">
               @csrf
             <input type="hidden" name="type" value="{{$yatch->id}}">
-            <input type="hidden" name="package" value="1">
+            <input type="hidden" name="package" value="3">
             <button class="btn btn-primary" style="width: 100%; margin-top: 1.2em;">Book Now</button>
             </form>
           </div>
@@ -107,7 +107,7 @@
             <form class="form-horizontal" action="{{route('details')}}" method="post">
               @csrf
             <input type="hidden" name="type" value="{{$yatch->id}}">
-            <input type="hidden" name="package" value="1">
+            <input type="hidden" name="package" value="4">
             <button class="btn btn-primary" style="width: 100%; margin-top: 1.2em;">Book Now</button>
             </form>
           </div>
