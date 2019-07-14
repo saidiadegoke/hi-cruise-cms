@@ -8,6 +8,7 @@ use App\Models\Payment;
 use App\Models\Reservation;
 use App\Models\Paystack as AppPaystack;
 use \Carbon\Carbon;
+use Illuminate\Support\Facades\Validator;
 
 class PaymentController extends Controller
 {
@@ -34,12 +35,15 @@ class PaymentController extends Controller
      */
     public function redirectToGateway(Request $request)
     {
-        $this->validate(request(), [
-            "start_date" => "required|string",
-            "finish_date" => "required|string",
-            "num_seat" => "required|integer",
-            "payment_method" => "required|string"
-        ]);
+        Validator::make($request->all(), [
+            'name' => 'required',
+            'email' => ['required', 'string', 'email'],
+            'phone' => 'required',
+            'address' => 'required',
+            'payment_method' => ['required'],
+            'start_date' => 'required',
+            'finish_date' => 'required',
+        ])->validate();
 
         if (request('payment_method') !== 'paystack') {
             return redirect()->route('offline_payment');
@@ -51,7 +55,16 @@ class PaymentController extends Controller
         $request->request->set('reference', Paystack::genTranxRef());
         $request->request->set('key', config('paystack.secretKey'));
 
-        $request->request->set('metadata', ['package_id' => request('package'), 'seats' => request('num_seat'), 'start_date' => Carbon::createFromFormat('Y-m-d', request('start_date'))]);
+        $request->request->set('metadata', [
+            'package_id' => request('package'),
+            'seats' => request('num_seat'),
+            'start_date' => Carbon::createFromFormat('Y-m-d', request('start_date')),
+            'finish_date' => Carbon::createFromFormat('Y-m-d', request('finish_date')),
+            'name' => request('name'),
+            'phone' => request('phone'),
+            'email' => request('email'),
+            'address' => request('address'),
+        ]);
         $request->request->set('quantity', (int) request('num_seat'));
         return Paystack::getAuthorizationUrl()->redirectNow();
     }
@@ -75,7 +88,12 @@ class PaymentController extends Controller
             $reservation = Reservation::create([
                 'customer_id' => auth()->user()->id,
                 'seats' => $metaData['seats'],
+                'name' => $metaData['name'],
+                'phone' => $metaData['phone'],
+                'email' => $metaData['email'],
+                'address' => $metaData['address'],
                 'start_date' => Carbon::parse($metaData['start_date'])->format('Y-m-d'),
+                'finish_date' => Carbon::parse($metaData['finish_date'])->format('Y-m-d'),
                 'package_id' => $metaData['package_id']
             ]);
 
