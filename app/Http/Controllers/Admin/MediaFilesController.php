@@ -6,7 +6,7 @@ use App\Models\MediaFile;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
-use App\Models\FileUpload;
+use App\Models\UploadedFile;
 
 class MediaFilesController extends Controller
 {
@@ -42,13 +42,13 @@ class MediaFilesController extends Controller
     {
         Validator::make($request->all(), [
             'file' => ['required', 'file'],
-            'page' => 'required',
+            'purpose' => 'required',
             'published' => 'required',
         ])->validate();
         
         $path = $request->file->store('/media-files', 'public');
         if($path) {
-            $imageUpload = new FileUpload();
+            $imageUpload = new UploadedFile();
             $imageUpload->filename = $path;
             $imageUpload->extension = $request->file->getClientOriginalExtension();
             $imageUpload->mime = $request->file->getClientOriginalExtension();
@@ -57,7 +57,7 @@ class MediaFilesController extends Controller
             if($imageUpload) {
                 $data = $request->all();
                 $data['type'] = 'image';
-                $data['file'] = $imageUpload->id;
+                $data['source'] = $imageUpload->id;
                 $mediaFile = MediaFile::create($data);
                 if($mediaFile) {
                     return redirect()->route('media-files.show', ['mediaFile' => $mediaFile->id]);

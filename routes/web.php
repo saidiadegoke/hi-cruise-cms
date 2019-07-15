@@ -47,6 +47,8 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     Route::resource('yatchs', 'Admin\YatchController');
     Route::resource('packages', 'Admin\PackageController');
     Route::resource('events', 'Admin\EventController');
+    Route::resource('media-files', 'Admin\MediaFilesController');
+    Route::resource('media-file-purposes', 'Admin\MediaFilePurposesController');
 });
 
 // Ajax Endpoints for Client Side Consumptions

@@ -27,7 +27,7 @@
 
 					<div class="kt-section kt-section--first">
 						<div class="form-group">
-							<img class="responsive-img" src="{{ asset('public/storage/' . $mediaFile->mfile->filename) }}" />
+							<img class="responsive-img" src="{{ asset('public/storage/' . $mediaFile->file->filename) }}" />
 						</div>
 						<table class="table table-bordered">
 							<tr>
@@ -39,8 +39,8 @@
 								<td>{!! $mediaFile->description !!}</td>
 							</tr>
 							<tr>
-								<th>Page</th>
-								<td>{{ $mediaFile->page }}</td>
+								<th>Purpose</th>
+								<td>{{ $mediaFile->mediaFilePurpose->name }}</td>
 							</tr>
 							<tr>
 								<th>Published</th>

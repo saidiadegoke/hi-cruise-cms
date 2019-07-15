@@ -10,13 +10,13 @@
 			<div class="kt-portlet__head">
 				<div class="kt-portlet__head-label">
 					<h3 class="kt-portlet__head-title">
-						Add new media file
+						Add new Media File Purpose 
 					</h3>
 				</div>
 			</div>
 
 			<!--begin::Form-->
-			<form class="kt-form" enctype="multipart/form-data" method="post" action="{{ route('media-files.store') }}">
+			<form class="kt-form" enctype="multipart/form-data" method="post" action="{{ route('media-file-purposes.store') }}">
 				@csrf
 				<div class="kt-portlet__body">
 					@if(count($errors->all()) > 0)
@@ -26,37 +26,15 @@
 		            @endif
 
 					<div class="kt-section kt-section--first">
-						<div class="form-group row">
-							<label class="col-form-label col-sm-12">Select media file</label>
-							<div class="col-sm-12">
-								<input type="file" name="file">
-							</div>
-						</div>
 						<div class="form-group">
-							<label>Title</label>
-							<input type="text" class="form-control" name="title" placeholder="File title" value="{{ old('title') }}">
-							<span class="form-text text-muted">Please enter title</span>
-						</div>
-						<div class="form-group">
-							<label>Description</label>
-							<textarea class="form-control" name="description" placeholder="Enter description">{{ old('description') }}</textarea>
-							<span class="form-text text-muted">Optional</span>
-						</div>
-						<div class="form-group row">
-							<label class="col-form-label col-sm-12">Purpose</label>
-							<div class="col-sm-12">
-								<select name="purpose" class="form-control">
-									<option value="">Select Purpose</option>
-									@foreach(\App\Models\MediaFilePurpose::all() as $purpose)
-										<option value="{{ $purpose->id }}" {{ old('purpose') == $purpose->id? 'selected': '' }}>{{ $purpose->name }}</option>
-									@endforeach
-								</select>
-							</div>
+							<label>Name</label>
+							<input type="text" class="form-control" name="name" placeholder="Purpose name" value="{{ old('name') }}">
+							<span class="form-text text-muted">Please enter purpose name</span>
 						</div>
 						<div class="form-group">
 							<div class="row">
 								<div class="col-md-4">
-									<label>Publish file:</label>
+									<label>Publish slide:</label>
 									<div class="kt-radio-list">
 										<label class="kt-radio">
 											<input type="radio" name="published" value="1" {{ old('published') == '1'? 'checked': '' }}> Yes

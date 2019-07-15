@@ -11,7 +11,7 @@
 
         <!--end::Base Path -->
         <meta charset="utf-8" />
-        <title>Hi-Impact Studios | Dashboard</title>
+        <title>Hi-Impact Cruise - Admin Dashboard</title>
         <meta name="description" content="First HD Television in Nigeria">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -232,7 +232,7 @@
                                             </li>
                                             <li class="kt-menu__item"><a href="{{ route('slides.index') }}" class="kt-menu__link"><span class="kt-menu__link-text">Slides</span><i class="kt-menu__ver-arrow la la-angle-right"></i></a>
                                             </li>
-                                            <li class="kt-menu__item"><a href="#" class="kt-menu__link"><span class="kt-menu__link-text">Media files</span><i class="kt-menu__ver-arrow la la-angle-right"></i></a>
+                                            <li class="kt-menu__item"><a href="{{ route('media-files.index') }}" class="kt-menu__link"><span class="kt-menu__link-text">Media files</span><i class="kt-menu__ver-arrow la la-angle-right"></i></a>
                                             </li>
 
                                             <li class="kt-menu__item"><a href="{{route('yatchs.index')}} " class="kt-menu__link"><span class="kt-menu__link-text">Yatch</span><i class="kt-menu__ver-arrow la la-angle-right"></i></a>
@@ -243,6 +243,8 @@
                                             </li>
 
                                             <li class="kt-menu__item"><a href="{{route('packages.index')}}" class="kt-menu__link"><span class="kt-menu__link-text">Packages</span><i class="kt-menu__ver-arrow la la-angle-right"></i></a>
+                                            </li>
+                                            <li class="kt-menu__item"><a href="{{ route('media-file-purposes.index') }}" class="kt-menu__link"><span class="kt-menu__link-text">Media File Purposes</span><i class="kt-menu__ver-arrow la la-angle-right"></i></a>
                                             </li>
                                         </ul>
                                     </div>

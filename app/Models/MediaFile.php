@@ -7,10 +7,15 @@ use Illuminate\Database\Eloquent\Model;
 class MediaFile extends Model
 {
     //
-    protected $fillable = ["type", "yatch_id", "source"];
+    protected $fillable = [
+        "type", "title", "description", "source", "purpose", "published"
+    ];
 
-    public function yatch()
-    {
-        return $this->belongsTo(Yatch::class);
+    public function file() {
+    	return $this->belongsTo('App\Models\UploadedFile', 'source');
+    }
+
+    public function mediaFilePurpose() {
+    	return $this->belongsTo('App\Models\MediaFilePurpose', 'purpose');
     }
 }
