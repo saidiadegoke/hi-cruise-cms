@@ -89,8 +89,8 @@
 								
 								@foreach ($days as $day)
 									<div class="form-check">
-										<input id="projector" class="form-check-input" type="checkbox" name="available_days[]" value="{{$day->id}}" {{ in_array($day->id, $package->available_days->pluck('id')->toArray())  ? 'checked': '' }}>
-										<label for="projector" class="form-check-label">{{$day->name}}</label>
+									<input id="day{{$day->id}}" class="form-check-input" type="checkbox" name="available_days[]" value="{{$day->id}}" {{ in_array($day->id, $package->available_days->pluck('id')->toArray())  ? 'checked': '' }}>
+										<label for="day{{$day->id}}" class="form-check-label">{{$day->name}}</label>
                                     </div>
 								@endforeach
                             </div>

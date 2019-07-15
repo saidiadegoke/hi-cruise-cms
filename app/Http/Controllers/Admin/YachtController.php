@@ -160,9 +160,9 @@ class YachtController extends Controller
         return Yacht::all();
     }
 
-    public function packages()
+    public function packages(Yacht $yacht)
     {
-        return Yacht::with('packages')->get();
+        return $yacht->packages;
     }
 
     public function detail(Yacht $yacht)

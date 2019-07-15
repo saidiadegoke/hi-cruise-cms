@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use App\Models\AvailableDay;
 use Illuminate\Support\Arr;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class PackageController extends Controller
 {
@@ -123,10 +124,23 @@ class PackageController extends Controller
         ]);
 
         $available_days = request('available_days');
-        $available_days = implode(" , ", $available_days);
-        $request->request->set('available_days', $available_days);
+        $available_day = [];
 
-        $package->update(request()->all());
+        // Delete all from available days where package_id = $package->id;
+        /*
+        * Modify this functionality
+        * 
+        */
+
+        DB::table('available_days')->delete("package_id", "=", $package->id);
+
+        $now = Carbon::now()->toDateTimeString();
+        foreach ($available_days as $day) {
+            array_push($available_day, ["day_id" => $day, "created_at" => $now, "updated_at" => $now, "package_id" => $package->id]);
+        }
+        AvailableDay::insert($available_day);
+
+        $package->update(request()->except('available_days'));
         return redirect()->route('packages.show', ['package' => $package->id]);
     }
 

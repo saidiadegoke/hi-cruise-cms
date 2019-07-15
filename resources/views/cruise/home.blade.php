@@ -45,7 +45,6 @@
         <div class="container">
             <form action="{{route('details')}}" class="bookings" method="POST">
                 @csrf
-                
                 <div class="col-md-4 form-group">
                     <select class="form-control" name="type" id="selectPackage" required>
                         <option value="">Select Yacht</option>
@@ -57,6 +56,9 @@
                 <div class="col-md-4 form-group">
                     <select class="form-control" name="package" id="listPackage" required>
                         <option value="">Select Package</option>
+                        {{-- @foreach ($yachts as $yacht)
+                            <option value="{{$yacht->id}}">{{$yacht->name}}</option>
+                        @endforeach --}}
                     </select>
                 </div>
                 <div class="col-md-4 form-group">
@@ -220,52 +222,45 @@
 
 @section("scripts")
     <script>
-        
+        $(function() {
+
+            $('#selectPackage').change(function(e) {
+                    const target = $(e.target);
+                    let package = target.val();
+                    baseURL = $("#baseURL").val();
+                    url ='/packages/'+package;
+                    console.log(package); 
 
 
-
-        //On page load fetch all events and packages from db;
-
-        $(function(){
-            let packages =[], events = [];
-
-            const baseURL = $('#baseURL').val();
-                url = "/packagess";
-                p = 'Package'
-
-            // fetch packages
-            $.ajax({
-                type: 'get',
-                url: baseURL+url,
-                contentType: 'application/json',
-                dataType: 'json',
-                success: function(resp){
-                    console.log(resp);
-                    packages = resp;
-                        // options = "<option value=''>No Package At the Moment</option>";
-                }
-            })
-
-            // fetch events
-
-         $('#selectPackage1').change(function(e) {
-                const target = $(e.target);
-                let package = target.val();
-                console.log(package);
-                let options;
-                // const packages = {
-                //     1: [{id: '', name: "Select Package"}, {id: 1, name: "Prestige Package"}, {id: 2, name: "Deluxe Package"}, {id: 3, name: "Royal Package"}],
-                //     2: [{id: '', name: "Select Package"}, {id: 4, name: "Silver Package"}, {id: 5, name: "Gold Package"}],
-                // }
-
-                if(package == 'event'){
-                    options = events[package].map( item => '<option value="' + item.id + '">' + item.name + '</option>' );
+                    
+                if(null !== package && package.length > 0){
+                    $.ajax({
+                        type: 'get',
+                        url: baseURL+url,
+                        contentType: 'application/json',
+                        dataType: 'json',
+                        failure:function(err){
+                            console.log(err);
+                            const options = "<option value=''>No Package At the Moment</option>";
+                            $('#listPackage').html(options);
+                        },
+                        success: function(resp) {
+                            let options = "";
+                            if(resp.length < 1) {
+                                options = "<option value=''>No Package At the Moment</option>";
+                            } else {
+                                options = resp.map(item => '<option value="' + item.id + '">' + item.name + '</option>');
+                            }
+                            $('#listPackage').html(options);
+                        }
+                    });
                 }else{
-                    options = packages[package].map( item => '<option value="' + item.id + '">' + item.name + '</option>' );
+                            options = "<option value=''>Select Package</option>";
+                        $('#listPackage').html(options);
                 }
-
-                $('#listPackage').html(options);
             });
+
+
 
         });
 

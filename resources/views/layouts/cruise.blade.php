@@ -9,7 +9,8 @@
     <meta name="keywords" content="" />
 
     <title>HI Impact Cruise - @yield("title")</title>
-    <link type="shortcut" rel="icon" href="{{asset('public/assets/img/fav.png')}}">
+    <link type="shortcut icon" rel="icon" href="{{ asset('public/favicon.ico') }}" />
+        <link type="shortcut icon" rel="icon" href="{{asset('public/assets/img/fav.png')}}">
     <link type="text/css" href="{{asset('public/assets/css/bootstrap.min.css')}}" rel="stylesheet" />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <link type="text/css" href="{{asset('public/assets/css/slider.css')}}" rel="stylesheet">

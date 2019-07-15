@@ -82,7 +82,8 @@
         <!--begin::Layout Skins(used by all pages) -->
 
         <!--end::Layout Skins -->
-        <link rel="shortcut icon" href="{{ asset('public/favicon.ico') }}" />
+        <link type="shortcut icon" rel="icon" href="{{ asset('public/favicon.ico') }}" />
+        <link type="shortcut icon" rel="icon" href="{{asset('public/assets/img/fav.png')}}">
         
         @yield("styles")
     </head>

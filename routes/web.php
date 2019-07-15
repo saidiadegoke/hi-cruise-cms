@@ -16,7 +16,7 @@ Auth::routes();
 Route::get('/', 'HomeController@index')->name('home');
 
 Route::get('/about', 'CruiseController@about')->name('about');
-Route::any('/contact', 'CruiseController@contact')->name('contact');
+Route::get('/contact', 'CruiseController@contact')->name('contact');
 Route::get('/eugene', 'CruiseController@eugene')->name('eugene');
 Route::get('/eugene1', 'CruiseController@eugene1')->name('eugene1');
 Route::get('/gallery', 'CruiseController@gallery')->name('gallery');
@@ -52,7 +52,7 @@ Route::prefix('admin')->middleware('auth')->group(function () {
 // Ajax Endpoints for Client Side Consumptions
 
 Route::get('/events', "Admin\EventController@all");
-Route::get('/packagess', "Admin\YachtController@packages");
+Route::get('/packages/{yacht}', "Admin\YachtController@packages");
 // Route::get('/packagess', "Admin\PackageController@all");
 // Route::get('/yachtss', "Admin\YachtController@all");
 Route::get('/package_details/{package}', "Admin\PackageController@single");
