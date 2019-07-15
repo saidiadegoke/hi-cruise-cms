@@ -48,53 +48,6 @@
 		            @endif
 
 					<div class="kt-section kt-section--first">
-						
-						<div class="form-group">
-							<p>Yacht Banner</p>
-							@if($yacht->images)
-							<div class="row">
-								@foreach ($yacht->images as $image)
-									@if($image->type == 'banner')
-									<img src="{{ asset('public/storage/' . $image->filename) }}" />
-									@endif
-									@php
-										break;
-									@endphp
-								@endforeach
-								</div>
-							@endif
-						</div>
-
-
-						<div class="form-group">
-							<p>Yacht Slides</p>
-							@if($yacht->images)
-							<div class="row">
-								@foreach ($yacht->images as $image)
-                              @if($image->type == 'slides')
-                                  <div class="col-md-3 img-holder">
-                                    <img src="{{ asset('public/storage/' . $image->filename) }}" alt="" class="thumbs-list">
-                                  </div>
-                              @endif
-
-						  @endforeach
-						  </div>
-							@endif
-						</div>
-
-						<div class="form-group row">
-							<label class="col-form-label col-sm-12">Select Yacht Banner Image</label>
-							<div class="col-sm-12">
-								<input type="file" name="banner">
-							</div>
-						</div>
-
-						<div class="form-group row">
-							<label class="col-form-label col-sm-12">Select Yacht Slider Images</label>
-							<div class="col-sm-12">
-								<input type="file" name="slides[]" multiple>
-							</div>
-						</div>
 
 						<div class="form-group">
 							<label>Name</label>
