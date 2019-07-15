@@ -8,12 +8,10 @@
     @endsection
 
 @section('content')
-    
     <section class="pattern1 no-margin pad-10 mid-space" style="margin-top: 200px">
       <div class="container">
         <img src="{{asset('public/assets/img/logo-icon.png')}}" alt="" class="logo-icon-section" />
         <h3 class="all-caps">Make Reservations</h3>
-        
             <div class="card">
                 <div class="card-body">
                     <div class="container-fluid">
@@ -22,11 +20,11 @@
                             <div class="card">
                                 <div class="card-body">
                                     <p>Package: {{$package->name}}</p>
-                                    <p>Yatch : {{ $package->yatch->name}}</p>
+                                    <p>Yacht : {{ $package->yacht->name}}</p>
                                         {!! $package->description !!} 
                                 <p> Price (Per Seat) : {{$package->price}}</p>
                                     {{-- <ul class="list-group">
-                                        <li>{{$package->yatch->name}}</li>
+                                        <li>{{$package->yacht->name}}</li>
                                         <li>Free Lunch</li>
                                         <li>4 Hours Cruise</li>
                                         <li>Complementary Wine</li>
@@ -42,7 +40,7 @@
                             @csrf
                                 <input type="hidden" name="package" value="{{$package->id}}">
                                 <input type="hidden" name="amount" value="{{$package->price}}">
-                                <input type="hidden" name="yatch" value="{{$package->yatch->id}}">
+                                <input type="hidden" name="yacht" value="{{$package->yacht->id}}">
                                 <div class="form-group">
                                 @if(count($errors->all()) > 0)
 		              @foreach($errors->all() as $error)

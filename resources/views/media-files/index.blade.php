@@ -24,7 +24,7 @@
                             <div class="kt-widget5__item">
                                 <div class="kt-widget5__content">
                                     <div class="kt-widget5__pic">
-                                        <img class="kt-widget7__img" src="{{ asset('public/storage/' . $mediaFile->mfile->filename) }}" alt="">
+                                        <img class="kt-widget7__img" src="{{ asset('public/storage/' . $mediaFile->file->filename) }}" alt="">
                                     </div>
                                     <div class="kt-widget5__section">
                                         <a href="#" class="kt-widget5__title">

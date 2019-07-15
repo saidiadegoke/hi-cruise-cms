@@ -5,7 +5,7 @@
         <div class="kt-subheader__main">
             <h3 class="kt-subheader__title">Dashboard</h3>
             <span class="kt-subheader__separator kt-subheader__separator--v"></span>
-            <a href="{{ route('yatchs.create') }}" class="btn btn-label-primary btn-bold btn-icon-h kt-margin-l-10">
+            <a href="{{ route('yachts.create') }}" class="btn btn-label-primary btn-bold btn-icon-h kt-margin-l-10">
                 Add New Yacht
             </a>
         </div>
@@ -31,13 +31,13 @@
 			<div class="kt-portlet__head">
 				<div class="kt-portlet__head-label">
 					<h3 class="kt-portlet__head-title">
-						Add new Yatch
+						Add new Yacht
 					</h3>
 				</div>
 			</div>
 
 			<!--begin::Form-->
-			<form class="kt-form" enctype="multipart/form-data" method="post" action="{{ route('yatchs.store') }}">
+			<form class="kt-form" enctype="multipart/form-data" method="post" action="{{ route('yachts.store') }}">
 				@csrf
 				<div class="kt-portlet__body">
 					@if(count($errors->all()) > 0)
@@ -53,16 +53,16 @@
 						<table class="table table-bordered">
 							<tr>
 								<th>Name</th>
-								<td>{{ $yatch->name }}</td>
+								<td>{{ $yacht->name }}</td>
 							</tr>
 							<tr>
 								<th>Descrition</th>
-								<td>{!! $yatch->description !!}</td>
+								<td>{!! $yacht->description !!}</td>
 							</tr>
 							{{-- <tr>
 								<th>Published</th>
 								<td>
-									@if($yatch->published == 1) 
+									@if($yacht->published == 1) 
 										Yes 
 									@else 
 										No 
@@ -76,15 +76,15 @@
 				</div>
 				<div class="kt-portlet__foot">
 					<div class="kt-form__actions">
-						<a href="{{ route('yatchs.edit', ['yatch' => $yatch->id]) }}" class="btn btn-primary">Edit</a>
-						<a href="{{ route('yatchs.destroy', ['yatch' => $yatch->id]) }}" class="btn btn-danger"
+						<a href="{{ route('yachts.edit', ['yacht' => $yacht->id]) }}" class="btn btn-primary">Edit</a>
+						<a href="{{ route('yachts.destroy', ['yacht' => $yacht->id]) }}" class="btn btn-danger"
 							onclick="event.preventDefault();
-                                                      if(confirm('Continue with deleting the yatch?')){document.getElementById('delete-yatch').submit();}else {return false;}">
+                                                      if(confirm('Continue with deleting the yacht?')){document.getElementById('delete-yacht').submit();}else {return false;}">
                                         Delete</a>
 					</div>
 				</div>
 			</form>
-			<form onsubmit="return confirm('Continue with deleting the yatch?');" id="delete-yatch" action="{{ route('yatchs.destroy', ['yatch' => $yatch->id]) }}" method="POST" style="display: none;">
+			<form onsubmit="return confirm('Continue with deleting the yacht?');" id="delete-yacht" action="{{ route('yachts.destroy', ['yacht' => $yacht->id]) }}" method="POST" style="display: none;">
                                         @csrf
                                         @method('DELETE')
                                     </form>

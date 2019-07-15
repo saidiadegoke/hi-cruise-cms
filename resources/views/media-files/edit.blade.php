@@ -28,7 +28,7 @@
 
 					<div class="kt-section kt-section--first">
 						<div class="form-group">
-							<img class="responsive-img" src="{{ asset('public/storage/' . $mediaFile->mfile->filename) }}" />
+							<img class="responsive-img" src="{{ asset('public/storage/' . $mediaFile->file->filename) }}" />
 						</div>
 						<div class="form-group row">
 							<label class="col-form-label col-sm-12">Select media file</label>
@@ -47,15 +47,30 @@
 							<span class="form-text text-muted">Optional</span>
 						</div>
 						<div class="form-group row">
-							<label class="col-form-label col-sm-12">Page</label>
+							<label class="col-form-label col-sm-12">Purpose</label>
 							<div class="col-sm-12">
 								<select name="page" class="form-control">
-									<option value="">Select page</option>
-									<option value="careers" {{ old('page') && old('page') == 'careers' || $mediaFile->page == 'careers'? 'selected': '' }}>{{$mediaFile->page}}</option>
-									<option value="gallery" {{ old('page') && old('page') == 'careers' || $mediaFile->page == 'gallery'? 'selected': '' }}>{{$mediaFile->page}}</option>
+									<option value="">Select Purpose</option>
+									@foreach(\App\Models\MediaFilePurpose::all() as $purpose)
+										<option value="{{ $purpose->id }}" {{ $mediaFile->purpose == $purpose->id? 'selected': '' }}>{{ $purpose->name }}</option>
+									@endforeach
+									{{-- <option value="careers" {{ old('purpose') && old('purpose') == 'careers' || $mediaFile->page == 'careers'? 'selected': '' }}>{{$mediaFile->page}}</option> --}}
+									{{-- <option value="gallery" {{ old('page') && old('page') == 'careers' || $mediaFile->page == 'gallery'? 'selected': '' }}>{{$mediaFile->page}}</option> --}}
 								</select>
 							</div>
 						</div>
+						<div class="form-group row">
+							<label class="col-form-label col-sm-12">Select Yatch (Optional)</label>
+							<div class="col-sm-12">
+								<select name="yacht_id" class="form-control">
+									<option value="">Select Yacht</option>
+									@foreach(\App\Models\Yacht::all() as $yacht)
+										<option value="{{ $yacht->id }}" {{ $yacht->id == $mediaFile->yacht_id? 'selected': '' }}>{{ $yacht->name }}</option>
+									@endforeach
+								</select>
+							</div>
+						</div>
+
 						<div class="form-group">
 							<div class="row">
 								<div class="col-md-4">

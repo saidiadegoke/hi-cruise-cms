@@ -5,7 +5,7 @@
         <div class="kt-subheader__main">
             <h3 class="kt-subheader__title">Dashboard</h3>
             <span class="kt-subheader__separator kt-subheader__separator--v"></span>
-            <a href="{{ route('yatchs.create') }}" class="btn btn-label-primary btn-bold btn-icon-h kt-margin-l-10">
+            <a href="{{ route('yachts.create') }}" class="btn btn-label-primary btn-bold btn-icon-h kt-margin-l-10">
                 Add New Yacht
             </a>
         </div>
@@ -31,13 +31,13 @@
 			<div class="kt-portlet__head">
 				<div class="kt-portlet__head-label">
 					<h3 class="kt-portlet__head-title">
-						Add New Yatch
+						Add New Yacht
 					</h3>
 				</div>
 			</div>
 
 			<!--begin::Form-->
-			<form class="kt-form" method="post" enctype="multipart/form-data" action="{{ route('yatchs.store') }}">
+			<form class="kt-form" method="post" enctype="multipart/form-data" action="{{ route('yachts.store') }}">
 				@csrf
 				<div class="kt-portlet__body">
 					@if(count($errors->all()) > 0)
@@ -50,28 +50,28 @@
 						<!--div class="form-group">
 							<img src="#" />
 						</div-->
-						<div class="form-group row">
-							<label class="col-form-label col-sm-12">Select Yatch Banner Image</label>
+						{{-- <div class="form-group row">
+							<label class="col-form-label col-sm-12">Select Yacht Banner Image</label>
 							<div class="col-sm-12">
 								<input type="file" name="banner">
 							</div>
 						</div>
 
 						<div class="form-group row">
-							<label class="col-form-label col-sm-12">Select Yatch Slider Images</label>
+							<label class="col-form-label col-sm-12">Select Yacht Slider Images</label>
 							<div class="col-sm-12">
 								<input type="file" name="slides[]" multiple>
 							</div>
-						</div>
+						</div> --}}
 
 						<div class="form-group">
 							<label>Title</label>
-							<input type="text" class="form-control" name="name" placeholder="Yatch title" value="{{ old('title') }}">
-							<span class="form-text text-muted">Please enter yatch name</span>
+							<input type="text" class="form-control" name="name" placeholder="Yacht title" value="{{ old('title') }}">
+							<span class="form-text text-muted">Please enter yacht name</span>
 						</div>
 						<div class="form-group">
-							<label>Yatch Description</label>
-							<textarea class="form-control" name="description" placeholder="Enter Yatch Description">{{ old('description') }}</textarea>
+							<label>Yacht Description</label>
+							<textarea class="form-control" name="description" placeholder="Enter Yacht Description">{{ old('description') }}</textarea>
 							<span class="form-text text-muted">Optional</span>
 						</div>
 						{{-- <div class="form-group row">
@@ -86,7 +86,7 @@
 						{{-- <div class="form-group">
 							<div class="row">
 								<div class="col-md-4">
-									<label>Publish yatch:</label>
+									<label>Publish yacht:</label>
 									<div class="kt-radio-list">
 										<label class="kt-radio">
 											<input type="radio" name="published" value="1" {{ old('published') == '1'? 'checked': '' }}> Yes

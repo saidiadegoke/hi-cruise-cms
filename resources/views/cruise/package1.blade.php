@@ -1,19 +1,18 @@
 @extends('layouts.cruise')
 @section('content')
-{{-- {{ dd($yatch->images)}} --}}
     <section class="" style="margin-top: 200px">
       <div class="container styled-border-2">
         <div class="col-md-6">
-          <h4 class="all-caps">{{$yatch->name}}</h4>
+          <h4 class="all-caps">{{$yacht->name}}</h4>
           <p class="justify-center downUp">
-              {!! $yatch->description !!}
+              {!! $yacht->description !!}
           </p>
         </div>
         
         <div class="col-md-6">
 
           
-            @foreach ($yatch->images as $image)
+            @foreach ($yacht->images as $image)
                 @if($image->type =='banner')
                   <img src="{{ asset('public/storage/' . $image->filename) }}" />
                 @endif
@@ -28,7 +27,7 @@
                 <div class="carousel-inner listings" role="listbox">
                     <div class="item active">
                         <div class="row">
-                          @foreach ($yatch->images as $image)
+                          @foreach ($yacht->images as $image)
                               @if(strpos($image->filename,'slides'))
                                   <div class="col-md-3 img-holder">
                                     <img src="{{ asset('public/storage/' . $image->filename) }}" alt="" class="thumbs-list">
@@ -45,15 +44,15 @@
     </section>
     <section class="primary-color no-margin pad-10 mid-space set-bg-base">
       <div class="container">
-        <h4 class="all-caps">{{$yatch->name}} Packages</h4>
+        <h4 class="all-caps">{{$yacht->name}} Packages</h4>
         <div class="col-md-12">
-          @foreach ($yatch->packages as $package)
+          @foreach ($yacht->packages as $package)
               
           
           <div class="col-md-6 package-listing">
             <form action="{{route('details')}}" method="post">
               @csrf
-            <input type="hidden" name="type" value="{{$yatch->id}}">
+            <input type="hidden" name="type" value="{{$yacht->id}}">
             <input type="hidden" name="package" value="{{$package->id}}">
             <h4 class="center no-float">{{$package->name}}</h4>
             <span>&#8358; {{$package->price}}</span>

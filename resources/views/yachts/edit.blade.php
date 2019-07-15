@@ -5,7 +5,7 @@
         <div class="kt-subheader__main">
             <h3 class="kt-subheader__title">Dashboard</h3>
             <span class="kt-subheader__separator kt-subheader__separator--v"></span>
-            <a href="{{ route('yatchs.create') }}" class="btn btn-label-primary btn-bold btn-icon-h kt-margin-l-10">
+            <a href="{{ route('yachts.create') }}" class="btn btn-label-primary btn-bold btn-icon-h kt-margin-l-10">
                 Add New Yacht
             </a>
         </div>
@@ -31,13 +31,13 @@
 			<div class="kt-portlet__head">
 				<div class="kt-portlet__head-label">
 					<h3 class="kt-portlet__head-title">
-						Add new yatch
+						Add new yacht
 					</h3>
 				</div>
 			</div>
 
 			<!--begin::Form-->
-			<form class="kt-form" enctype="multipart/form-data" method="post" action="{{ route('yatchs.update', ['yatch' => $yatch->id]) }}">
+			<form class="kt-form" enctype="multipart/form-data" method="post" action="{{ route('yachts.update', ['yacht' => $yacht->id]) }}">
 				@csrf
 				@method('PATCH')
 				<div class="kt-portlet__body">
@@ -48,62 +48,15 @@
 		            @endif
 
 					<div class="kt-section kt-section--first">
-						
-						<div class="form-group">
-							<p>Yatch Banner</p>
-							@if($yatch->images)
-							<div class="row">
-								@foreach ($yatch->images as $image)
-									@if($image->type == 'banner')
-									<img src="{{ asset('public/storage/' . $image->filename) }}" />
-									@endif
-									@php
-										break;
-									@endphp
-								@endforeach
-								</div>
-							@endif
-						</div>
-
-
-						<div class="form-group">
-							<p>Yatch Slides</p>
-							@if($yatch->images)
-							<div class="row">
-								@foreach ($yatch->images as $image)
-                              @if($image->type == 'slides')
-                                  <div class="col-md-3 img-holder">
-                                    <img src="{{ asset('public/storage/' . $image->filename) }}" alt="" class="thumbs-list">
-                                  </div>
-                              @endif
-
-						  @endforeach
-						  </div>
-							@endif
-						</div>
-
-						<div class="form-group row">
-							<label class="col-form-label col-sm-12">Select Yatch Banner Image</label>
-							<div class="col-sm-12">
-								<input type="file" name="banner">
-							</div>
-						</div>
-
-						<div class="form-group row">
-							<label class="col-form-label col-sm-12">Select Yatch Slider Images</label>
-							<div class="col-sm-12">
-								<input type="file" name="slides[]" multiple>
-							</div>
-						</div>
 
 						<div class="form-group">
 							<label>Name</label>
-							<input type="text" class="form-control" name="name" placeholder="Yatch Name" value="{{ old('name')? old('name'): $yatch->name }}">
-							<span class="form-text text-muted">Please enter yatch name</span>
+							<input type="text" class="form-control" name="name" placeholder="Yacht Name" value="{{ old('name')? old('name'): $yacht->name }}">
+							<span class="form-text text-muted">Please enter yacht name</span>
 						</div>
 						<div class="form-group">
 							<label>Description</label>
-							<textarea class="form-control" name="description" placeholder="Enter description">{{ old('description')? old('description'): $yatch->description }}</textarea>
+							<textarea class="form-control" name="description" placeholder="Enter description">{{ old('description')? old('description'): $yacht->description }}</textarea>
 							<span class="form-text text-muted">Optional</span>
 						</div>
 					</div>

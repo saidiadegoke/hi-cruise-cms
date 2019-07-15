@@ -2,10 +2,15 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Day;
+use App\Models\Yacht;
 use App\Models\Package;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Yatch;
+use App\Models\AvailableDay;
+use Illuminate\Support\Arr;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class PackageController extends Controller
 {
@@ -14,6 +19,7 @@ class PackageController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index()
     {
         //
@@ -29,13 +35,14 @@ class PackageController extends Controller
     public function create()
     {
         //
+        $days = Day::all();
+        $yachts = Yacht::all();
 
-        $yatchs = Yatch::all();
-        if (count($yatchs) < 1) {
-            return view('packages.create')->with('message', 'No Yatch Please Add a Yatch and return to this page');
+        if (count($yachts) < 1) {
+            return view('packages.create')->with('message', 'No Yacht Please Add a Yacht and return to this page');
         }
 
-        return view('packages.create', compact('yatchs'));
+        return view('packages.create', compact('yachts', 'days'));
     }
 
     /**
@@ -51,19 +58,24 @@ class PackageController extends Controller
             "name" => "required",
             "price" => "required|integer",
             "available_days" => "required|array",
-            "yatch" => "required|integer",
+            "yacht" => "required|integer",
             "description" => "required|string"
         ]);
 
-        $yatch = Yatch::find(request('yatch'));
         $available_days = request('available_days');
-        $available_days = implode(" , ", $available_days);
-        $request->request->set('available_days', $available_days);
-        if ($yatch) {
-            $package = new Package(request()->except("yatch"));
-            $yatch->packages()->save($package);
+        $yacht = Yacht::find(request('yacht'));
+        if ($yacht) {
+            $package = new Package(request()->except("yacht"));
+            $available_day = [];
+            $package = $yacht->packages()->save($package);
+            $now = Carbon::now()->toDateTimeString();
+            foreach ($available_days as $day) {
+                array_push($available_day, ["day_id" => $day, "created_at" => $now, "updated_at" => $now, "package_id" => $package->id]);
+            }
+            AvailableDay::insert($available_day);
             return redirect()->route("packages.index");
         }
+
         return redirect()->back();
     }
 
@@ -89,8 +101,9 @@ class PackageController extends Controller
     public function edit(Package $package)
     {
         //
-        $yatchs = Yatch::all();
-        return view('packages.edit', compact('package', 'yatchs'));
+        $days = Day::all();
+        $yachts = Yacht::all();
+        return view('packages.edit', compact('package', 'yachts', 'days'));
     }
 
     /**
@@ -105,17 +118,24 @@ class PackageController extends Controller
         $this->validate(request(), [
             "name" => "required",
             "price" => "required|integer",
-            //"available_days" => "filled|string",
             "available_days" => "required|array",
-            "yatch" => "required|integer",
+            "yacht" => "required|integer",
             "description" => "required|string"
         ]);
 
         $available_days = request('available_days');
-        $available_days = implode(" , ", $available_days);
-        $request->request->set('available_days', $available_days);
+        $available_day = [];
 
-        $package->update(request()->all());
+        DB::table('available_days')->where('package_id', $package->id)->delete();
+
+
+        $now = Carbon::now()->toDateTimeString();
+        foreach ($available_days as $day) {
+            array_push($available_day, ["day_id" => $day, "created_at" => $now, "updated_at" => $now, "package_id" => $package->id]);
+        }
+        AvailableDay::insert($available_day);
+
+        $package->update(request()->except('available_days'));
         return redirect()->route('packages.show', ['package' => $package->id]);
     }
 
@@ -125,6 +145,7 @@ class PackageController extends Controller
      * @param  \App\Package  $package
      * @return \Illuminate\Http\Response
      */
+
     public function destroy(Package $package)
     {
         //

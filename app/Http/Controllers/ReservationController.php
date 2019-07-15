@@ -12,10 +12,7 @@ use App\Models\Questionaire;
 
 use Paystack;
 use PDF;
-use function GuzzleHttp\json_encode;
-use App\Models\Yatch;
 use App\Models\Package;
-use Illuminate\Support\Arr;
 use App\Models\Decoration;
 use App\Models\EventEntertainment;
 
@@ -41,7 +38,7 @@ class ReservationController extends Controller
             "guests" => "required",
             "event_date" => "required",
             "catering" => "required",
-            "yatch_state" => "required",
+            "yacht_state" => "required",
             "event_duration" => "required",
             "event_setup_duration" => "filled",
         ]);

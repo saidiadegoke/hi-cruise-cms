@@ -16,11 +16,11 @@ class CreatePackagesTable extends Migration
     {
         Schema::create('packages', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('yatch_id')->unsigned();
+            $table->bigInteger('yacht_id')->unsigned();
             $table->string('name');
             $table->string('description');
             $table->bigInteger('price');
-            $table->string('available_days');
+            // $table->string('available_day_id');
             $table->timestamps();
         });
     }
@@ -30,6 +30,7 @@ class CreatePackagesTable extends Migration
      *
      * @return void
      */
+
     public function down()
     {
         Schema::dropIfExists('packages');

@@ -45,18 +45,20 @@
         <div class="container">
             <form action="{{route('details')}}" class="bookings" method="POST">
                 @csrf
-                
                 <div class="col-md-4 form-group">
                     <select class="form-control" name="type" id="selectPackage" required>
                         <option value="">Select Yacht</option>
-                        @foreach ($yatchs as $yatch)
-                            <option value="{{$yatch->id}}">{{$yatch->name}}</option>
+                        @foreach ($yachts as $yacht)
+                            <option value="{{$yacht->id}}">{{$yacht->name}}</option>
                         @endforeach
                     </select>
                 </div>
                 <div class="col-md-4 form-group">
                     <select class="form-control" name="package" id="listPackage" required>
                         <option value="">Select Package</option>
+                        {{-- @foreach ($yachts as $yacht)
+                            <option value="{{$yacht->id}}">{{$yacht->name}}</option>
+                        @endforeach --}}
                     </select>
                 </div>
                 <div class="col-md-4 form-group">
@@ -68,16 +70,15 @@
     <section class="">
         <div class="container">
             <h4 class="all-caps">Our Yachts</h4>
-            {{-- {{dd($yatchs)}} --}}
-            @foreach ($yatchs as $yatch)
+            @foreach ($yachts as $yacht)
                  <div class="col-md-6">
                 <div class="container product-box-cont">
                     <div class="product-box">
-                        <h4>{{$yatch->name}}</h4>
-                        <p>{!! $yatch->description !!}</p>
-                        <a href="{{route('package',['yatch'=>$yatch->id])}}" class="btn btn-primary">Learn more</a>
+                        <h4>{{$yacht->name}}</h4>
+                        <p>{!! $yacht->description !!}</p>
+                        <a href="{{route('package',['yacht'=>$yacht->id])}}" class="btn btn-primary">Learn more</a>
                     </div>
-                    @if($yatch->id == 1)
+                    @if($yacht->id == 1)
                     <img src="{{asset('public/assets/img/banners/bn01.jpg')}}" alt="" class="base-pic">
                     @else
                     <img src="{{asset('public/assets/img/banners/b1.jpg')}}" alt="" class="base-pic">
@@ -221,56 +222,47 @@
 
 @section("scripts")
     <script>
-        $(document).ready(function() {
-            const baseURL = $('#baseURL').val();
+        $(function() {
+
             $('#selectPackage').change(function(e) {
-                const target = $(e.target);
-                const package = target.val();
+                    const target = $(e.target);
+                    let package = target.val();
+                    baseURL = $("#baseURL").val();
+                    url ='/packages/'+package;
+                    console.log(package); 
 
-                if(package == ''){
-                    const options = "<option value=''>Select Package</option>";
-                        $('#listPackage').html(options);
-                }
-               
-                let url = "";
-                let p = '';
-                if(package === "event"){
-                    url = "/events";
-                    p = 'Event Type'
-                }
-                else{
-                    url = "/packages/" + package;
-                    p = 'Package'
-                }
 
-                $.ajax({
-                    type: 'get',
-                    url: baseURL+url,
-                    contentType: 'application/json',
-                    dataType: 'json',
-                    failure:function(err){
-                        const options = "<option value=''>No Package At the Moment</option>";
-                        $('#listPackage').html(options);
-                    },
-                    success: function(resp) {
-                        let options = "";
-                        if(resp.length < 1) {
-                            options = "<option value=''>No Package At the Moment</option>";
-                        } else {
-                            opts = '<option value="">Please Select ' + p + '</option>';
-                            options = resp.map(item => '<option value="' + item.id + '">' + item.name + '</option>');
-                            const events = (package == 1)? ['<option value="6">Social Event</option>', '<option value="7">Corporate Event</option>']: [];
-                            options = [opts, ...options, ...events];
-
-                            console.log(package)
+                    
+                if(null !== package && package.length > 0){
+                    $.ajax({
+                        type: 'get',
+                        url: baseURL+url,
+                        contentType: 'application/json',
+                        dataType: 'json',
+                        failure:function(err){
+                            console.log(err);
+                            const options = "<option value=''>No Package At the Moment</option>";
+                            $('#listPackage').html(options);
+                        },
+                        success: function(resp) {
+                            let options = "";
+                            if(resp.length < 1) {
+                                options = "<option value=''>No Package At the Moment</option>";
+                            } else {
+                                options = resp.map(item => '<option value="' + item.id + '">' + item.name + '</option>');
+                            }
+                            $('#listPackage').html(options);
                         }
+                    });
+                }else{
+                            options = "<option value=''>Select Package</option>";
                         $('#listPackage').html(options);
-                    }
-                })
+                }
+            });
 
-                // const options = packages[package].map(item => '<option value="' + item.id + '">' + item.name + '</option>');
 
-            })
-        })
+
+        });
+
     </script>
 @endsection

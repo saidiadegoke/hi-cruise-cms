@@ -1,6 +1,7 @@
 @extends('layouts.admin')
 
 @section("content_header")
+
     <div class="kt-subheader   kt-grid__item" id="kt_subheader">
         <div class="kt-subheader__main">
             <h3 class="kt-subheader__title">Dashboard</h3>
@@ -52,10 +53,6 @@
 		            @endif
 
 					<div class="kt-section kt-section--first">
-						<!--div class="form-group">
-							<img src="#" />
-						</div-->
-
 						<div class="form-group row">
 							<label>Package Name</label>
 							<input type="text" class="form-control" name="name" placeholder="Package name" value="{{ old('name')? old('name'): $package->name}}">
@@ -69,11 +66,11 @@
 						</div>
 
 						<div class="form-group row">
-							<label class="col-form-label col-sm-12">Select Yatch</label>
+							<label class="col-form-label col-sm-12">Select Yacht</label>
 							<div class="col-sm-12">
-								<select name="yatch" class="form-control">
-									@foreach ($yatchs as $yatch)
-										<option value="{{$yatch->id}}" {{ old('yatch') && old('yatch') == $yatch->id ? 'selected': '' }}>{{$package->yatch->name}}</option>
+								<select name="yacht" class="form-control">
+									@foreach ($yachts as $yacht)
+										<option value="{{$yacht->id}}" {{ old('yacht') && old('yacht') == $yacht->id ? 'selected': '' }}>{{$package->yacht->name}}</option>
 									@endforeach
 								</select>
 							</div>
@@ -88,42 +85,15 @@
 						<div class="form-group">
 							<label>Package Available Days</label>
 							<br />
-							<label>Current Selection ({{$package->available_days}})</label>
 							<div class="col-md-5 col-md-offset-1">
-                                        <div class="form-check">
-                                            <input id="projector" class="form-check-input" type="checkbox" name="available_days[]" value="Sunday">
-                                            <label for="projector" class="form-check-label">Sunday</label>
-                                        </div>
-
-                                        <div class="form-check">
-                                            <input id="outdoor_sofas" class="form-check-input" type="checkbox" name="available_days[]" value="Monday">
-                                            <label for="outdoor_sofas" class="form-check-label">Monday</label>
-                                        </div>
-
-                                        <div class="form-check">
-                                            <input id="entrance_carpet" class="form-check-input" type="checkbox" name="available_days[]" value="Tuesday">
-                                            <label for="entrance_carpet" class="form-check-label">Tuesday</label>
-                                        </div>
-
-                                        <div class="form-check">
-                                            <input id="table_settings" class="form-check-input" type="checkbox" name="available_days[]" value="Wednesday">
-                                            <label for="table_settings" class="form-check-label">Wednesday</label>
-                                        </div>
-
-                                        <div class="form-check">
-                                            <input id="branded_graphics" class="form-check-input" type="checkbox" name="available_days[]" value="Thursday">
-                                            <label for="branded_graphics" class="form-check-label">Thursday</label>
-                                        </div>
-
-                                        <div class="form-check">
-                                            <input id="show_lights" class="form-check-input" type="checkbox" name="available_days[]" value="Friday">
-                                            <label for="show_lights" class="form-check-label">Friday</label>
-                                        </div>
-                                        <div class="form-check">
-											<input id="show_lights" class="form-check-input" type="checkbox" name="available_days[]" value="Saturday">
-                                          <label for="others">Saturday</label>
-                                        </div>
+								
+								@foreach ($days as $day)
+									<div class="form-check">
+									<input id="day{{$day->id}}" class="form-check-input" type="checkbox" name="available_days[]" value="{{$day->id}}" {{ in_array($day->id, $package->available_days->pluck('id')->toArray())  ? 'checked': '' }}>
+										<label for="day{{$day->id}}" class="form-check-label">{{$day->name}}</label>
                                     </div>
+								@endforeach
+                            </div>
 							<span class="form-text text-muted">Select Multiple Where Applicable</span>
 						</div>
 

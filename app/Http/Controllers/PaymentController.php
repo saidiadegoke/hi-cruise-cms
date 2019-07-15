@@ -56,8 +56,8 @@ class PaymentController extends Controller
         $request->request->set('key', config('paystack.secretKey'));
 
         $request->request->set('metadata', [
-            'package_id' => request('package'), 
-            'seats' => request('num_seat'), 
+            'package_id' => request('package'),
+            'seats' => request('num_seat'),
             'start_date' => Carbon::createFromFormat('Y-m-d', request('start_date')),
             'finish_date' => Carbon::createFromFormat('Y-m-d', request('finish_date')),
             'name' => request('name'),

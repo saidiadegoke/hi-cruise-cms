@@ -20,6 +20,7 @@ class CreateMediaFilesTable extends Migration
             $table->string('title')->nullable();
             $table->string('description')->nullable();
             $table->string('purpose');
+            $table->bigInteger('yacht_id')->unsigned();
             $table->boolean('published');
             $table->timestamps();
         });

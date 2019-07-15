@@ -8,14 +8,18 @@ class MediaFile extends Model
 {
     //
     protected $fillable = [
-        "type", "title", "description", "source", "purpose", "published"
+        "type", "title", "description", "source", "purpose", "published", 'yacht_id'
     ];
 
-    public function file() {
-    	return $this->belongsTo('App\Models\UploadedFile', 'source');
+    protected $with = ['file', 'mediaFilePurpose'];
+
+    public function file()
+    {
+        return $this->belongsTo('App\Models\UploadedFile', 'source');
     }
 
-    public function mediaFilePurpose() {
-    	return $this->belongsTo('App\Models\MediaFilePurpose', 'purpose');
+    public function mediaFilePurpose()
+    {
+        return $this->belongsTo('App\Models\MediaFilePurpose', 'purpose');
     }
 }

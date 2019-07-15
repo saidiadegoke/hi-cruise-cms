@@ -53,6 +53,17 @@
 								</select>
 							</div>
 						</div>
+						<div class="form-group row">
+							<label class="col-form-label col-sm-12">Select Yatch (Optional)</label>
+							<div class="col-sm-12">
+								<select name="yacht_id" class="form-control">
+									<option value="">Select Yacht</option>
+									@foreach(\App\Models\Yacht::all() as $yacht)
+										<option value="{{ $yacht->id }}" {{ old('yacht_id') == $yacht->id? 'selected': '' }}>{{ $yacht->name }}</option>
+									@endforeach
+								</select>
+							</div>
+						</div>
 						<div class="form-group">
 							<div class="row">
 								<div class="col-md-4">

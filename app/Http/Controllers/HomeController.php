@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Yatch;
+use App\Models\Yacht;
 use App\Models\SupportTicket;
 
 class HomeController extends Controller
@@ -23,8 +23,8 @@ class HomeController extends Controller
 
     public function index()
     {
-        $yatchs = Yatch::all();
-        return view('cruise.home', compact('yatchs'));
+        $yachts = Yacht::all();
+        return view('cruise.home', compact('yachts'));
     }
 
     public function contactSupport(Request $request)
