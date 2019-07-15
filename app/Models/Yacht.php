@@ -15,13 +15,9 @@ class Yacht extends Model
         return $this->hasMany(Package::class);
     }
 
-    public function images()
-    {
-        return $this->hasManyThrough(UploadedFile::class, MediaFile::class, 'yacht_id', 'id');
-    }
 
-    // public function media()
-    // {
-    //     return $this->hasMany(MediaFile::class);
-    // }
+    public function media()
+    {
+        return $this->hasMany(MediaFile::class);
+    }
 }

@@ -8,7 +8,6 @@
     @endsection
 
 @section('content')
-    
     <section class="pattern1 no-margin pad-10 mid-space" style="margin-top: 200px">
       <div class="container">
         <img src="{{asset('public/assets/img/logo-icon.png')}}" alt="" class="logo-icon-section" />
@@ -41,7 +40,7 @@
                             @csrf
                                 <input type="hidden" name="package" value="{{$package->id}}">
                                 <input type="hidden" name="amount" value="{{$package->price}}">
-                                <input type="hidden" name="yatch" value="{{$package->yatch->id}}">
+                                <input type="hidden" name="yacht" value="{{$package->yacht->id}}">
                                 <div class="form-group">
                                 @if(count($errors->all()) > 0)
 		              @foreach($errors->all() as $error)

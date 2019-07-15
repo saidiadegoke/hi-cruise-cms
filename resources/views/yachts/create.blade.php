@@ -50,7 +50,7 @@
 						<!--div class="form-group">
 							<img src="#" />
 						</div-->
-						<div class="form-group row">
+						{{-- <div class="form-group row">
 							<label class="col-form-label col-sm-12">Select Yacht Banner Image</label>
 							<div class="col-sm-12">
 								<input type="file" name="banner">
@@ -62,7 +62,7 @@
 							<div class="col-sm-12">
 								<input type="file" name="slides[]" multiple>
 							</div>
-						</div>
+						</div> --}}
 
 						<div class="form-group">
 							<label>Title</label>

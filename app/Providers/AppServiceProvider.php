@@ -36,7 +36,18 @@ class AppServiceProvider extends ServiceProvider
         });
 
         view()->composer('cruise.packages', function ($view) {
-            $view->with('yachts', Yacht::all());
+            $banner_purpose_id = \App\Models\MediaFilePurpose::where('name', 'banner')->get()->pluck('id')->first();
+            $banner = $banner_purpose_id ? \App\Models\MediaFile::where('purpose', $banner_purpose_id) : null;
+            $view->with('yachts', Yacht::all())->with('banner', $banner);
+        });
+
+        view()->composer('cruise.package', function ($view) {
+            $slide_purpose_id = \App\Models\MediaFilePurpose::where('name', 'slide')->get()->pluck('id')->first();
+            $slides = $slide_purpose_id ? \App\Models\MediaFile::where('purpose', $slide_purpose_id) : null;
+            $banner_purpose_id = \App\Models\MediaFilePurpose::where('name', 'banner')->get()->pluck('id')->first();
+            $banner = $banner_purpose_id ? \App\Models\MediaFile::where('purpose', $banner_purpose_id) : null;
+            $view->with('slides', $slides)->with('banner', $banner);
+            // $view->with('banner', $banner);
         });
     }
 }

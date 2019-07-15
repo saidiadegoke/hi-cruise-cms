@@ -47,21 +47,12 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     Route::resource('yachts', 'Admin\YachtController');
     Route::resource('packages', 'Admin\PackageController');
     Route::resource('events', 'Admin\EventController');
+    Route::resource('media-files', 'Admin\MediaFilesController');
+    Route::resource('media-file-purposes', 'Admin\MediaFilePurposesController');
 });
-
-// Ajax Endpoints for Client Side Consumptions
 
 Route::get('/events', "Admin\EventController@all");
 Route::get('/packages/{yacht}', "Admin\YachtController@packages");
-// Route::get('/packagess', "Admin\PackageController@all");
-// Route::get('/yachtss', "Admin\YachtController@all");
 Route::get('/package_details/{package}', "Admin\PackageController@single");
 
-// Todo
-// Package Page
 Route::get('/yacht/{yacht}', "Admin\YachtController@detail")->name('package');
-
-// Todo
-
-
-// Pre-Fetch all events and Package from the database and store locally on homepage

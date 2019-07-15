@@ -48,17 +48,13 @@ class YachtController extends Controller
         $this->validate(request(), [
             'name' => 'required',
             'description' => 'required',
-            'banner' => 'required|file',
-            'slides' => 'required',
-            'slides.*' => 'mimes:png,jpg,jpeg,gif',
-            'banner.*' => 'mimes:png,jpg,jpeg,gif'
         ]);
 
         $yacht = Yacht::create(request()->all());
 
 
 
-        $this->uploadImages($request, $yacht);
+        // $this->uploadImages($request, $yacht);
         return redirect()->route('yachts.show', ['yacht' => $yacht->id]);
     }
 

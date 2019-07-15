@@ -7,10 +7,19 @@ use Illuminate\Database\Eloquent\Model;
 class MediaFile extends Model
 {
     //
-    protected $fillable = ["type", "yacht_id", "source"];
+    protected $fillable = [
+        "type", "title", "description", "source", "purpose", "published", 'yacht_id'
+    ];
 
-    public function yacht()
+    protected $with = ['file', 'mediaFilePurpose'];
+
+    public function file()
     {
-        return $this->belongsTo(Yacht::class);
+        return $this->belongsTo('App\Models\UploadedFile', 'source');
+    }
+
+    public function mediaFilePurpose()
+    {
+        return $this->belongsTo('App\Models\MediaFilePurpose', 'purpose');
     }
 }

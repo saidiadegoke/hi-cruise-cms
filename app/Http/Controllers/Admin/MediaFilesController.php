@@ -6,7 +6,7 @@ use App\Models\MediaFile;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
-use App\Models\FileUpload;
+use App\Models\UploadedFile;
 
 class MediaFilesController extends Controller
 {
@@ -42,24 +42,26 @@ class MediaFilesController extends Controller
     {
         Validator::make($request->all(), [
             'file' => ['required', 'file'],
-            'page' => 'required',
+            'purpose' => 'required',
             'published' => 'required',
+            'yacht_id' => 'filled'
         ])->validate();
-        
+
         $path = $request->file->store('/media-files', 'public');
-        if($path) {
-            $imageUpload = new FileUpload();
+        if ($path) {
+            $imageUpload = new UploadedFile();
             $imageUpload->filename = $path;
             $imageUpload->extension = $request->file->getClientOriginalExtension();
             $imageUpload->mime = $request->file->getClientOriginalExtension();
             $imageUpload->save();
 
-            if($imageUpload) {
+            if ($imageUpload) {
                 $data = $request->all();
                 $data['type'] = 'image';
-                $data['file'] = $imageUpload->id;
+                $data['source'] = $imageUpload->id;
                 $mediaFile = MediaFile::create($data);
-                if($mediaFile) {
+                if ($mediaFile) {
+
                     return redirect()->route('media-files.show', ['mediaFile' => $mediaFile->id]);
                 }
             }
@@ -102,14 +104,15 @@ class MediaFilesController extends Controller
     {
         Validator::make($request->all(), [
             //'file' => ['required', 'file'],
-            'page' => 'required',
+            'purpose' => 'required',
             'published' => 'required',
+            'yacht_id' => 'filled'
         ])->validate();
-        
-        if($request->hasFile('file')) {
+
+        if ($request->hasFile('file')) {
             Storage::delete($mediaFile->file->filename);
             $path = $request->file->store('/media-files', 'public');
-            if($path) {
+            if ($path) {
                 $imageUpload = $mediaFile->file;
                 $imageUpload->filename = $path;
                 $imageUpload->extension = $request->slide->getClientOriginalExtension();
@@ -117,15 +120,15 @@ class MediaFilesController extends Controller
                 $imageUpload->save();
             }
         }
-        
+
         $data = $request->all();
         $data['type'] = 'image';
-        $data['file'] = ($request->hasFile('file') && $path)? $imageUpload->id: $mediaFile->file;
+        $data['file'] = ($request->hasFile('file') && $path) ? $imageUpload->id : $mediaFile->file;
         $mediaFile->update($data);
-        if($mediaFile) {
+        if ($mediaFile) {
             return redirect()->route('media-files.show', ['mediaFile' => $mediaFile->id]);
         }
-        
+
 
         return redirect()->back();
     }

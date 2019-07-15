@@ -16,8 +16,12 @@ class CreateMediaFilesTable extends Migration
         Schema::create('media_files', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('type');
-            $table->integer('yacht_id')->unsigned();
-            $table->integer('source')->unsigned();
+            $table->bigInteger('source')->unsigned();
+            $table->string('title')->nullable();
+            $table->string('description')->nullable();
+            $table->string('purpose');
+            $table->bigInteger('yacht_id')->unsigned();
+            $table->boolean('published');
             $table->timestamps();
         });
     }

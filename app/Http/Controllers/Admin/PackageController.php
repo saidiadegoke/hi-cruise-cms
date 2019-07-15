@@ -126,13 +126,8 @@ class PackageController extends Controller
         $available_days = request('available_days');
         $available_day = [];
 
-        // Delete all from available days where package_id = $package->id;
-        /*
-        * Modify this functionality
-        * 
-        */
+        DB::table('available_days')->where('package_id', $package->id)->delete();
 
-        DB::table('available_days')->delete("package_id", "=", $package->id);
 
         $now = Carbon::now()->toDateTimeString();
         foreach ($available_days as $day) {

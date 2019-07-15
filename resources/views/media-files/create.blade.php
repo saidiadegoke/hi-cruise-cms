@@ -26,9 +26,6 @@
 		            @endif
 
 					<div class="kt-section kt-section--first">
-						<!--div class="form-group">
-							<img src="#" />
-						</div-->
 						<div class="form-group row">
 							<label class="col-form-label col-sm-12">Select media file</label>
 							<div class="col-sm-12">
@@ -46,12 +43,24 @@
 							<span class="form-text text-muted">Optional</span>
 						</div>
 						<div class="form-group row">
-							<label class="col-form-label col-sm-12">Page</label>
+							<label class="col-form-label col-sm-12">Purpose</label>
 							<div class="col-sm-12">
-								<select name="page" class="form-control">
-									<option value="">Select Page</option>
-									<option value="gallery">Gallery</option>
-									<option value="careers">Careers</option>
+								<select name="purpose" class="form-control">
+									<option value="">Select Purpose</option>
+									@foreach(\App\Models\MediaFilePurpose::all() as $purpose)
+										<option value="{{ $purpose->id }}" {{ old('purpose') == $purpose->id? 'selected': '' }}>{{ $purpose->name }}</option>
+									@endforeach
+								</select>
+							</div>
+						</div>
+						<div class="form-group row">
+							<label class="col-form-label col-sm-12">Select Yatch (Optional)</label>
+							<div class="col-sm-12">
+								<select name="yacht_id" class="form-control">
+									<option value="">Select Yacht</option>
+									@foreach(\App\Models\Yacht::all() as $yacht)
+										<option value="{{ $yacht->id }}" {{ old('yacht_id') == $yacht->id? 'selected': '' }}>{{ $yacht->name }}</option>
+									@endforeach
 								</select>
 							</div>
 						</div>
