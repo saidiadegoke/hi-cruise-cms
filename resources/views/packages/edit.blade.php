@@ -61,7 +61,7 @@
 
 						<div class="form-group">
 							<label>Description</label>
-							<textarea class="form-control" name="description" placeholder="Enter description">{{ old('description') ? old('description') : $package->description}} </textarea>
+							<textarea class="form-control textarea" name="description" placeholder="Enter description">{{ old('description') ? old('description') : $package->description}} </textarea>
 							<span class="form-text text-muted">Optional</span>
 						</div>
 

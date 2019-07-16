@@ -15,7 +15,13 @@
                         <div class="col-md-12">
                             <form action="{{route('reserve')}}" method="post">
                             @csrf
-
+                            <div class="form-group">
+                                @if(count($errors->all()) > 0)
+		              @foreach($errors->all() as $error)
+		              <p class="alert alert-danger">{{$error}}</p>
+		              @endforeach
+		            @endif
+                                </div>
                             <h4>About You</h4>
                               
                                     <div class="form-group">

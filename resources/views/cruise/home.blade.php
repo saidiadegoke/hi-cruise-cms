@@ -222,18 +222,24 @@
 
 @section("scripts")
     <script>
+    let url = '';
         $(function() {
+            $('#listPackage').change(function(e) {
+                const selected = $(e.target).val();
+                if( +selected === 6 || +selected === 7 ) {
+                    url = 'event/'+selected;
+                }
 
+                console.log(url); 
+            })
             $('#selectPackage').change(function(e) {
                     const target = $(e.target);
                     let package = target.val();
                     baseURL = $("#baseURL").val();
-                    url ='/packages/'+package;
-                    console.log(package); 
+                    url = '/packages/'+package;
+                    console.log(package, url); 
 
-
-                    
-                if(null !== package && package.length > 0){
+                    if(null !== package && package.length > 0){
                     $.ajax({
                         type: 'get',
                         url: baseURL+url,
@@ -260,7 +266,7 @@
                 }
             });
 
-
+            
 
         });
 
