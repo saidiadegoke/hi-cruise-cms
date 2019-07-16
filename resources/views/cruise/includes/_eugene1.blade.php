@@ -1,3 +1,14 @@
+<style>
+    .announce {
+        width: 60%;
+        margin: 0 auto;
+    }     
+    @media(max-width: 992px) {
+        .announce {
+            width: 100%;
+        }
+    }
+  </style>
 <section class="" style="margin-top: 200px">
       <div class="container styled-border-2">
         <div class="col-md-6">
@@ -53,6 +64,19 @@
             </div>
         </div>
       </div>
+    </section>
+    <section class="no-margin pad-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                <p class="text-justify lead announce">
+                Our regular cruises come up every Friday, Saturday, and Sunday on Eugene 1.
+Why not join us on this adventure of a lifetime.
+Booking is secure, fast and easy and is just a click away.
+                </p>
+                </div>
+            </div>
+        </div>
     </section>
     <section class="primary-color no-margin pad-10 mid-space set-bg-base">
       <div class="container">

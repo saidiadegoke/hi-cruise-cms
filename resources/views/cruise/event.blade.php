@@ -7,6 +7,17 @@
         <img src="{{asset('public/assets/img/logo-icon.png')}}" alt="" class="logo-icon-section" />
         <h3 class="all-caps">Event Reservations</h3>
         
+        <div class="row">
+                <div class="col-md-12">
+                <p class="text-center lead announce">
+                Build your event<br /><br>
+Please complete the form below to help us have a clear picture of your event.
+Once submitted, a member of our marketing team will provide you a quote tailored to
+your requirements.<br /><br>
+We look forward to working with you!
+                </p>
+                </div>
+            </div>
             <div class="card">
                 <div class="card-body">
                     <div class="container-fluid">
