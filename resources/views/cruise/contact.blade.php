@@ -11,9 +11,28 @@
     <section class="primary-color no-margin pad-10 mid-space">
       <div class="container">
         <div class="col-md-12">
-          <div class="col-md-6 floater-img">
-            <span class="sp-cap">We will love to hear from you</span>
-            <img src="{{asset('public/assets/img/contact.jpg')}}" alt="" class="floater-img" />
+          <div class="col-md-6 floater-img1">
+            <!--span class="sp-cap">We will love to hear from you</span>
+            <img src="{{asset('public/assets/img/contact.jpg')}}" alt="" class="floater-img" /-->
+            <h4 class="center">Contact</h4>
+          <p class="lead" style="text-align: center">32, Coker road, Ilupeju, Lagos.</p>
+          <p class="lead" style="text-align: center">info@hi-impactcruise.com</p>
+          <p class="lead" style="text-align: center">0818 8245 734, 0806 4831 491</p>
+
+          <div class="col-md-61 pull-left socials" style="display: flex;
+justify-content: center;
+flex-direction: row;
+width: 100%;">
+            <li>
+              <a href="#"> <i class="fab fa-facebook-f"></i></a>
+            </li>
+            <li>
+              <a href="#"> <i class="fab fa-twitter"></i></a>
+            </li>
+            <li>
+              <a href="#"> <i class="fab fa-instagram"></i></a>
+            </li>
+          </div>
           </div>
           <div class="col-md-6">
             <div class="col-md-12 bordered">

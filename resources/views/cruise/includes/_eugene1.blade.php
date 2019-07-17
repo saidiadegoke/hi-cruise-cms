@@ -69,11 +69,29 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                <p class="text-justify lead announce">
+                <p class="text-center lead announce">
+                
+            
                 Our regular cruises come up every Friday, Saturday, and Sunday on Eugene 1.
 Why not join us on this adventure of a lifetime.
 Booking is secure, fast and easy and is just a click away.
-                </p>
+                <br /><br />
+                Our yachts can also serve as the perfect luxury venue for your private
+parties, weddings, birthdays, photo shoots, get togethers, and corporate
+events.<br /><br />
+Our Social or Corporate packages can be tailored to fit your requirements.
+Please click here to start planning your event with us!
+<form style="    display: flex;
+    justify-content: center;
+    margin: 2em auto;
+}" action="{{route('details')}}" method="post">
+              @csrf
+            <input type="hidden" name="type" value="{{$yacht->id}}">
+            <input type="hidden" name="package" value="7"><input class="btn btn-link" style="display:inline;color: #ffcc78" value="click here" /> 
+
+            </form>
+            
+  </p>
                 </div>
             </div>
         </div>
@@ -128,7 +146,7 @@ Booking is secure, fast and easy and is just a click away.
           </div>
           <div class="col-md-4 package-listing">
             <h4 class="center no-float">ROYAL PACKAGE</h4>
-            <span>&#8358; 1,000,000 Flat </span>
+            <span>&#8358; 1,000,000 Flat (For 20 Guests)</span>
             <ul>
               <li>MAXIMUM OF 20 GUESTS</li>
               <li>Exclusive Royal Lounge</li>
@@ -152,6 +170,38 @@ Booking is secure, fast and easy and is just a click away.
               @csrf
             <input type="hidden" name="type" value="{{$yacht->id}}">
             <input type="hidden" name="package" value="5">
+            <button class="btn btn-primary" style="width: 100%; margin-top: 1.2em;">Book Now</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="primary-color no-margin pad-10">
+      <div class="container">
+        <div class="col-md-12">
+          <div class="col-md-6 package-listing">
+            <h4 class="center no-float">SOCIAL EVENT</h4>
+            <p>
+            We are the one stop luxury destination for your social functions such as weddings, 
+            birthday bash, soirees, bridal shower, hen party, photo shoots, video shoots, get- togethers.
+            </p>
+            <form class="form-horizontal" action="{{route('details')}}" method="post">
+              @csrf
+            <input type="hidden" name="type" value="{{$yacht->id}}">
+            <input type="hidden" name="package" value="6">
+            <button class="btn btn-primary" style="width: 100%; margin-top: 1.2em;">Book Now</button>
+            </form>
+          </div>
+          <div class="col-md-6 package-listing">
+            <h4 class="center no-float">CORPORATE EVENT</h4>
+            <p>
+            Take a change from the norm, our venue is ideal for all corporate events like retreats, Anniversaries, 
+            AGMs, End of year parties, Team building, Award ceremonies, e.t.c 
+            </p>
+            <form class="form-horizontal" action="{{route('details')}}" method="post">
+              @csrf
+            <input type="hidden" name="type" value="{{$yacht->id}}">
+            <input type="hidden" name="package" value="7">
             <button class="btn btn-primary" style="width: 100%; margin-top: 1.2em;">Book Now</button>
             </form>
           </div>

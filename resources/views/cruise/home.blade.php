@@ -19,8 +19,11 @@
             <div class="carousel-inner">
 
             <div class="item active">
+                <img src="{{ asset('public/assets/img/banners/bn01.jpg') }}">
+            </div>
+            <!--div class="item active">
             <img src="{{ asset('public/assets/img/banners/bn10.jpg') }}">
-            </div><!-- End Item -->
+            </div><-- End Item -->
 
             <div class="item">
                 <img src="{{ asset('public/assets/img/banners/bn7.jpg') }}">
@@ -38,9 +41,7 @@
                 <img src="{{ asset('public/assets/img/banners/bn02.jpg') }}">
             </div><!-- End Item -->
             
-            <div class="item">
-                <img src="{{ asset('public/assets/img/banners/bn01.jpg') }}">
-            </div><!-- End Carousel Inner -->
+            <!-- End Carousel Inner -->
 
             <!-- Controls -->
             <div class="carousel-controls">
@@ -85,7 +86,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                <p class="text-justify lead announce">
+                <p class="text-center lead announce">
                         Welcome to Hi-Impact Cruise, owners of Nigeria's biggest luxury yacht. We
                         are an on-sea venue for all your events. Explore unimaginable fun on our
                         impressive yachts as we promise to give you a unique experience like never

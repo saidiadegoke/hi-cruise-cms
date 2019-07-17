@@ -955,3 +955,8 @@ div.pic-holder img {
         left: auto;
         right: 10%;
         } 
+@media(max-width: 992px) {
+    form.bookings {
+        width: 100%;
+    }
+}
