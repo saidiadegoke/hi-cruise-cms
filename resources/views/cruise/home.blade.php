@@ -18,31 +18,13 @@
             <!-- Wrapper for slides -->
             <div class="carousel-inner">
 
-            <div class="item active">
-                <img src="{{ asset('public/assets/img/banners/bn01.jpg') }}">
-            </div>
-            <!--div class="item active">
-            <img src="{{ asset('public/assets/img/banners/bn10.jpg') }}">
-            </div><-- End Item -->
 
-            <div class="item">
-                <img src="{{ asset('public/assets/img/banners/bn7.jpg') }}">
-            </div>
-
-            <div class="item">
-                <img src="{{ asset('public/assets/img/banners/bn8.jpg') }}">
-            </div>
-
-            <div class="item">
-                <img src="{{ asset('public/assets/img/banners/bn9.jpg') }}">
-            </div>
-    
-            <div class="item">
-                <img src="{{ asset('public/assets/img/banners/bn02.jpg') }}">
-            </div><!-- End Item -->
-            
-            <!-- End Carousel Inner -->
-
+                @foreach ($slides as $slide)
+                    <div class="item {{ $slides->pluck('order')->min() == $slide->order ? 'active' : ''}}">
+                        <img src="{{ asset('public/storage/'.$slide->file->filename) }}">
+                    </div>        
+                @endforeach
+</div>
             <!-- Controls -->
             <div class="carousel-controls">
                 <a class="left carousel-control" href="#myCarousel" data-slide="prev">
@@ -64,7 +46,7 @@
                     <select class="form-control" name="type" id="selectPackage" required>
                         <option value="">Select Yacht</option>
                         @foreach ($yachts as $yacht)
-                            <option value="{{$yacht->id}}">{{$yacht->name}}</option>
+                            <option value="{{ $yacht->id }}">{{ $yacht->name }}</option>
                         @endforeach
                     </select>
                 </div>

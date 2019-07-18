@@ -64,6 +64,11 @@
 							<span class="form-text text-muted">Please enter slide title</span>
 						</div>
 						<div class="form-group">
+							<label>Order</label>
+							<input type="number" class="form-control" name="order" placeholder="3" value="{{ old('order') ? old('order') : $slide->order }}">
+							<span class="form-text text-muted">Please enter slide display order</span>
+						</div>
+						<div class="form-group">
 							<label>Description</label>
 							<textarea class="form-control" name="description" placeholder="Enter description">{{ old('description')? old('description'): $slide->description }}</textarea>
 							<span class="form-text text-muted">Optional</span>

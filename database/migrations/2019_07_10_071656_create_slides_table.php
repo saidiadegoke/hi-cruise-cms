@@ -18,6 +18,7 @@ class CreateSlidesTable extends Migration
             $table->string('title')->nullable();
             $table->string('description')->nullable();
             $table->unsignedInteger('source');
+            $table->integer('order');
             $table->string('page');
             $table->boolean('published');
             $table->timestamps();

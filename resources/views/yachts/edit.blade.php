@@ -48,7 +48,6 @@
 		            @endif
 
 					<div class="kt-section kt-section--first">
-
 						<div class="form-group">
 							<label>Name</label>
 							<input type="text" class="form-control" name="name" placeholder="Yacht Name" value="{{ old('name')? old('name'): $yacht->name }}">

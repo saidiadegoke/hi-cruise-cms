@@ -10,7 +10,7 @@ class Slide extends Model
      * Fillables
      */
     protected $fillable = [
-        'title', 'description', 'source', 'published', 'page',
+        'title', 'description', 'source', 'published', 'page', 'order',
     ];
 
     public function file()

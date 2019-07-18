@@ -62,6 +62,13 @@
 							<input type="text" class="form-control" name="title" placeholder="Slide title" value="{{ old('title') }}">
 							<span class="form-text text-muted">Please enter slide title</span>
 						</div>
+
+						<div class="form-group">
+							<label>Order</label>
+							<input type="number" class="form-control" name="order" placeholder="3" value="{{ old('order') }}">
+							<span class="form-text text-muted">Please enter slide display order</span>
+						</div>
+
 						<div class="form-group">
 							<label>Description</label>
 							<textarea class="form-control" name="description" placeholder="Enter description">{{ old('description') }}</textarea>
