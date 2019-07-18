@@ -11,6 +11,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->call(DaysSeeder::class);
+        $this->call([DaysSeeder::class, MediaFilePurposeSeeder::class]);
     }
 }

@@ -128,6 +128,10 @@ class YachtController extends Controller
 
     public function detail(Yacht $yacht)
     {
-        return view('cruise.package', compact('yacht'));
+        if ($yacht->id == 1) {
+            return view('cruise.eugene1', compact('yacht'));
+        } else {
+            return view('cruise.eugene', compact('yacht'));
+        }
     }
 }

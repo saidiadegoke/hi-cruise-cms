@@ -1,19 +1,24 @@
 @extends('layouts.cruise')
 @php
-  $slides = $slides ? $slides->where('yacht_id',$yacht->id)->get() : [] ;
-  $banner = $banner? $banner->where('yacht_id',$yacht->id)->get()->first(): '';
-
+  $slides = $yacht->slides();
+  $banner = $yacht->banner();
+  // dd($slides)
+  // dd($slides[0]->file->filename);
 @endphp
 @section('content')
+
 
 
 <section class="" style="margin-top: 200px">
     <div class="container styled-border-2">
         <div class="col-md-6">
-          <h4 class="all-caps">{{$yacht->name}}</h4>
+
+          <h4 class="all-caps"> {{$yacht->name}} </h4>
+
           <p class="justify-center downUp">
             {!! $yacht->description !!}
           </p>
+
         </div>
         <div class="col-md-6">
           <img src="{{ asset('public/storage/'.$banner->file->filename) }}" />
@@ -52,21 +57,15 @@
             <h4 class="center no-float">{{$package->name}}</h4>
             <span>&#8358; {{$package->price}}</span>
             <ul>
-              <li>CAPACITY OF 10 GUESTS</li>
+              <li>CAPACITY OF 450 GUESTS</li>
+              <li>Lower and middle Deck</li>
               <li>FRIDAY - SUNDAY</li>
-              <li>2 hour cruise across Lagos waters.</li>
-              <li>Ideal for:</li>
-              <li>Private parties</li>
-              <li>Retreats</li>
-              <li>Re-unions</li>
-              <li>Bridal showers.</li>
-              <li>Marriage proposals.</li>
-              <li>Honeymoon.</li>
-              <li>and Get-together</li>
-              <li>Complimentary bottle of Fine wine.</li>
-              <li>Top grade sound system</li>
+              <li>Spectacular ambient lighting and sound.</li>
+              <li>Thrilling 4 hour cruise across Lagos waters.</li>
+              <li>Sumptuous 3 course meal and drinks</li>
+              <li>Fun games on deck</li>
+              <li>High grade sound from DJ or Live band</li>
               <li>Serene and secure ambience.</li>
-              <li>*Extra cruise time attracts =N=100,000 per hour.</li>
             </ul>
             <button type="submit" class="btn btn-primary">Book Now</button>
             </form>
