@@ -15,7 +15,6 @@ class CreateMediaFilesTable extends Migration
     {
         Schema::create('media_files', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('type');
             $table->bigInteger('source')->unsigned();
             $table->string('title')->nullable();
             $table->string('description')->nullable();
