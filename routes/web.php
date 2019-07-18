@@ -49,6 +49,9 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     Route::resource('events', 'Admin\EventController');
     Route::resource('media-files', 'Admin\MediaFilesController');
     Route::resource('media-file-purposes', 'Admin\MediaFilePurposesController');
+    Route::resource('pages', 'Admin\PagesController');
+	Route::resource('page-categories', 'Admin\PageCategoriesController');
+	Route::get('page-categories/pages/{category_id}', 'Admin\PageCategoriesController@pages')->name('page-categories.pages');
 });
 
 Route::get('/events', "Admin\EventController@all");
@@ -56,3 +59,4 @@ Route::get('/packages/{yacht}', "Admin\YachtController@packages");
 Route::get('/package_details/{package}', "Admin\PackageController@single");
 
 Route::get('/yacht/{yacht}', "Admin\YachtController@detail")->name('package');
+Route::post('/dropzone/store', 'Admin\SlidesController@fileStore')->name('dropzone.store');

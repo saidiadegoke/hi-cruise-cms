@@ -230,6 +230,8 @@
                                                     </ul>
                                                 </div>
                                             </li>
+                                            <li class="kt-menu__item  kt-menu__item--submenu kt-menu__item--rel" data-ktmenu-submenu-toggle="click" aria-haspopup="true"><a href="{{ route('page-categories.index') }}" class="kt-menu__link"><span class="kt-menu__link-text">Pages</span><i class="kt-menu__ver-arrow la la-angle-right"></i></a>
+                                            </li>
                                             <li class="kt-menu__item"><a href="{{ route('slides.index') }}" class="kt-menu__link"><span class="kt-menu__link-text">Slides</span><i class="kt-menu__ver-arrow la la-angle-right"></i></a>
                                             </li>
                                             <li class="kt-menu__item"><a href="{{ route('media-files.index') }}" class="kt-menu__link"><span class="kt-menu__link-text">Media files</span><i class="kt-menu__ver-arrow la la-angle-right"></i></a>
