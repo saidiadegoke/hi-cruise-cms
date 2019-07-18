@@ -44,7 +44,7 @@
           @foreach ($yacht->packages as $package)
               
           
-          <div class="col-md-4 package-listing">
+          <div class="col-md-6 package-listing">
             <form action="{{route('details')}}" method="post">
               @csrf
             <input type="hidden" name="type" value="{{$yacht->id}}">

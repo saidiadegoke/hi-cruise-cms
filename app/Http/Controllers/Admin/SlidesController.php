@@ -15,7 +15,9 @@ class SlidesController extends Controller
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
+     * 
      */
+
     public function index()
     {
         //
@@ -29,6 +31,7 @@ class SlidesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function create()
     {
         /**
@@ -43,6 +46,7 @@ class SlidesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
     public function store(Request $request)
     {
         Validator::make($request->all(), [
@@ -124,7 +128,7 @@ class SlidesController extends Controller
         }
 
         $data = $request->all();
-        $data['source'] = ($request->hasFile('slide') && $path)? $imageUpload->id: $slide->source;
+        $data['source'] = ($request->hasFile('slide') && $path) ? $imageUpload->id : $slide->source;
 
         $slide->update($data);
         if ($slide) {
