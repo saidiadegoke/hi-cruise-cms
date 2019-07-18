@@ -13,7 +13,7 @@
     <div class="container">
         <div class="col-md-12">
           <div class="col-md-6 floater-img">
-              <img src="{{asset('public/assets/img/register.jpg')}}" alt="" class="floater-img" />
+              <img src="{{ asset('public/assets/img/login-bg.jpeg') }}" alt="" class="floater-img" />
           </div>
           <div class="col-md-6">
               <div class="col-md-12 bordered">
@@ -92,6 +92,9 @@
                       value="Register Now"
                     />
                   </div>
+                  <div class="form-group">
+                <p class="text-center">Already registered ? Click here to <a style="color: #ffbc2e;" href="{{ route('login') }}">login</a></p>
+              </div>
                 </form>
               </div>
             </div>

@@ -1,4 +1,9 @@
 @extends('layouts.cruise')
+@php
+  //$slides = $slides ? $slides->where('yacht_id',$yacht->id)->get() : \App\Models\Slide::where(['yacht_id' => $yacht->id])->get() ;
+  //$banner = $banner? $banner->where('yacht_id',$yacht->id)->get()->first(): \App\Models\Slide::where(['yacht_id' => $yacht->id])->first();
+
+@endphp
 @section('content')
 
 <section class="" style="margin-top: 200px">

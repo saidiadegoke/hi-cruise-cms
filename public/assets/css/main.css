@@ -954,4 +954,9 @@ div.pic-holder img {
     div.modal a.right-align {
         left: auto;
         right: 10%;
-        }      
+        } 
+@media(max-width: 992px) {
+    form.bookings {
+        width: 100%;
+    }
+}

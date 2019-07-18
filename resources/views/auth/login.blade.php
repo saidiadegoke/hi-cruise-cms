@@ -4,7 +4,7 @@
 
 <section class="set-margTop-100">
       <div class="container">
-        <img src="img/logo-icon.png" alt="" class="iconic" />
+        <img src="{{ asset('public/assets/img/logo-icon.png') }}" alt="" class="iconic" />
         <div class="col-md-4 middle-place bordered">
           <div class="container">
              <form method="POST" action="{{ route('login') }}">
@@ -32,6 +32,9 @@
               </div>
               <div class="form-group">
                 <input type="submit" value="Login" class="btn btn-primary" />
+              </div>
+              <div class="form-group">
+                <p class="text-center">Not registered yet? Click here to <a style="color: #ffbc2e;" href="{{ route('register') }}">register</a></p>
               </div>
             </form>
           </div>
