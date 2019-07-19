@@ -1,18 +1,30 @@
 @extends('layouts.cruise')
 @section("content")
+<style>
+
+.announce {
+        width: 60%;
+        margin: 0 auto;
+    }     
+    @media(max-width: 992px) {
+        .announce {
+            width: 100%;
+        }
+    }
+
+    </style>
     <section class="banner">
         <div id="myCarousel" class="carousel slide" data-ride="carousel">
             <!-- Wrapper for slides -->
             <div class="carousel-inner">
+
 
                 @foreach ($slides as $slide)
                     <div class="item {{ $slides->pluck('order')->min() == $slide->order ? 'active' : ''}}">
                         <img src="{{ asset('public/storage/'.$slide->file->filename) }}">
                     </div>        
                 @endforeach
-
-            
-
+</div>
             <!-- Controls -->
             <div class="carousel-controls">
                 <a class="left carousel-control" href="#myCarousel" data-slide="prev">
@@ -25,6 +37,7 @@
 
         </div><!-- End Carousel -->
     </section>
+    
     <section class="no-margin">
         <div class="container">
             <form action="{{route('details')}}" class="bookings" method="POST">
@@ -49,6 +62,20 @@
                     <input type="submit" class="btn btn-primary" value="Book Reservation" name="" id="">
                 </div>
             </form>
+        </div>
+    </section>
+    <section class="no-margin pad-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                <p class="text-center lead announce">
+                        Welcome to Hi-Impact Cruise, owners of Nigeria's biggest luxury yacht. We
+                        are an on-sea venue for all your events. Explore unimaginable fun on our
+                        impressive yachts as we promise to give you a unique experience like never
+                        before in Nigeria.
+                </p>
+                </div>
+            </div>
         </div>
     </section>
     <section class="">
@@ -206,18 +233,24 @@
 
 @section("scripts")
     <script>
+    let url = '';
         $(function() {
+            $('#listPackage').change(function(e) {
+                const selected = $(e.target).val();
+                if( +selected === 6 || +selected === 7 ) {
+                    url = 'event/'+selected;
+                }
 
+                console.log(url); 
+            })
             $('#selectPackage').change(function(e) {
                     const target = $(e.target);
                     let package = target.val();
                     baseURL = $("#baseURL").val();
-                    url ='/packages/'+package;
-                    console.log(package); 
+                    url = '/packages/'+package;
+                    console.log(package, url); 
 
-
-                    
-                if(null !== package && package.length > 0){
+                    if(null !== package && package.length > 0){
                     $.ajax({
                         type: 'get',
                         url: baseURL+url,
@@ -244,7 +277,7 @@
                 }
             });
 
-
+            
 
         });
 

@@ -26,6 +26,9 @@ $(document).ready(function(){
         $('.bar-open').addClass('hide-bar');
         $('.bar-open').removeClass('show-bar');
         $('.bar-close').addClass('show-bar');
+        $('.bar-open').hide();
+        $('.bar-close').show();
+
     })
 
     $('.bar-close').click(function(){
@@ -34,6 +37,8 @@ $(document).ready(function(){
         $('.bar-open').addClass('show-bar');
         $('.bar-close').removeClass('show-bar');
         $('.bar-close').addClass('hide-bar');
+        $('.bar-close').hide();
+        $('.bar-open').show();
     })
     
     $('#close').click(function(){

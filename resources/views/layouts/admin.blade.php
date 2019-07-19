@@ -30,7 +30,7 @@
         </script>
 
         <script src="https://cdn.tiny.cloud/1/wf68j1npm9x4p5oefuw9kc4pzj24cqu7vbhnkd4o145b953m/tinymce/5/tinymce.min.js"></script>
-        <script>tinymce.init({selector:'textarea'});</script>
+        <script>//tinymce.init({selector:'textarea'});</script>
 
         <!--end::Fonts -->
 
@@ -483,6 +483,19 @@
         <!--begin::Page Scripts(used by this page) -->
         <script src="{{ asset('public/portal/js/demo2/pages/dashboard.js') }}" type="text/javascript"></script>
 
+        <script>
+tinymce.init({
+  selector: 'textarea',
+  //height: 500,
+  //menubar: false,
+  plugins: [
+    'advlist autolink lists link image charmap print preview anchor textcolor',
+    'searchreplace visualblocks code fullscreen',
+    'insertdatetime media table paste code help wordcount'
+  ],
+  toolbar: 'undo redo | formatselect | bold italic backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | help',
+});
+</script>
         @show
 
 

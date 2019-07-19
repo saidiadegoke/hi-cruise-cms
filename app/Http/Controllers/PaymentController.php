@@ -42,7 +42,6 @@ class PaymentController extends Controller
             'address' => 'required',
             'payment_method' => ['required'],
             'start_date' => 'required',
-            'finish_date' => 'required',
         ])->validate();
 
         if (request('payment_method') !== 'paystack') {
@@ -59,7 +58,7 @@ class PaymentController extends Controller
             'package_id' => request('package'),
             'seats' => request('num_seat'),
             'start_date' => Carbon::createFromFormat('Y-m-d', request('start_date')),
-            'finish_date' => Carbon::createFromFormat('Y-m-d', request('finish_date')),
+            //'finish_date' => Carbon::createFromFormat('Y-m-d', request('finish_date')),
             'name' => request('name'),
             'phone' => request('phone'),
             'email' => request('email'),
@@ -93,7 +92,7 @@ class PaymentController extends Controller
                 'email' => $metaData['email'],
                 'address' => $metaData['address'],
                 'start_date' => Carbon::parse($metaData['start_date'])->format('Y-m-d'),
-                'finish_date' => Carbon::parse($metaData['finish_date'])->format('Y-m-d'),
+                //'finish_date' => Carbon::parse($metaData['finish_date'])->format('Y-m-d'),
                 'package_id' => $metaData['package_id']
             ]);
 

@@ -8,7 +8,7 @@
     <meta name="description" content="" />
     <meta name="keywords" content="" />
 
-    <title>HI Impact Cruise - @yield("title")</title>
+    <title>Hi-Impact Cruise - @yield("title")</title>
     <link type="shortcut icon" rel="icon" href="{{ asset('public/favicon.ico') }}" />
         <link type="shortcut icon" rel="icon" href="{{asset('public/assets/img/fav.png')}}">
     <link type="text/css" href="{{asset('public/assets/css/bootstrap.min.css')}}" rel="stylesheet" />

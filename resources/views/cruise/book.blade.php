@@ -76,14 +76,9 @@
                             </div> 
                             <div class="form-group">
                             <div class="row">
-                                    <div class="col-md-5">
+                                    <div class="col-md-7">
                                     <label>Start date</label>
                                     <input style="color: black;" value="{{ old('start_date') }}" type="text" class="form-control date pick_date" name="start_date" id="start_date" disabled>
-                                    </div>
-
-                                    <div class="col-md-7">
-                                        <label>Finish date</label>
-                                        <input style="color: black;" value="{{ old('finish_date') }}" type="text" class="form-control date pick_date" name="finish_date" id="finish_date" disabled>
                                     </div>
                                 </div>
                                 </div>
@@ -101,7 +96,7 @@
 
                                     <div class="form-check form-check-inline col-md-5">
                                         <label class="form-check-label">
-                                            <input class="form-check-input" type="radio" {{ old('payment_method') == 'paystack'? 'checked': '' }} name="payment_method" id="payment_method" value="paystack"> Paystack
+                                            <input class="form-check-input" type="radio" {{ old('payment_method') == 'paystack'? 'checked': '' }} name="payment_method" id="payment_method" value="paystack"> Online Payment
                                         </label>
                                     </div>
                                 </div>
