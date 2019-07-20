@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Customer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class CustomerController extends Controller
 {
@@ -52,7 +53,7 @@ class CustomerController extends Controller
      */
     public function show(Customer $customer)
     {
-        //
+        return view('customer.index', compact('customer'));
     }
 
     /**
@@ -63,7 +64,7 @@ class CustomerController extends Controller
      */
     public function edit(Customer $customer)
     {
-        //
+        return view('customer.edit', compact('customer'));
     }
 
     /**
@@ -75,7 +76,15 @@ class CustomerController extends Controller
      */
     public function update(Request $request, Customer $customer)
     {
-        //
+        Validator::make($request->all(), [
+            'firstname' => 'required',
+            'lastname' => 'required',
+            'email' => 'required',
+            'phone' => 'required',
+        ])->validate();
+
+        $customer->update($request->all());
+        return redirect()->route('customer.index');
     }
 
     /**
@@ -87,5 +96,18 @@ class CustomerController extends Controller
     public function destroy(Customer $customer)
     {
         //
+    }
+
+    public function reservations() {
+        $user = Auth::user();
+        $customer = $user->customer; dd($user);
+
+        return redirect()->route('reservations', ['customer' => $customer->id]);
+    }
+
+    public function notifications() {
+        $user = Auth::user();
+
+        return view('customer.notifications', compact('notifications'));
     }
 }

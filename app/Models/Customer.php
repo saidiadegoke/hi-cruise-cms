@@ -30,10 +30,10 @@ class Customer extends Model
     }
 
     public function state() {
-        return $this->hasOne('App\Models\State');
+        return $this->belongsTo('App\Models\State');
     }
 
     public function country() {
-        return $this->hasOne('App\Models\Country');
+        return $this->belongsTo('App\Models\Country');
     }
 }

@@ -12,22 +12,22 @@
 <section class="primary-color no-margin pad-10 mid-space marg-Top-60">
     <div class="container">
         <div class="col-md-12">
-          <div class="col-md-3 floater-img">
+          <div class="col-md-3">
           </div>
           <div class="col-md-6 col-offset-md-3">
               <div class="col-md-12 bordered">
                   <div class="container">
                   <h4 class="center">Profile page</h4>
-                      <form action="{{route('register')}}" method="post">
+                      <form action="{{route('customer.update', ['customer' => $customer->id])}}" method="post">
                             @csrf
-                            
+                            @method('PATCH')
                             <div class="row">
                               @include('layouts.partials.errors')
                             </div>
                   <div class="form-group">
                     <div class="col-md-6">
                     <label for="fname" class="col-form-label">{{ __('First Name') }}</label>
-                                <input id="fname" type="text" class="form-control @error('firstname') is-invalid @enderror" name="firstname" value="{{ old('firstname') }}" required autocomplete="name" autofocus>
+                                <input id="fname" type="text" class="form-control @error('firstname') is-invalid @enderror" name="firstname" value="{{ old('firstname')?: $customer->firstname }}" required autocomplete="name" autofocus>
                             <div>
                                 @error('firstname')
                                     <span class="invalid-feedback" role="alert">
@@ -38,7 +38,7 @@
                         </div>
                         <div class="col-md-6">
                     <label for="lname" class="col-form-label">{{ __('Last Name') }}</label>
-                                <input id="lname" type="text" class="form-control @error('lastname') is-invalid @enderror" name="lastname" value="{{ old('lastname') }}" required autocomplete="name" autofocus>
+                                <input id="lname" type="text" class="form-control @error('lastname') is-invalid @enderror" name="lastname" value="{{ old('lastname')?: $customer->lastname }}" required autocomplete="lastname" autofocus>
                             <div>
                                 @error('lastname')
                                     <span class="invalid-feedback" role="alert">
@@ -51,7 +51,7 @@
 
                   <div class="form-group">
                       <label for="email" class="col-form-label">{{ __('E-Mail Address') }}</label>
-                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email')?: $customer->email }}" required autocomplete="email">
 
                     <div>
                                 @error('email')
@@ -64,36 +64,48 @@
 
                   <div class="form-group">
                     <label for="phone">{{__('Mobile Number')}}</label>
-                    <input type="text" class="form-control @error('phone') is-invalid @enderror" ) name="phone" required autocomplete="phone"/>
+                    <input type="text" class="form-control @error('phone') is-invalid @enderror" ) name="phone" required autocomplete="phone" value="{{ old('phone')?: $customer->phone }}" />
                   </div>
 
                   <div class="form-group">
-                        
-                        <label for="password" class="col-form-label text-md-right">{{ __('Password') }}</label>
-                            <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
-                            <div>
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
+                    <label for="address">{{__('Address')}}</label>
+                    <textarea class="form-control" name="address" >{{ old('address')?: $customer->address }}</textarea>
                   </div>
 
                   <div class="form-group">
-                    <label for="password-confirm" class="col-form-label">{{ __('Confirm Password') }}</label>
-                        <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                    <label for="phone">{{__('City')}}</label>
+                    <input type="text" class="form-control name="address" value="{{ old('city')?: $customer->city }}"/>
                   </div>
+
+                  <div class="form-group">
+                    <label for="phone">{{__('State')}}</label>
+                    <select class="form-control" name="state_id" style="color: white;">
+                      <option value="">Please select</option>
+                      @foreach(\App\Models\State::all() as $state)
+                        <option value="{{ $state->id }}" {{ $state->id == old('state_id') || $state->id == $customer->state_id? 'selected': '' }}>{{ $state->name }}</option>
+                      @endforeach
+                    </select>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="phone">{{__('Country')}}</label>
+                    <select class="form-control" name="country_id" style="color: white;">
+                      <option value="">Please select</option>
+                      @foreach(\App\Models\Country::all() as $country)
+                        <option value="{{ $country->id }}" {{ $country->id == old('country_id') || $country->id == $customer->country_id? 'selected': '' }}>{{ $country->name }}</option>
+                      @endforeach
+                    </select>
+                  </div>
+
+
                   <div class="form-group">
                     <input
                       type="submit"
                       class="btn btn-primary"
-                      value="Register Now"
+                      value="Update"
                     />
                   </div>
-                  <div class="form-group">
-                <p class="text-center">Already registered ? Click here to <a style="color: #ffbc2e;" href="{{ route('login') }}">login</a></p>
-              </div>
+                  
                 </form>
               </div>
             </div>

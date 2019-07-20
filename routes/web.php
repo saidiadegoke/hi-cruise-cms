@@ -23,8 +23,8 @@ Route::get('/gallery', 'CruiseController@gallery')->name('gallery');
 Route::get('/packages', 'CruiseController@packages')->name('packages');
 
 
-Route::post('/details', 'ReservationController@fetchDetails')->name('details');
-Route::get('/package/{package}', 'ReservationController@details')->name('package_details');
+Route::any('/details', 'ReservationController@fetchDetails')->name('details');
+Route::any('/package/{package}', 'ReservationController@details')->name('package_details');
 
 Route::post('/pay', 'PaymentController@redirectToGateway')->name('pay');
 Route::get('/payment/offline', 'PaymentController@offlinePayment')->name('offline_payment');
@@ -63,7 +63,7 @@ Route::post('/dropzone/store', 'Admin\SlidesController@fileStore')->name('dropzo
 
 Route::middleware('auth')->group(function() {
 	Route::resource('customer', 'CustomerController');
-	Route::get('customer/reservations', 'CustomerController@reservations')->name('customer.reservations');
-	Route::get('customer/notifications', 'CustomerController@notifications')->name('customer.notifications');
-	Route::get('customer/support', 'CustomerController@support')->name('customer.support');
+	Route::get('/my/reservations', 'CustomerController@reservations')->name('customer.reservations');
+	Route::get('/my/notifications', 'CustomerController@notifications')->name('customer.notifications');
+	Route::get('/my/support', 'CustomerController@support')->name('customer.support');
 });

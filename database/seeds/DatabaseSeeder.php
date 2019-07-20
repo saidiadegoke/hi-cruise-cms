@@ -20,7 +20,7 @@ class DatabaseSeeder extends Seeder
             //YachtSeeder::class, 
             //PackageSeeder::class, 
             //MediaFileSeeder::class,
-            //PageCategoriesTableSeeder::class
+            PageCategoriesTableSeeder::class,
             CountriesTableSeeder::class,
             StatesTableSeeder::class,
         ]);

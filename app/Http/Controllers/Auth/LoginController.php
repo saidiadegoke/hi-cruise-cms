@@ -34,7 +34,7 @@ class LoginController extends Controller
         $this->request = $request;
     }
 
-    public function redirectTo()
+    public function redirectTo1()
     {
         if ($this->request->has('previous')) {
             $this->redirectTo = $this->request->get('previous');

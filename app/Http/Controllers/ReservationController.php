@@ -22,7 +22,7 @@ class ReservationController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth');
+        //$this->middleware('auth');
     }
 
 
@@ -89,7 +89,7 @@ class ReservationController extends Controller
 
     public function details(Package $package)
     {
-        if($package->name == 'Social Events' || $package->name == 'Corporate Events') {
+        if($package->type == 'event') {
             return view('cruise.event');
         }
         return view('cruise.book', compact('package'));

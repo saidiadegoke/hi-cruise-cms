@@ -27,8 +27,8 @@
                   <a href="#">My Account <i class="fa fa-angle-down"></i>
                     <ul class="dropdown downUp">
                       <li><a href="{{route('customer.index')}}">My Profile</a></li>
-                      <li><a href="{{route('customer.reservations')}}">Reservations</a></li>
-                      <li><a href="{{route('customer.support')}}">Contact Support</a></li>
+                      <li><a href="{{route('reservations', ['customer' => $sessionUser->customer->id])}}">Reservations</a></li>
+                      <li><a href="{{route('support')}}">Contact Support</a></li>
                       <li><a href="{{route('customer.notifications')}}">Notifications</a></li>
                     </ul>
                   </a>
@@ -80,8 +80,8 @@
                   <a href="#">My Account <i class="fa fa-angle-down"></i>
                     <ul class="dropdown downUp">
                       <li><a href="{{route('customer.index')}}">My Profile</a></li>
-                      <li><a href="{{route('customer.reservations')}}">Reservations</a></li>
-                      <li><a href="{{route('customer.support')}}">Contact Support</a></li>
+                      <li><a href="{{route('reservations', ['customer' => $sessionUser->customer->id])}}">Reservations</a></li>
+                      <li><a href="{{route('support')}}">Contact Support</a></li>
                       <li><a href="{{route('customer.notifications')}}">Notifications</a></li>
                     </ul>
                   </a>

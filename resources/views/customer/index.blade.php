@@ -63,7 +63,7 @@
                           <th>State</th><td>{{ $customer->state? $customer->state->name: '' }}</td>
                         </tr>
                         <tr>
-                          <th>City/th><td>{{ $customer->city }}</td>
+                          <th>City</th><td>{{ $customer->city }}</td>
                         </tr>
                         <tr>
                           <th>Country</th><td>{{ $customer->country? $customer->country->name: '' }}</td>
@@ -71,12 +71,12 @@
                       </table>
                  </div>
                  <div class="col-md-12">
-                  <form>
+                  <form action="{{ route('customer.edit', ['customer' => $customer->id]) }}" method="get">
                   <div class="form-group">
                     <input
                       type="submit"
                       class="btn btn-primary"
-                      value="Register Now"
+                      value="Edit profile"
                     />
                   </div>
                 </form>
