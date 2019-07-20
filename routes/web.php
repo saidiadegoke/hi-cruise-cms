@@ -60,3 +60,10 @@ Route::get('/package_details/{package}', "Admin\PackageController@single");
 
 Route::get('/yacht/{yacht}', "Admin\YachtController@detail")->name('package');
 Route::post('/dropzone/store', 'Admin\SlidesController@fileStore')->name('dropzone.store');
+
+Route::middleware('auth')->group(function() {
+	Route::resource('customer', 'CustomerController');
+	Route::get('customer/reservations', 'CustomerController@reservations')->name('customer.reservations');
+	Route::get('customer/notifications', 'CustomerController@notifications')->name('customer.notifications');
+	Route::get('customer/support', 'CustomerController@support')->name('customer.support');
+});

@@ -1,5 +1,5 @@
 @extends('layouts.cruise')
-
+@section('title') Offline Payment Details @endsection
 @section('content')
 
     <section style="margin-top: 200px">

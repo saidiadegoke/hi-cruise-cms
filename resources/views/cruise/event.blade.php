@@ -1,4 +1,5 @@
 @extends('layouts.cruise')
+@section('title') Book an event @endsection
 @section('content')
     
       

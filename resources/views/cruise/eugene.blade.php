@@ -1,4 +1,6 @@
 @extends('layouts.cruise')
+
+@section('title') Eugene Packages @endsection
 @php
   $slides = $yacht->slides();
   $banner = $yacht->banner();
@@ -11,9 +13,9 @@
     <div class="container styled-border-2">
         <div class="col-md-6">
           <h4 class="all-caps">{{$yacht->name}}</h4>
-          <p class="justify-center downUp">
+          <div class="justify-center downUp">
             {!! $yacht->description !!}
-          </p>
+          </div>
         </div>
         <div class="col-md-6">
           <img src="{{ asset('public/storage/'.$banner->file->filename) }}" />

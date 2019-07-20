@@ -10,7 +10,7 @@ class Customer extends Model
      * Fillables
      */
     protected $fillable = [
-        'user_id', 'firstname', 'lastname', 'phone', 'email', 'address', 'city', 'state', 'country_id',
+        'user_id', 'firstname', 'lastname', 'phone', 'email', 'address', 'city', 'state_id', 'country_id',
     ];
 
 
@@ -27,5 +27,13 @@ class Customer extends Model
     public function tickets()
     {
         return $this->hasMany(SupportTicket::class);
+    }
+
+    public function state() {
+        return $this->hasOne('App\Models\State');
+    }
+
+    public function country() {
+        return $this->hasOne('App\Models\Country');
     }
 }

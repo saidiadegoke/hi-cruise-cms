@@ -22,10 +22,17 @@
                 <li><a href="{{route('gallery')}}">Gallery</a></li>
                 <li><a href="{{route('contact')}}">contact</a></li>
                 @auth
-                <li><a href="{{route('support')}}">Contact Support</a></li>
-                  <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                      @csrf
-                    </form>    
+                
+                <li>
+                  <a href="#">My Account <i class="fa fa-angle-down"></i>
+                    <ul class="dropdown downUp">
+                      <li><a href="{{route('customer.index')}}">My Profile</a></li>
+                      <li><a href="{{route('customer.reservations')}}">Reservations</a></li>
+                      <li><a href="{{route('customer.support')}}">Contact Support</a></li>
+                      <li><a href="{{route('customer.notifications')}}">Notifications</a></li>
+                    </ul>
+                  </a>
+                </li>   
                     <li>
                       <a class="" href="{{ route('logout') }}"
                           onclick="event.preventDefault();
@@ -69,7 +76,16 @@
                 <li><a href="{{route('gallery')}}">Gallery</a></li>
                 <li><a href="{{route('contact')}}">contact</a></li>
                 @auth
-                <li><a href="{{route('support')}}">Contact Support</a></li>
+                <li>
+                  <a href="#">My Account <i class="fa fa-angle-down"></i>
+                    <ul class="dropdown downUp">
+                      <li><a href="{{route('customer.index')}}">My Profile</a></li>
+                      <li><a href="{{route('customer.reservations')}}">Reservations</a></li>
+                      <li><a href="{{route('customer.support')}}">Contact Support</a></li>
+                      <li><a href="{{route('customer.notifications')}}">Notifications</a></li>
+                    </ul>
+                  </a>
+                </li>  
                   <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                       @csrf
                     </form>    

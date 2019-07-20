@@ -1,4 +1,5 @@
 @extends('layouts.cruise')
+@section('title') Dream, Discover, Explore @endsection
 @section("content")
 <style>
 
@@ -214,7 +215,7 @@
     <section class="no-margin padded gold-background">
         <div class="container">
             <div class="col-md-4">
-                <h4>receive deals / discount info</h4>
+                <h4>Recieve latest info on deals/discounts</h4>
             </div>
             <div class="col-md-8">
                 <form action="">

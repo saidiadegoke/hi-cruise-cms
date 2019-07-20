@@ -1,5 +1,5 @@
   @extends('layouts.cruise')
-
+  @section('title') Yacht Packages @endsection
 @section("content")
 
 <section class="set-bg-base">

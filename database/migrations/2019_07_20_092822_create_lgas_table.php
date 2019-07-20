@@ -3,9 +3,8 @@
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
-use Illuminate\Support\Facades\DB;
 
-class CreatePackagesTable extends Migration
+class CreateLgasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,13 +13,11 @@ class CreatePackagesTable extends Migration
      */
     public function up()
     {
-        Schema::create('packages', function (Blueprint $table) {
+        Schema::create('lgas', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('yacht_id')->unsigned();
             $table->string('name');
-            $table->string('description');
-            $table->bigInteger('price')->nullable();
-            $table->string('type')->nullable();
+            $table->integer('state_id')->unsigned();
+            $table->foreign('state_id')->references('id')->on('states');
             $table->timestamps();
         });
     }
@@ -30,9 +27,8 @@ class CreatePackagesTable extends Migration
      *
      * @return void
      */
-
     public function down()
     {
-        Schema::dropIfExists('packages');
+        Schema::dropIfExists('lgas');
     }
 }

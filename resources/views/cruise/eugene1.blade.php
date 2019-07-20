@@ -1,4 +1,5 @@
 @extends('layouts.cruise')
+@section('title') Eugene 1 Packages @endsection
 @php
   $slides = $yacht->slides();
   $banner = $yacht->banner();
@@ -7,7 +8,17 @@
 @endphp
 @section('content')
 
-
+<style>
+    .announce {
+        width: 60%;
+        margin: 0 auto;
+    }     
+    @media(max-width: 992px) {
+        .announce {
+            width: 100%;
+        }
+    }
+  </style>
 
 <section class="" style="margin-top: 200px">
     <div class="container styled-border-2">
@@ -15,9 +26,9 @@
 
           <h4 class="all-caps"> {{$yacht->name}} </h4>
 
-          <p class="justify-center downUp">
+          <div class="justify-center downUp">
             {!! $yacht->description !!}
-          </p>
+          </div>
 
         </div>
         <div class="col-md-6">
@@ -41,6 +52,41 @@
         </div>
       </div>
   </section>
+  <section class="no-margin pad-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                <p class="text-center lead announce">
+                
+            
+                Our regular cruises come up every Friday, Saturday, and Sunday on Eugene 1.
+Why not join us on this adventure of a lifetime.
+Booking is secure, fast and easy and is just a click away.
+                <br /><br />
+                Our yachts can also serve as the perfect luxury venue for your private
+parties, weddings, birthdays, photo shoots, get togethers, and corporate
+events.<br /><br />
+Our Social or Corporate packages can be tailored to fit your requirements.
+Please <a style="color: #ffcc78;" href="{{ route('details') }}"
+                          onclick="event.preventDefault();
+                                          document.getElementById('event-form').submit();">
+                          {{ __('click here') }}
+                      </a> to start planning your event with us!
+<form style="    display: flex;
+    justify-content: center;
+    margin: 2em auto;
+}" action="{{route('details')}}" method="post">
+              @csrf
+            <input type="hidden" name="type" value="{{$yacht->id}}">
+            <input type="hidden" name="package" value="7"><input type="submit" class="btn btn-link" style="display:inline;color: #ffcc78;padding: 8px 40px" value="click here" /> 
+
+            </form>
+            
+  </p>
+                </div>
+            </div>
+        </div>
+    </section>
  <section class="primary-color no-margin pad-10 mid-space set-bg-base">
       <div class="container">
         <h4 class="all-caps">{{$yacht->name}} PACKAGES</h4>
@@ -48,17 +94,7 @@
           <div class="col-md-4 package-listing">
             <h4 class="center no-float">PRESTIGE PACKAGE</h4>
             <span>&#8358; 30,000 p/head</span>
-            <ul>
-              <li>CAPACITY OF 450 GUESTS</li>
-              <li>Lower and middle Deck</li>
-              <li>FRIDAY - SUNDAY</li>
-              <li>Spectacular ambient lighting and sound.</li>
-              <li>Thrilling 4 hour cruise across Lagos waters.</li>
-              <li>Sumptuous 3 course meal and drinks</li>
-              <li>Fun games on deck</li>
-              <li>High grade sound from DJ or Live band</li>
-              <li>Serene and secure ambience.</li>
-            </ul>
+            {!! $yacht->packages[0]->description !!}
             <form class="form-horizontal" action="{{route('details')}}" method="post">
               @csrf
             <input type="hidden" name="type" value="{{$yacht->id}}">
@@ -69,19 +105,7 @@
           <div class="col-md-4 package-listing">
             <h4 class="center no-float">DELUXE PACKAGE</h4>
             <span>&#8358; 35,000 p/head</span>
-            <ul>
-              <li>EXCLUSIVE TO 100 GUESTS</li>
-              <li>Upper Deck</li>
-              <li>FRIDAY - SUNDAY</li>
-              <li>Stunning balcony view of Lagos waters</li>
-              <li>Thrilling 4 hour cruise across Lagos waters.</li>
-              <li>Exquisite and luxurious decor suitable for lounging</li>
-              <li>3 course meal and a bottle of wine</li>
-              <li>Exclusive fully stocked Deluxe Bar</li>
-              <li>Fun games on deck.</li>
-              <li>High grade sound from DJ or Live band.</li>
-              <li>Serene and secured ambience Automated sunroof..</li>
-            </ul>
+            {!! $yacht->packages[1]->description !!}
             <form class="form-horizontal" action="{{route('details')}}" method="post">
               @csrf
             <input type="hidden" name="type" value="{{$yacht->id}}">
@@ -91,30 +115,57 @@
           </div>
           <div class="col-md-4 package-listing">
             <h4 class="center no-float">ROYAL PACKAGE</h4>
-            <span>&#8358; 1,000,000 Flat </span>
-            <ul>
-              <li>MAXIMUM OF 20 GUESTS</li>
-              <li>Exclusive Royal Lounge</li>
-              <li>FRIDAY - SUNDAY</li>
-              <li>Breath-taking rooftop view of Lagos from the sea</li>
-              <li>Thrilling 4 hour cruise across Lagos waters.</li>
-              <li>Meet and greet with artistes on board</li>
-              <li>
-                Exquisite and luxurious decor Suitable for top executives
-                artistes and lovers of luxury
-              </li>
-              <li>
-                Exclusive fully stocked Royal Bar 3 course meal with two bottles
-                of special champagne
-              </li>
-              <li>Good music with super sound quality from DJ or Live band</li>
-              <li>Lush terrace with reclining seats</li>
-              <li>Private and exclusive ambience.</li>
-            </ul>
+            <span style="position: relative">&#8358; 1,000,000 Flat <em style="font-size: 14px;
+
+position: absolute;
+
+top: 45px;
+
+display: block;
+
+width: 100%;
+
+font-style: normal;">(For 20 Guests)</em></span>
+            {!! $yacht->packages[2]->description !!}
             <form class="form-horizontal" action="{{route('details')}}" method="post">
               @csrf
             <input type="hidden" name="type" value="{{$yacht->id}}">
             <input type="hidden" name="package" value="3">
+            <button class="btn btn-primary" style="width: 100%; margin-top: 1.2em;">Book Now</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="primary-color no-margin pad-10">
+      <div class="container">
+        <div class="col-md-12">
+          <div class="col-md-6 package-listing">
+            <h4 class="center no-float">SOCIAL EVENT</h4>
+            <ul>
+            <li>
+            We are the one stop luxury destination for your social functions such as weddings, 
+            birthday bash, soirees, bridal shower, hen party, photo shoots, video shoots, get- togethers.
+            </li>
+            </ul>
+            <form class="form-horizontal" action="{{route('details')}}" method="post">
+              @csrf
+            <input type="hidden" name="type" value="{{$yacht->id}}">
+            <input type="hidden" name="package" value="6">
+            <button class="btn btn-primary" style="width: 100%; margin-top: 1.2em;">Book Now</button>
+            </form>
+          </div>
+          <div class="col-md-6 package-listing">
+            <h4 class="center no-float">CORPORATE EVENTS</h4>
+            <ul>
+            <li>Take a change from the norm, our venue is ideal for all corporate events like retreats, Anniversaries, 
+            AGMs, End of year parties, Team building, Award ceremonies, e.t.c 
+            </li>
+            </ul>
+            <form class="form-horizontal" action="{{route('details')}}" method="post">
+              @csrf
+            <input type="hidden" name="type" value="{{$yacht->id}}">
+            <input type="hidden" name="package" value="7">
             <button class="btn btn-primary" style="width: 100%; margin-top: 1.2em;">Book Now</button>
             </form>
           </div>
@@ -127,5 +178,13 @@
       <h3 class="all-caps">Dream, Discover, Explore</h3>
     </div>
   </section>
+
+  
+    <form id="event-form" action="{{ route('details') }}" method="POST" style="display: none;">
+    <input type="hidden" name="type" value="{{$yacht->id}}">
+            <input type="hidden" name="package" value="7"><input type="submit" class="btn btn-link" style="display:inline;color: #ffcc78;padding: 8px 40px" value="click here" /> 
+
+        @csrf
+    </form>
 
 @endsection

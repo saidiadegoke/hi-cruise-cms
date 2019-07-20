@@ -1,5 +1,5 @@
 @extends('layouts.cruise')
-
+@section('title') Gallery @endsection
 @section("content")
 
     <section class="pattern1 no-margin pad-10 mid-space marg-Top-60">

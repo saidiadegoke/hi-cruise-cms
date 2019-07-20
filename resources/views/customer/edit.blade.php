@@ -12,13 +12,12 @@
 <section class="primary-color no-margin pad-10 mid-space marg-Top-60">
     <div class="container">
         <div class="col-md-12">
-          <div class="col-md-6 floater-img">
-              <img src="{{ asset('public/assets/img/login-bg.jpeg') }}" alt="" class="floater-img" />
+          <div class="col-md-3 floater-img">
           </div>
-          <div class="col-md-6">
+          <div class="col-md-6 col-offset-md-3">
               <div class="col-md-12 bordered">
                   <div class="container">
-                  <h4 class="center">Registration Form</h4>
+                  <h4 class="center">Profile page</h4>
                       <form action="{{route('register')}}" method="post">
                             @csrf
                             

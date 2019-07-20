@@ -1,5 +1,5 @@
 @extends('layouts.cruise')
-
+@section('title') Book a reservation @endsection
 
     @section("styles")
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">

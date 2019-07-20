@@ -19,6 +19,8 @@ class CreateSupportsTable extends Migration
             $table->text('body');
             $table->boolean('is_read')->default(false);
             $table->integer('user_id')->unsigned();
+            $table->string('mode')->nullable();
+            $table->unsignedInteger('attachment')->nullable();
             $table->timestamps();
         });
     }

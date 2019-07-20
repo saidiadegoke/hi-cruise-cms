@@ -89,7 +89,7 @@ class ReservationController extends Controller
 
     public function details(Package $package)
     {
-        if($package->name == 'Social Event' || $package->name == 'Corporate Event') {
+        if($package->name == 'Social Events' || $package->name == 'Corporate Events') {
             return view('cruise.event');
         }
         return view('cruise.book', compact('package'));
