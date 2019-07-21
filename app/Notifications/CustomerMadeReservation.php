@@ -12,17 +12,17 @@ class CustomerMadeReservation extends Notification
     use Queueable;
 
     public $customer;
-    public $package;
+    public $reservation;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct($customer, $package)
+    public function __construct($customer, $reservation)
     {
         $this->customer = $customer;
-        $this->package = $package;
+        $this->reservation = $reservation;
     }
 
     /**
@@ -47,7 +47,7 @@ class CustomerMadeReservation extends Notification
         return (new MailMessage)
                     ->greeting('Hello ' . $this->customer->firstname . ',')
                     ->line('Thank you for booking a reservation with us. Your reservation details is as follows:')
-                    ->line('')
+                    ->line($this->reservation->package? $this->reservation->package->description: 'Contact admin for details')
                     //->action('', url('/'))
                     ->line('Thank you for using our application!');
     }
@@ -61,7 +61,7 @@ class CustomerMadeReservation extends Notification
     public function toArray($notifiable)
     {
         return [
-            'package' => $this->package->toArray()
+            'package' => $this->reservation->toArray()
         ];
     }
 }

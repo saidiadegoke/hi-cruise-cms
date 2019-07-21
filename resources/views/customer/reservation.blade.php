@@ -49,9 +49,6 @@
                         <tr>
                           <th>Address</th><td>{{ $reservation->address }}</td>
                         </tr>
-                        <tr>
-                          <th>Status</th><td></td>
-                        </tr>
                       </table>
                  </div>
                  <div class="col-md-6 p-1">
@@ -64,7 +61,7 @@
                           <th>Description</th><td>{!! $reservation->package->description !!}</td>
                         </tr>
                         <tr>
-                          <th>Start date</th><td>{{ $reservation->package->start_date }}</td>
+                          <th>Start date</th><td>{{ $reservation->start_date }}</td>
                         </tr>
                         <tr>
                           <th>Price</th><td>{{ $reservation->package->price }}</td>

@@ -9,6 +9,8 @@ use App\Models\Reservation;
 use App\Models\Paystack as AppPaystack;
 use \Carbon\Carbon;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Auth;
+use App\Notifications\CustomerMadeReservation;
 
 class PaymentController extends Controller
 {
@@ -117,6 +119,9 @@ class PaymentController extends Controller
                 'status' => 1
             ]);
 
+            $user = Auth::user();
+            $customer = $user->customer;
+            $customer->notify(new CustomerMadeReservation($customer, $reservation));
             return redirect(route('response', ['reference' => $paymentDetails['data']['reference'], 'reservation' => $reservation->id]))->with('success', 'Reservation Booked!');
         } else {
             return redirect('response')->with('error', 'Payment unsuccessful, Try again!');

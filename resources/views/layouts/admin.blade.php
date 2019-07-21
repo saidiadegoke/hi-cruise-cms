@@ -248,6 +248,8 @@
                                             </li>
                                             <li class="kt-menu__item"><a href="{{ route('media-file-purposes.index') }}" class="kt-menu__link"><span class="kt-menu__link-text">Media File Purposes</span><i class="kt-menu__ver-arrow la la-angle-right"></i></a>
                                             </li>
+                                            <li class="kt-menu__item"><a href="{{ route(payments.index') }}" class="kt-menu__link"><span class="kt-menu__link-text">Media File Purposes</span><i class="kt-menu__ver-arrow la la-angle-right"></i></a>
+                                            </li>
                                         </ul>
                                     </div>
                                     <div class="kt-header-toolbar">
