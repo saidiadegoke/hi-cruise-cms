@@ -7,6 +7,15 @@
   clear: both;
 }
 
+@media(max-width: 992px) {
+.no-margin {
+  margin-top: 100px !important;
+}
+.socials {
+  margin-bottom: 20px;
+}
+}
+
 </style>
     <section class="primary-color no-margin pad-10 mid-space">
       <div class="container">
@@ -82,7 +91,7 @@ width: 100%;">
               >{{ old('comment') }}</textarea>
                   </div>
                   <div class="form-group mt-2">
-              <div class="g-recaptcha" data-sitekey="6LewpKcUAAAAALVpiU0UwRRcXQrpomDvHxVWlqF_"></div>
+              <div class="g-recaptcha" data-sitekey="6LfPpK4UAAAAAIZGpMwuCwHWeKzL9LzKnleU_I12"></div>
             </div>
                   <div class="form-group">
                     <input

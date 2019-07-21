@@ -89,6 +89,7 @@ class ReservationController extends Controller
 
     public function details(Package $package)
     {
+        //dd(request('booking'));
         if($package->type == 'event') {
             return view('cruise.event');
         }

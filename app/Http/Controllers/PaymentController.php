@@ -14,8 +14,11 @@ class PaymentController extends Controller
 {
 
 
-    public function __construct()
+    public function __construct(Request $request)
     {
+        //dd($request->all());
+        //$this->middleware('web');
+        //$request->session()->put('booking', $request->all());
         $this->middleware('auth');
     }
 

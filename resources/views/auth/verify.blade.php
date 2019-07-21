@@ -1,9 +1,14 @@
-@extends('layouts.app')
+@extends('layouts.cruise')
+@section('title') Verify your email @endsection
 
 @section('content')
+<section class="set-margTop-100">
+      <div class="container">
+        <img src="{{ asset('public/assets/img/logo-icon.png') }}" alt="" class="iconic" />
+        <div class="col-md-4 middle-place">
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-12">
             <div class="card">
                 <div class="card-header">{{ __('Verify Your Email Address') }}</div>
 
@@ -21,4 +26,7 @@
         </div>
     </div>
 </div>
+</div>
+</div>
+</section>
 @endsection

@@ -155,6 +155,7 @@ class PackageController extends Controller
 
     public function single(Package $package)
     {
+        $package['available_days'] = $package->available_days;
         return $package;
     }
 

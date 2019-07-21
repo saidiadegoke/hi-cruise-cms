@@ -33,6 +33,10 @@
               <div class="col-md-12 bordered">
 
                 <h4 class="center">Profile page</h4>
+
+                @if(session()->has('registered'))
+                  <div class="alert alert-success">{{ session()->get('registeredMessage') }}</div>
+                @endif
                   <div class="row p-2">
                     <div class="col-md-6 p-1">
                   

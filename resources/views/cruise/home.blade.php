@@ -1,5 +1,5 @@
 @extends('layouts.cruise')
-@section('title') Dream, Discover, Explore @endsection
+@section('title') Cruise in Luxury @endsection
 @section("content")
 <style>
 
@@ -21,7 +21,7 @@
 
 
                 @foreach ($slides as $slide)
-                    <div class="item {{ $slides->pluck('order')->min() == $slide->order ? 'active' : ''}}">
+                    <div class="item {{ $slides->pluck('order')->max() == $slide->order ? 'active' : ''}}">
                         <img src="{{ asset('public/storage/'.$slide->file->filename) }}">
                     </div>        
                 @endforeach
@@ -69,7 +69,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                <p class="text-center lead announce">
+                <p class="text-center lead announce fallDown">
                         Welcome to Hi-Impact Cruise, owners of Nigeria's biggest luxury yacht. We
                         are an on-sea venue for all your events. Explore unimaginable fun on our
                         impressive yachts as we promise to give you a unique experience like never

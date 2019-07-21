@@ -6,6 +6,7 @@ use App\Models\Customer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use App\Models\Reservation;
 
 class CustomerController extends Controller
 {
@@ -107,7 +108,17 @@ class CustomerController extends Controller
 
     public function notifications() {
         $user = Auth::user();
-
+        $notifications = $user->customer->notifications;
         return view('customer.notifications', compact('notifications'));
+    }
+
+    public function reservation(Request $request) {
+        $reservation = Reservation::find($request->reservation);
+
+        if(!$reservation) {
+            return redirect()->back();
+        }
+
+        return view('customer.reservation', compact('reservation'));
     }
 }

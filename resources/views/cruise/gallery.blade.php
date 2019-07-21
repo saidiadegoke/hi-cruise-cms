@@ -6,128 +6,34 @@
       <div class="container">
         <h4 class="all-caps">Our Gallery</h4>
         <div class="marg-Top-30" id="main-gallery">
-          <a
-            href="1"
+          @foreach($galleries as $gallery)
+            <a
+            href="{{ $gallery->id }}"
             class="btn profile-btn col-md-3 "
             onclick="return maxPic(this)"
           >
             <div class="col">
               <div class="blog">
-                <img src="{{asset('public/assets/img/banners/bn01.jpg')}}" />
+                <img src="{{asset('public/storage/' . $gallery->file->filename)}}" />
               </div>
             </div>
           </a>
-          <a
-            href="2"
-            class="btn profile-btn col-md-3 "
-            onclick="return maxPic(this)"
-          >
-            <div class="col">
-              <div class="blog">
-                <img src="{{asset('public/assets/img/banners/bn02.jpg')}}" />
-              </div>
-            </div>
-          </a>
-          <a
-            href="3"
-            class="btn profile-btn col-md-3 "
-            onclick="return maxPic(this)"
-          >
-            <div class="col">
-              <div class="blog">
-                <img src="{{asset('public/assets/img/banners/bn03.jpg')}}" />
-              </div>
-            </div>
-          </a>
-          <a
-            href="4"
-            class="btn profile-btn col-md-3 "
-            onclick="return maxPic(this)"
-          >
-            <div class="col">
-              <div class="blog">
-                <img src="{{asset('public/assets/img/banners/bn04.jpg')}}" />
-              </div>
-            </div>
-          </a>
-          <a
-            href="1"
-            class="btn profile-btn col-md-3 "
-            onclick="return maxPic(this)"
-          >
-            <div class="col">
-              <div class="blog">
-                <img src="{{asset('public/assets/img/banners/bn01.jpg')}}" />
-              </div>
-            </div>
-          </a>
-          <a
-            href="2"
-            class="btn profile-btn col-md-3 "
-            onclick="return maxPic(this)"
-          >
-            <div class="col">
-              <div class="blog">
-                <img src="{{asset('public/assets/img/banners/bn02.jpg')}}" />
-              </div>
-            </div>
-          </a>
-          <a
-            href="3"
-            class="btn profile-btn col-md-3 "
-            onclick="return maxPic(this)"
-          >
-            <div class="col">
-              <div class="blog">
-                <img src="{{asset('public/assets/img/banners/bn03.jpg')}}" />
-              </div>
-            </div>
-          </a>
-          <a
-            href="4"
-            class="btn profile-btn col-md-3 "
-            onclick="return maxPic(this)"
-          >
-            <div class="col">
-              <div class="blog">
-                <img src="{{asset('public/assets/img/banners/bn04.jpg')}}" />
-              </div>
-            </div>
-          </a>
+          @endforeach
         </div>
       </div>
     </section>
         <div id="modal" class="modal" style="display: none;">
       <i class="fa fa-times" id="clsModal" onclick="clsModal()"></i>
       <div class="pic-holder" id="holder">
+        @foreach($galleries as $gallery)
         <img
-          src="{{asset('public/assets/img/banners/bn01.jpg')}}"
+          src="{{asset('public/storage/' . $gallery->file->filename)}}"
           class="galImg"
           alt=""
-          data-id="1"
+          data-id="{{ $gallery->id }}"
           style="display: none;"
         />
-        <img
-          src="{{asset('public/assets/img/banners/bn02.jpg')}}"
-          class="galImg current"
-          alt=""
-          data-id="2"
-          style="display: none;"
-        />
-        <img
-          src="{{asset('public/assets/img/banners/bn03.jpg')}}"
-          class="galImg"
-          alt=""
-          data-id="3"
-          style="display: none;"
-        />
-        <img
-          src="{{asset('public/assets/img/banners/bn04.jpg')}}"
-          class="galImg current"
-          alt=""
-          data-id="4"
-          style="display: none;"
-        />
+        @endforeach
       </div>
       <a href="#" onclick="backImg()" class="pointers"
         ><i class="fa fa-angle-left pointers"></i

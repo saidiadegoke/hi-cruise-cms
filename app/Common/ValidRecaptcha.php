@@ -29,7 +29,7 @@ class ValidRecaptcha implements Rule
         ]);
         $response = $client->post('siteverify', [
             'query' => [
-                'secret' => '6LewpKcUAAAAAH3Y_Hg9hCcrBejqWvK8P5fix6Md', //env('GOOGLE_RECAPTCHA_SECRET'),
+                'secret' => '6LfPpK4UAAAAAEJjlUWeTPA1oWu1JDxWenPKjlGs', //env('GOOGLE_RECAPTCHA_SECRET'),
                 'response' => $value
             ]
         ]);

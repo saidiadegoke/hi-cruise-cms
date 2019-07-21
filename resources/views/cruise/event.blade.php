@@ -220,7 +220,7 @@ We look forward to working with you!
                             <div class="form-group">
                                 <div class="col-md-10 col-md-offset-1">
                                    
-                                    <button class="btn btn-primary" type="submit">Book Events</button>
+                                    <button class="btn btn-primary" type="submit">Book Event</button>
                                 
                                 </div>
 

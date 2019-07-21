@@ -15,4 +15,8 @@ class Reservation extends Model
     {
         return $this->belongsTo(Customer::class);
     }
+
+    public function package() {
+    	return $this->belongsTo('App\Models\Package');
+    }
 }

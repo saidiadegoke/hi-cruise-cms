@@ -8,6 +8,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use App\Notifications\CustomerRegistered;
+use Illuminate\Http\Request;
 
 class RegisterController extends Controller
 {
@@ -47,7 +49,7 @@ class RegisterController extends Controller
             'firstname' => ['required', 'string', 'max:255'],
             'lastname' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'password' => ['required', 'string', 'min:6', 'confirmed'],
             'phone' => ['required', 'min:10', 'max:15']
         ]);
     }
@@ -69,15 +71,29 @@ class RegisterController extends Controller
         // Create a new Customer In Here and hen return the user so you can log them in by default;
         
         if($user) {
-            Customer::create([
+            $customer = Customer::create([
                 'user_id' => $user->id,
                 'firstname' => $data['firstname'],
                 'lastname' => $data['lastname'],
                 'phone' => $data['phone'],
                 'email' => $data['email']
             ]);
+
+            $customer->notify(new CustomerRegistered($customer));
+
+
         }
         
         return $user;
+    }
+
+    public function redirectTo() {
+        return url('/customer');
+    }
+
+    protected function registered(Request $request, $user)
+    {
+        $request->session()->flash('registered', true);
+        $request->session()->flash('registeredMessage', 'Thank you registering. Your account has been created successfully');
     }
 }

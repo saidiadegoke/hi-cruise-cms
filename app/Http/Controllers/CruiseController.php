@@ -6,10 +6,22 @@ use App\Common\ValidRecaptcha;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use App\Models\Contact;
+use App\Notifications\CustomerRegistered;
+use App\User;
+use App\Models\MediaFile;
+use App\Models\MediaFilePurpose;
 
 class CruiseController extends Controller
 {
     //
+    public function testmail()
+    {
+        $user = User::where(['email' => 'rasheedsaidi@gmail.com'])->first();
+        $customer = $user->customer;
+        $customer->notify(new CustomerRegistered($customer));
+        return view("cruise.about");
+    }
+
     public function about()
     {
         return view("cruise.about");
@@ -58,7 +70,10 @@ class CruiseController extends Controller
 
     public function gallery()
     {
-        return view("cruise.gallery");
+        $purpose = MediaFilePurpose::where(['name' => 'gallery'])->first();
+        $galleries = $purpose? $purpose->mediaFiles: null;  
+
+        return view("cruise.gallery", compact('galleries'));
     }
 
     public function packages()

@@ -11,7 +11,7 @@
     <section class="pattern1 no-margin pad-10 mid-space" style="margin-top: 200px">
       <div class="container">
         <img src="{{asset('public/assets/img/logo-icon.png')}}" alt="" class="logo-icon-section" />
-        <h3 class="all-caps">Make Reservations</h3>
+        <h3 class="all-caps">Make Reservation</h3>
             <div class="card">
                 <div class="card-body">
                     <div class="container-fluid">
@@ -77,7 +77,7 @@
                             <div class="form-group">
                             <div class="row">
                                     <div class="col-md-7">
-                                    <label>Start date</label>
+                                    <label>Date</label>
                                     <input style="color: black;" value="{{ old('start_date') }}" type="text" class="form-control date pick_date" name="start_date" id="start_date" disabled>
                                     </div>
                                 </div>
@@ -148,9 +148,10 @@
                 console.log("err");
             },
             success: function(resp){
+                console.log(resp)
                 let available_days = resp.available_days;
                 
-                available_days = available_days.split(" , ");
+                available_days = available_days.map(d => d.name);
                 let daysMap = {
                     "Sunday": 0,
                     "Monday" : 1,

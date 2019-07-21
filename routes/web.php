@@ -16,7 +16,8 @@ Auth::routes();
 Route::get('/', 'HomeController@index')->name('home');
 
 Route::get('/about', 'CruiseController@about')->name('about');
-Route::get('/contact', 'CruiseController@contact')->name('contact');
+Route::get('/testmail', 'CruiseController@testmail')->name('testmail');
+Route::any('/contact', 'CruiseController@contact')->name('contact');
 Route::get('/eugene', 'CruiseController@eugene')->name('eugene');
 Route::get('/eugene1', 'CruiseController@eugene1')->name('eugene1');
 Route::get('/gallery', 'CruiseController@gallery')->name('gallery');
@@ -26,7 +27,10 @@ Route::get('/packages', 'CruiseController@packages')->name('packages');
 Route::any('/details', 'ReservationController@fetchDetails')->name('details');
 Route::any('/package/{package}', 'ReservationController@details')->name('package_details');
 
-Route::post('/pay', 'PaymentController@redirectToGateway')->name('pay');
+Route::group(['middleware' => ['web']], function () {
+    // your routes here
+});
+Route::any('/pay', 'PaymentController@redirectToGateway')->name('pay');
 Route::get('/payment/offline', 'PaymentController@offlinePayment')->name('offline_payment');
 Route::get('/payment/callback', 'PaymentController@handleGatewayCallback');
 Route::get('/{customer}/reservations', 'ReservationController@all')->name('reservations');
@@ -35,11 +39,8 @@ Route::get('payments/{reference?}/{reservation?}', "PaymentController@response")
 
 Route::get('/print_receipt/{reservation}', "ReservationController@printReciept")->name('print_receipt');
 
-
 Route::get('/support', "HomeController@support")->name('support')->middleware('auth');
 Route::post('/support', "HomeController@contactSupport")->name('support');
-
-
 
 Route::prefix('admin')->middleware('auth')->group(function () {
     Route::get('/', 'Admin\AdminController@index')->name('admin');
@@ -66,4 +67,5 @@ Route::middleware('auth')->group(function() {
 	Route::get('/my/reservations', 'CustomerController@reservations')->name('customer.reservations');
 	Route::get('/my/notifications', 'CustomerController@notifications')->name('customer.notifications');
 	Route::get('/my/support', 'CustomerController@support')->name('customer.support');
+    Route::get('/my/reservation', 'CustomerController@reservation')->name('customer.reservation');
 });

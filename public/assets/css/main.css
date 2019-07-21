@@ -757,7 +757,8 @@ img.thumbs-list{
     }
     .package-listing:hover ul{
         background:  linear-gradient(rgb(255, 215, 28), rgb(255, 240, 13) 52.94%, rgb(227, 191, 0));
-    }  
+    }
+
 .package-listing li{
     text-align: center;
     min-height:40px;
@@ -779,6 +780,13 @@ img.thumbs-list{
 }
 .package-listing li:hover::after{
     display:none;
+}
+.event-item.package-listing li:hover {
+    background: transparent;
+    color: #000;
+    border-radius: 0px;
+    line-height:inherit;
+    padding: 5px;
 }
 .package-listing span{
     text-align: center;
@@ -902,7 +910,7 @@ div.blog:hover img {
     background: rgba(0, 0, 0, 0.7);
     display: none;
     width: 100%;
-    height: 100%;
+    height: auto;
     -moz-transition: all 500ms linear;
     -webkit-transition: all 500ms linear;
     -o-transition: all 500ms linear;
@@ -922,7 +930,7 @@ div.pic-holder img.current {
     width: auto;
     }
 div.pic-holder img {
-    height: 100%;
+    height: auto;
     margin: 0px auto;
     display: none;
     }  
@@ -958,5 +966,9 @@ div.pic-holder img {
 @media(max-width: 992px) {
     form.bookings {
         width: 100%;
+    }
+    div.pic-holder img.current {
+        width: auto;
+        height: 100%;
     }
 }

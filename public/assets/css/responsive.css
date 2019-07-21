@@ -47,7 +47,7 @@
   }
   header img.logo {
     width: auto !important;
-    height: 55px;
+    /*height: 55px; */
   }
   div.featured span {
     width: 25%;
@@ -841,7 +841,7 @@
 @media (max-width: 375px) {
   div.mobile-menu .logo {
     width: auto;
-    height: 56px;
+    height: 60px;
   }
   .breadcrumbs {
     display: none;

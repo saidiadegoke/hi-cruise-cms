@@ -10,7 +10,9 @@
             <div class="kt-portlet__head">
                 <div class="kt-portlet__head-label">
                     <h3 class="kt-portlet__head-title">
-                        Media files
+                        Media files (<a href="{{ route('media-files.create') }}" class="btn btn-label-primary btn-bold btn-icon-h kt-margin-l-10">
+                Add File
+            </a>)
                     </h3>
                 </div>
                 

@@ -61,6 +61,10 @@
 								<td>{!! $slide->description !!}</td>
 							</tr>
 							<tr>
+								<th>Order</th>
+								<td>{{ $slide->order }}</td>
+							</tr>
+							<tr>
 								<th>Published</th>
 								<td>
 									@if($slide->published == 1) 

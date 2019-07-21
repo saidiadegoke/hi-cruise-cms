@@ -12,4 +12,8 @@ class MediaFilePurpose extends Model
     protected $fillable = [
         'name',
     ];
+
+    public function mediaFiles() {
+    	return $this->hasMany('App\Models\MediaFile', 'purpose')->orderBy('updated_at', 'DESC');
+    }
 }

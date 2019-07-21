@@ -35,7 +35,7 @@ class AppServiceProvider extends ServiceProvider
 
 
         view()->composer("cruise.home", function ($view) {
-            $slides = Slide::where(["published" => true])->orderBy('order', 'ASC')->get();
+            $slides = Slide::where(["published" => true])->orderBy('order', 'DESC')->get();
             $view->with('slides', $slides);
         });
 
