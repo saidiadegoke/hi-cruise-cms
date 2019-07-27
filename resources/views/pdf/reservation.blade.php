@@ -1,7 +1,7 @@
 @extends('layouts.pdf')
 
 @section('content')
-<img src="{{ asset('public/assets/img/logo-3h.png') }}">
+<img src="{{ asset('public/assets/img/logo-3h.png', true) }}">
 <h1>Reservation</h1>
 <table class="table table-bordered">
 	<tr>
