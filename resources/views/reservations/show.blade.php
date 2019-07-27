@@ -9,12 +9,12 @@
 		<!--begin::Portlet-->
 		<div class="kt-portlet">
 			<div class="kt-portlet__head">
-				<div class="kt-portlet__head-label">
+				<div class="kt-portlet__head-label" style="width: 100%;display: flex; justify-content: space-between;">
 					<h3 class="kt-portlet__head-title">
 						Reservation detail
 					</h3>
-					<p class="pull-right">
-						<a href="{{ route('bookings.export_pdf', ['reservation' => $reservation->id]) }}">Export to PDF</a>
+					<p class="">
+						<a class="btn btn-default" href="{{ route('bookings.export_pdf', ['reservation' => $reservation->id]) }}">Export to PDF</a>
 					</p>
 				</div>
 			</div>
