@@ -58,6 +58,9 @@
                           <th>Package</th><td>{{ $reservation->package->name }}</td>
                         </tr>
                         <tr>
+                          <th>Reservation Code</th><td>{{ $reservation->reference }}</td>
+                        </tr>
+                        <tr>
                           <th>Description</th><td>{!! $reservation->package->description !!}</td>
                         </tr>
                         <tr>

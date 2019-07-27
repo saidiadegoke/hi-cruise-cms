@@ -248,7 +248,11 @@
                                             </li>
                                             <li class="kt-menu__item"><a href="{{ route('media-file-purposes.index') }}" class="kt-menu__link"><span class="kt-menu__link-text">Media File Purposes</span><i class="kt-menu__ver-arrow la la-angle-right"></i></a>
                                             </li>
-                                            <li class="kt-menu__item"><a href="{{ route(payments.index') }}" class="kt-menu__link"><span class="kt-menu__link-text">Media File Purposes</span><i class="kt-menu__ver-arrow la la-angle-right"></i></a>
+                                            <li class="kt-menu__item"><a href="{{ route('payments.index') }}" class="kt-menu__link"><span class="kt-menu__link-text">Payments</span><i class="kt-menu__ver-arrow la la-angle-right"></i></a>
+                                            </li>
+                                            <li class="kt-menu__item"><a href="{{ route('bookings.index') }}" class="kt-menu__link"><span class="kt-menu__link-text">Reservations</span><i class="kt-menu__ver-arrow la la-angle-right"></i></a>
+                                            </li>
+                                            <li class="kt-menu__item"><a href="{{ route('emaillist') }}" class="kt-menu__link"><span class="kt-menu__link-text">Email list</span><i class="kt-menu__ver-arrow la la-angle-right"></i></a>
                                             </li>
                                         </ul>
                                     </div>

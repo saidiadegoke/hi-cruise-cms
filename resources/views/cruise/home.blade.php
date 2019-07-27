@@ -23,6 +23,14 @@
                 @foreach ($slides as $slide)
                     <div class="item {{ $slides->pluck('order')->max() == $slide->order ? 'active' : ''}}">
                         <img src="{{ asset('public/storage/'.$slide->file->filename) }}">
+                        <div class="carousel-caption downUp">
+                            <div class="banner-content">
+                                <h4 class="fallDown">{{ $slide->title }}</h4>
+                                <p class="downUp">{{ $slide->description }}</p>
+                                <!--span class="call-to-action"> <a href="about.html"> learn more </a></span> 
+                                <span class="call-to-action green-btn"> <a href="about.html"> apply now </a></span-->
+                            </div>
+                        </div>
                     </div>        
                 @endforeach
 </div>
@@ -218,9 +226,10 @@
                 <h4>Recieve latest info on deals/discounts</h4>
             </div>
             <div class="col-md-8">
-                <form action="">
+                <form action="{{ route('subscribe') }}" method="post">
+                @csrf
                     <div class="form-group col-md-8">
-                        <input type="text" class="form-control" name="" placeholder="Please, enter your email address">
+                        <input type="email" class="form-control" name="email" placeholder="Please, enter your email address" required>
                     </div>
                     <div>
                     <input type="hidden" name="baseURL" value="{{url('/')}}" id="baseURL" />

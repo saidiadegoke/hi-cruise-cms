@@ -10,6 +10,7 @@ use App\Notifications\CustomerRegistered;
 use App\User;
 use App\Models\MediaFile;
 use App\Models\MediaFilePurpose;
+use App\Models\SubscriptionList;
 
 class CruiseController extends Controller
 {
@@ -22,9 +23,21 @@ class CruiseController extends Controller
         return view("cruise.about");
     }
 
+    public function toc() {
+        return view('cruise.toc');
+    }
+
+    public function subscribe(Request $request) {
+        Validator::make($request->all(), ['email' => ['required', 'string', 'email', 'max:255']])->validate();
+
+        SubscriptionList::updateOrCreate(['email' => $request->email]);
+
+        return view('cruise.subscribed');
+    }
+
     public function about()
     {
-        return view("cruise.about");
+        return view("cruise.about"); 
     }
 
     public function contact(Request $request)

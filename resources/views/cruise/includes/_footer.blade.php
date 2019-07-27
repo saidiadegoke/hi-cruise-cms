@@ -14,8 +14,7 @@
         <div class="container">
           <div class="col-md-5">
             Copyright &copy; 2019 All rights reserved
-            <a href="#"> | Privacy Policy </a>
-            <a href="#"> | Terms and Condition</a>
+            <a href="{{ route('toc') }}"> | Terms and Conditions</a>
           </div>
           <div class="col-md-3 socials">
             <li>

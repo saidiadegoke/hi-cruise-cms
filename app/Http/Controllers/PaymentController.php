@@ -89,6 +89,7 @@ class PaymentController extends Controller
         if ($paymentDetails['data']['status'] == 'success') {
 
             $metaData = $paymentDetails['data']['metadata'];
+
             $reservation = Reservation::create([
                 'customer_id' => auth()->user()->id,
                 'seats' => $metaData['seats'],
@@ -98,11 +99,15 @@ class PaymentController extends Controller
                 'address' => $metaData['address'],
                 'start_date' => Carbon::parse($metaData['start_date'])->format('Y-m-d'),
                 //'finish_date' => Carbon::parse($metaData['finish_date'])->format('Y-m-d'),
-                'package_id' => $metaData['package_id']
+                'package_id' => $metaData['package_id'],
+
             ]);
 
+            $uniqueCode = 'HC' . str_pad($reservation->id, 4, 0, STR_PAD_LEFT);
+            $reservation->reference = $uniqueCode;
+            $reservation->save();
 
-            AppPaystack::create([
+            $paystack = AppPaystack::create([
                 'reference' => $paymentDetails['data']['reference'],
                 'transaction_date' => Carbon::parse($paymentDetails['data']['transaction_date']),
                 'amount' => $amount,
@@ -116,7 +121,9 @@ class PaymentController extends Controller
                 'reservation_id' => $reservation->id,
                 'method' => 'paystack',
                 'amount' => $amount,
-                'status' => 1
+                'status' => 1,
+                'payable_id' => $paystack->id,
+                'payable_type' => 'App\Models\Paystack',
             ]);
 
             $user = Auth::user();

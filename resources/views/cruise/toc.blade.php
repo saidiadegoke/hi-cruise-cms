@@ -1,0 +1,20 @@
+@extends('layouts.cruise')
+@section('title') Book an event @endsection
+@section('content')
+    
+      
+    <section class="pattern1 no-margin pad-10 mid-space" style="margin-top: 200px">
+      <div class="container">
+        <img src="{{asset('public/assets/img/logo-icon.png')}}" alt="" class="logo-icon-section" />
+        <h3 class="all-caps">Terms and Conditions</h3>
+        
+        <div class="row">
+                <div class="col-md-12">
+                    
+<p>Please read the following terms and conditions carefully.<br /><br />This information relates to all tickets for ticket cruises and yacht hire<br />for events with Hi-Impact Cruise.<br /><br />By purchasing tickets for cruises, from Hi-Impact Cruise, you the client<br />are accepting the terms and conditions within this document.<br />Any ticket/reservation holder or passenger will be referred to as the<br />client from here on.<br /><br />Booking Details<br /><br />1. All bookings must be made in advance of the date of the cruise. To<br />board the vessel the client must have a confirmed reservation/ticket which<br />is valid<br />for the date and package booked.<br /><br />2. Full payment in cleared funds must be received by the Company in<br />advance of the date of the ticket cruise. Once full payment has been made,<br />no refunds shall be given.<br /><br />3. Boarding closes 15 minutes prior to departure. Please arrive early so<br />as not to miss your booking slot. No refunds will be made to latecomers.<br /><br />4. Hi-Impact Cruise does not accept liability for any loss resulting from<br />our failure to provide an advertised service, or where delay occurs to<br />those services,<br />for any reason.<br /><br />5. NO food or drink may be brought on to any ticket cruise.<br /><br />6. The Company reserves the right to, if necessary, for reasons beyond its<br />control, to cancel the booking, but Hi-Impact Cruise will<br />not in such circumstances be liable for any expenses incurred by the client.<br /><br />7. During the ticket cruise, the vessel will remain under complete control<br />of the Captain and/or crew as provided by Hi-Impact Cruise.<br />If for weather, tide or other reasons the Captain considers it necessary<br />to vary the scheduled trip, his decision will be final.<br /><br /><br />8. Please be informed that failed card transactions or related issues can<br />only be solved or addressed by your financial institution.<br />Hi-Impact Cruise cannot give a refund on a failed or declined card<br />transaction.<br /><br />9. During hire, the vessel will remain under complete control of the<br />Captain and/or crew. If for weather, tidal or other reasons, the Captain<br />considers it necessary<br />to vary the scheduled trip; his orders will be accepted by The Client.<br />Should The Client have any cause for complaint, they must notify the<br />Captain before termination<br />of the function. Complaints not so notified, will not be accepted after<br />the function.<br /><br /><br />10. Hi-Impact Cruise does not accept responsibility in any circumstances<br />whatsoever for loss of life, personal injury,<br />illness or loss occurring by reason of the Client&rsquo;s negligence, or<br />negligence by any member of the Client&rsquo;s party.<br /><br />11. The Client will be liable for any loss or damage to the vessel&rsquo;s<br />equipment or fittings caused by them or persons in their party.<br /><br />12. The Captain, or person(s) nominated by him, has the right to refuse a<br />passenger to board the vessel if said<br />passenger appears to be under the influence of drugs or alcohol.<br /><br />13. No confetti, party poppers or chewing gum to be brought on board. Food<br />and drink are not allowed to be brought onboard unless by prior<br />arrangement during hire<br />and will incur a surcharge.</p>
+                </div>
+                    
+            </div>
+      </div>
+    </section>
+        @endsection

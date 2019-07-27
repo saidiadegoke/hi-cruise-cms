@@ -112,7 +112,7 @@ Please <a style="color: #ffcc78;" href="{{ route('details') }}"
           <div class="col-md-4 package-listing">
             <h4 class="center no-float">PRESTIGE PACKAGE</h4>
             <!--span>&#8358; 30,000 p/head</span-->
-            <span class="span-price" style="position: relative">&#8358; 30,000,00 <em class="subprice">
+            <span class="span-price" style="position: relative">&#8358; 30,000 <em class="subprice">
             (per person)</em></span>
             {!! $yacht->packages[0]->description !!}
             <form class="form-horizontal" action="{{route('details')}}" method="post">
@@ -124,7 +124,7 @@ Please <a style="color: #ffcc78;" href="{{ route('details') }}"
           </div>
           <div class="col-md-4 package-listing">
             <h4 class="center no-float">DELUXE PACKAGE</h4>
-            <span class="span-price" style="position: relative">&#8358; 35,000,00 <em class="subprice">
+            <span class="span-price" style="position: relative">&#8358; 35,000 <em class="subprice">
             (per person)</em></span>
             {!! $yacht->packages[1]->description !!}
             <form class="form-horizontal" action="{{route('details')}}" method="post">

@@ -6,7 +6,35 @@
   $banner = $yacht->banner();
 @endphp
 @section('content')
+<style>
+    .announce {
+        width: 60%;
+        margin: 0 auto;
+    }  
+    .subprice {
+      font-size: 14px; 
+      position: absolute; 
+      top: 45px; 
+      display: block; 
+      width: 100%;
+      font-style: normal;
+    }  
 
+    .package-listing:hover .span-price .subprice {
+      font-size: 13px; 
+      position: absolute; 
+      top: 35px; 
+      display: block; 
+      width: 100%;
+      font-style: normal;
+    } 
+    @media(max-width: 992px) {
+        .announce {
+            width: 100%;
+        }
+         
+    }
+  </style>
 
 
 <section class="" style="margin-top: 200px">
@@ -44,24 +72,9 @@
         <div class="col-md-12">
           <div class="col-md-6 package-listing">
             <h4 class="center no-float">SILVER PACKAGE</h4>
-            <span>&#8358; 300,000 flat</span>
-            <ul>
-              <li>CAPACITY OF 10 GUESTS</li>
-              <li>FRIDAY - SUNDAY</li>
-              <li>2 hour cruise across Lagos waters.</li>
-              <li>Ideal for:</li>
-              <li>Private parties</li>
-              <li>Retreats</li>
-              <li>Re-unions</li>
-              <li>Bridal showers.</li>
-              <li>Marriage proposals.</li>
-              <li>Honeymoon.</li>
-              <li>and Get-together</li>
-              <li>Complimentary bottle of Fine wine.</li>
-              <li>Top grade sound system</li>
-              <li>Serene and secure ambience.</li>
-              <li>*Extra cruise time attracts =N=100,000 per hour.</li>
-            </ul>
+            <span class="span-price" style="position: relative">&#8358; 300,000 <em class="subprice">
+            (For 2-hour dry hire)</em></span>
+            {!! $yacht->packages[0]->description !!}
             <form class="form-horizontal" action="{{route('details')}}" method="post">
               @csrf
             <input type="hidden" name="type" value="{{$yacht->id}}">
@@ -71,24 +84,9 @@
           </div>
           <div class="col-md-6 package-listing">
             <h4 class="center no-float">GOLD PACKAGE</h4>
-            <span>&#8358; 500,000 Flat </span>
-            <ul>
-              <li>MAXIMUM OF 10 GUESTS</li>
-              <li>FRIDAY - SUNDAY</li>
-              <li>4 hour cruise across Lagos waters.</li>
-              <li>Ideal for:</li>
-              <li>Private parties</li>
-              <li>Retreats</li>
-              <li>Re-unions</li>
-              <li>Bridal showers.</li>
-              <li>Marriage proposals.</li>
-              <li>Honeymoon.</li>
-              <li>and Get-together</li>
-              <li>Complimentary bottle of Fine wine.</li>
-              <li>Top grade sound system</li>
-              <li>Serene and secure ambience.</li>
-              <li>*Extra cruise time attracts =N=100,000 per hour.</li>
-            </ul>
+            <span class="span-price" style="position: relative">&#8358; 500,000 <em class="subprice">
+            (For 4-hour dry hire)</em></span>
+            {!! $yacht->packages[1]->description !!}
             <form class="form-horizontal" action="{{route('details')}}" method="post">
               @csrf
             <input type="hidden" name="type" value="{{$yacht->id}}">

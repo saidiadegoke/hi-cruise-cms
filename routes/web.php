@@ -22,6 +22,7 @@ Route::get('/eugene', 'CruiseController@eugene')->name('eugene');
 Route::get('/eugene1', 'CruiseController@eugene1')->name('eugene1');
 Route::get('/gallery', 'CruiseController@gallery')->name('gallery');
 Route::get('/packages', 'CruiseController@packages')->name('packages');
+Route::any('/subscribe', 'CruiseController@subscribe')->name('subscribe');
 
 
 Route::any('/details', 'ReservationController@fetchDetails')->name('details');
@@ -36,6 +37,7 @@ Route::get('/payment/callback', 'PaymentController@handleGatewayCallback');
 Route::get('/{customer}/reservations', 'ReservationController@all')->name('reservations');
 Route::post('/reservations/new', 'ReservationController@store')->name('reserve');
 Route::get('payments/{reference?}/{reservation?}', "PaymentController@response")->name('response');
+Route::get('/toc', 'CruiseController@toc')->name('toc');
 
 Route::get('/print_receipt/{reservation}', "ReservationController@printReciept")->name('print_receipt');
 
@@ -51,7 +53,14 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     Route::resource('media-files', 'Admin\MediaFilesController');
     Route::resource('media-file-purposes', 'Admin\MediaFilePurposesController');
     Route::resource('pages', 'Admin\PagesController');
-	Route::resource('page-categories', 'Admin\PageCategoriesController');
+    Route::resource('page-categories', 'Admin\PageCategoriesController');
+    Route::resource('payments', 'Admin\PaymentsController');
+    Route::resource('bookings', 'Admin\ReservationsController');
+    Route::get('bookings-export_pdf', 'Admin\ReservationsController@export_pdf')->name('bookings.export_pdf');
+    Route::get('/customers/pdf','CustomerController@export_pdf');
+    Route::any('/emaillist', 'Admin\AdminController@emaillist')->name('emaillist');
+    Route::any('/emaillist/export', 'Admin\AdminController@export')->name('emaillist.export');
+    Route::any('/export-reservatiion', 'Admin\AdminController@exportReservations')->name('export.reservation');
 	Route::get('page-categories/pages/{category_id}', 'Admin\PageCategoriesController@pages')->name('page-categories.pages');
 });
 
