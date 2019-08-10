@@ -6,11 +6,17 @@
 .announce {
         width: 60%;
         margin: 0 auto;
-    }     
+    }
+    .countdown {
+        margin-bottom: 2em;color: gold; font-size: 4em; font-weight: 700;
+    }  
     @media(max-width: 992px) {
         .announce {
             width: 100%;
         }
+        .countdown {
+        margin-bottom: 1em;color: gold; font-size: 2em; font-weight: 500;
+    } 
     }
 
     </style>
@@ -77,6 +83,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
+                    <h2 id="getting-started" class="text-center countdown" style=""></h2>
                 <p class="text-center lead announce fallDown">
                         Welcome to Hi-Impact Cruise, owners of Nigeria's biggest luxury yacht. We
                         are an on-sea venue for all your events. Explore unimaginable fun on our
@@ -292,4 +299,13 @@
         });
 
     </script>
+    <script src="{{ asset('public/assets/js/jquery.countdown.min.js') }}"></script>
+<script type="text/javascript">
+  $("#getting-started")
+  .countdown("2019/10/01", function(event) {
+    $(this).text(
+      event.strftime('%D days %H:%M:%S')
+    );
+  });
+</script>
 @endsection

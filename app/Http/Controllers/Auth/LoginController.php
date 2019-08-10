@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
+use App\User;
 
 class LoginController extends Controller
 {
@@ -40,5 +41,10 @@ class LoginController extends Controller
             $this->redirectTo = $this->request->get('previous');
         }
          return $this->redirectTo ?? '/';
+    }
+
+    protected function authenticated(Request $request, User $user)
+    {
+        return redirect()->intended('/customer');
     }
 }

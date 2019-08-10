@@ -31,14 +31,14 @@
                                     </div>
                                     <div class="kt-widget5__content">
                                         <div class="kt-widget5__info">
-                                            <span class="kt-widget5__sales"><a href="{{ route('page-categories.pages', ['category_id' => $page->id]) }}">view content</a> \ </span>
+                                            <span class="kt-widget5__sales"><a href="{{ route('page-categories.pages', ['category_id' => $page->id]) }}">view content</a> </span>
                                         </div>
-                                        <div class="kt-widget5__info">
+                                        {{--<div class="kt-widget5__info">
                                             <span class="kt-widget5__sales"><a href="{{ route('page-categories.show', ['pageCategory' => $page->id]) }}">view</a> \ </span>
                                         </div>
                                         <div class="kt-widget5__info">
                                             <span class="kt-widget5__sales"><a href="{{ route('page-categories.edit', ['pageCategory' => $page->id]) }}">edit</a></span>
-                                        </div>
+                                        </div>--}}
                                     </div>
                                 </div>
                                 @endforeach

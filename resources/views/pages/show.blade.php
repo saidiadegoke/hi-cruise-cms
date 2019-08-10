@@ -15,9 +15,7 @@
 				</div>
 			</div>
 
-			<!--begin::Form-->
-			<form class="kt-form" enctype="multipart/form-data" method="post" action="{{ route('news.store') }}">
-				@csrf
+			
 				<div class="kt-portlet__body">
 					@if(count($errors->all()) > 0)
 		              @foreach($errors->all() as $error)
@@ -68,7 +66,7 @@
                                         Delete</a>
 					</div>
 				</div>
-			</form>
+
 			<form onsubmit="return confirm('Continue with deleting the page?');" id="delete-page" action="{{ route('pages.destroy', ['page' => $page->id]) }}" method="POST" style="display: none;">
                                         @csrf
                                         @method('DELETE')

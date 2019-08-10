@@ -22,7 +22,7 @@
                                     <p>Package: {{$package->name}}</p>
                                     <p>Yacht : {{ $package->yacht->name}}</p>
                                         {!! $package->description !!} 
-                                <p> Price (Per Seat) : {{$package->price}}</p>
+                                <p> Price (Per Seat) : &#8358; {{number_format($package->price)}}</p>
                                     {{-- <ul class="list-group">
                                         <li>{{$package->yacht->name}}</li>
                                         <li>Free Lunch</li>
@@ -52,11 +52,11 @@
                                 <div class="row">
                                     <div class="col-md-7">
                                     <label>Full name</label>
-                                        <input type="text" value="{{ old('name') }}" class="form-control" placeholder="Name" name="name">
+                                        <input type="text" value="{{ session()->pull('name')?: old('name') }}" class="form-control" placeholder="Name" name="name">
                                     </div>
                                     <div class="col-md-5">
                                     <label>Phone number</label>
-                                        <input type="text" value="{{ old('phone') }}" class="form-control" placeholder="Phone number" name="phone">
+                                        <input type="text" value="{{ session()->pull('phone')?: old('phone') }}" class="form-control" placeholder="Phone number" name="phone">
                                     </div>
                                 </div>
                                 
@@ -65,11 +65,11 @@
                                 <div class="row">
                                 <div class="col-md-7">
                                 <label>Email address</label>
-                                        <input type="email" value="{{ old('email') }}" class="form-control" placeholder="Email address" name="email">
+                                        <input type="email" value="{{ session()->pull('email')?: old('email') }}" class="form-control" placeholder="Email address" name="email">
                                     </div>
                                     <div class="col-md-5">
                                     <label>No of seats</label>
-                                        <input type="number" value="{{ old('num_seat') }}" class="form-control" placeholder="No of Seat" name="num_seat">
+                                        <input type="number" value="{{ session()->pull('num_seat')?: old('num_seat') }}" class="form-control" placeholder="No of Seat" name="num_seat">
                                     </div>
                                 </div>
                                 
@@ -78,7 +78,7 @@
                             <div class="row">
                                     <div class="col-md-7">
                                     <label>Date</label>
-                                    <input style="color: black;" value="{{ old('start_date') }}" type="text" class="form-control date pick_date" name="start_date" id="start_date" disabled>
+                                    <input style="color: black;" value="{{ session()->pull('start_date')?: old('start_date') }}" type="text" class="form-control date pick_date" name="start_date" id="start_date" disabled>
                                     </div>
                                 </div>
                                 </div>
@@ -90,13 +90,13 @@
                                 <div class="row">
                                     <div class="form-check form-check-inline col-md-5 col-md-offset-1">
                                         <label class="form-check-label">
-                                            <input class="form-check-input" type="radio" {{ old('payment_method') == 'offline'? 'checked': '' }} name="payment_method" id="payment_method" value="offline"> Offline Payment
+                                            <input class="form-check-input" type="radio" {{ session()->pull('payment_method') == 'offline' || old('payment_method') == 'offline'? 'checked': '' }} name="payment_method" id="payment_method" value="offline"> Offline Payment
                                         </label>
                                     </div>
 
                                     <div class="form-check form-check-inline col-md-5">
                                         <label class="form-check-label">
-                                            <input class="form-check-input" type="radio" {{ old('payment_method') == 'paystack'? 'checked': '' }} name="payment_method" id="payment_method" value="paystack"> Online Payment
+                                            <input class="form-check-input" type="radio" {{ session()->pull('payment_method') == 'paystack' || old('payment_method') == 'paystack'? 'checked': '' }} name="payment_method" id="payment_method" value="paystack"> Online Payment
                                         </label>
                                     </div>
                                 </div>
@@ -111,7 +111,7 @@
                                         id="address"
                                         cols="30"
                                         rows="10"
-                                    >{{ old('address') }}</textarea>
+                                    >{{ session()->pull('address')?: old('address') }}</textarea>
                                     </div>
                                 </div>
                                 </div>
@@ -200,4 +200,5 @@
 
         });
         </script>
+        
         @endsection

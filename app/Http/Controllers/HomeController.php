@@ -4,10 +4,15 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Yacht;
-use App\Models\SupportTicket;
+use App\ModeDbls\SupportTicket;
+use App\Abs\Order\OrderRepositoryInterface;
+use App\Abs\Order\DbOrderRepository;
 
 class HomeController extends Controller
 {
+    public function __construct(OrderRepositoryInterface $order) {
+        $this->order = $order;
+    }
     /**
      * Create a new controller instance.
      *
