@@ -1,3 +1,6 @@
+ @php
+$contact = \App\Models\Page::byCategory(3);
+ @endphp
  <div class="container" style="padding:30px 0px;">
         <div class="col-md-12">
           <iframe
@@ -9,8 +12,8 @@
             allowfullscreen
           ></iframe>
           <h4 class="center">Contact</h4>
-          <p style="text-align: center">32, Coker road, Ilupeju, Lagos.</p>
-          <p style="text-align: center">info@hi-impactcruise.com</p>
-          <p style="text-align: center">0818 8245 734, 0806 4831 491</p>
+          <div style="text-align: center">{!! $contact['address-ilupeju'] !!}</div>
+          <div style="text-align: center">{!! $contact['admin-email'] !!}</div>
+          <div style="text-align: center">{!! $contact['phone-numbers'] !!}</div>
         </div>
       </div>

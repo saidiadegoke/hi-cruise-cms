@@ -5,14 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Yacht;
 use App\ModeDbls\SupportTicket;
-use App\Abs\Order\OrderRepositoryInterface;
-use App\Abs\Order\DbOrderRepository;
 
 class HomeController extends Controller
 {
-    public function __construct(OrderRepositoryInterface $order) {
-        $this->order = $order;
-    }
     /**
      * Create a new controller instance.
      *
@@ -28,8 +23,9 @@ class HomeController extends Controller
 
     public function index()
     {
+        $about = \App\Models\Page::byCategory(2);
         $yachts = Yacht::all();
-        return view('cruise.home', compact('yachts'));
+        return view('cruise.home', compact('yachts', 'about'));
     }
 
     public function contactSupport(Request $request)

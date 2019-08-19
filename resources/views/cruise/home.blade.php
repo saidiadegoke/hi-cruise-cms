@@ -8,7 +8,7 @@
         margin: 0 auto;
     }
     .countdown {
-        margin-bottom: 2em;color: gold; font-size: 4em; font-weight: 700;
+        margin-bottom: 10px;color: gold; font-size: 4em; font-weight: 700;
     }  
     @media(max-width: 992px) {
         .announce {
@@ -31,8 +31,8 @@
                         <img src="{{ asset('public/storage/'.$slide->file->filename) }}">
                         <div class="carousel-caption downUp">
                             <div class="banner-content">
-                                <h4 class="fallDown">{{ $slide->title }}</h4>
-                                <p class="downUp">{{ $slide->description }}</p>
+                                {{--<h4 class="fallDown">{{ $slide->title }}</h4>
+                                <p class="downUp">{{ $slide->description }}</p>--}}
                                 <!--span class="call-to-action"> <a href="about.html"> learn more </a></span> 
                                 <span class="call-to-action green-btn"> <a href="about.html"> apply now </a></span-->
                             </div>
@@ -84,11 +84,9 @@
             <div class="row">
                 <div class="col-md-12">
                     <h2 id="getting-started" class="text-center countdown" style=""></h2>
-                <p class="text-center lead announce fallDown">
-                        Welcome to Hi-Impact Cruise, owners of Nigeria's biggest luxury yacht. We
-                        are an on-sea venue for all your events. Explore unimaginable fun on our
-                        impressive yachts as we promise to give you a unique experience like never
-                        before in Nigeria.
+                    <p class="lead text-center" style="margin-bottom: 50px; color: #ffd700;">to official launch on October 1st, 2019</p>
+                <div class="text-center lead announce fallDown">
+                        {!! \App\Models\Page::getContent('intro-text') !!}
                 </p>
                 </div>
             </div>
@@ -122,17 +120,17 @@
                 <div class="col-md-4">
                     <h4 class="center no-float">our vision</h4>
                     <i class="fa fa-eye"></i>
-                    <p class="justify-center-2">To create a distinct and memorable leisure experience for each client through exceptional service delivery.</p>
+                    <div class="justify-center-2">{!! $about['our-vision'] !!}</div>
                 </div>
                 <div class="col-md-4">
                     <h4 class="center no-float">our profile</h4>
                     <i class="fa fa-folder"></i>
-                    <p class="justify-center-2">Hi Impact Cruise currently operates two high grade luxury yachts in her fleet. Both vessels are solidly designed with lavish interiors. Whatever your needs, we have something that will excite your senses. If you love freedom, privacy, a wide variety of choices, and the feeling that goes with star treatment, Hi-Impact Cruise is right for you with an option of Eugene or Eugene 1 to select from.</p>
+                    <div class="justify-center-2">{!! $about['profile-statement'] !!}</div>
                 </div>
                 <div class="col-md-4">
                     <h4 class="center no-float">our mission</h4>
                     <i class="fa fa-road"></i>
-                    <p class="justify-center-2">To display expertise and distinctiveness in all exchanges with both indigenous, international, existing, and prospective clients.</p>
+                    <div class="justify-center-2">{!! $about['our-mission'] !!}</div>
                 </div>
             </div>
         </div>

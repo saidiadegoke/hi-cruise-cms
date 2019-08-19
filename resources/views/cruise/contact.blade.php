@@ -24,9 +24,11 @@
             <!--span class="sp-cap">We will love to hear from you</span>
             <img src="{{asset('public/assets/img/contact.jpg')}}" alt="" class="floater-img" /-->
             <h4 class="center">Contact</h4>
-          <p class="lead" style="text-align: center">32, Coker road, Ilupeju, Lagos.</p>
-          <p class="lead" style="text-align: center">info@hi-impactcruise.com</p>
-          <p class="lead" style="text-align: center">0818 8245 734, 0806 4831 491</p>
+          <div class="lead" style="text-align: center">{!! $contact['address-ilupeju'] !!}</div>
+          <p class="text-center">Or</p>
+          <div class="lead" style="text-align: center">{!! $contact['address-hiimpact'] !!}</div>
+          <div class="lead" style="text-align: center">{!! $contact['admin-email'] !!}</div>
+          <div class="lead" style="text-align: center">{!! $contact['phone-numbers'] !!}</div>
 
           <div class="col-md-61 pull-left socials" style="display: flex;
 justify-content: center;

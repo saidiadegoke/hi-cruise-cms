@@ -37,11 +37,13 @@ class CruiseController extends Controller
 
     public function about()
     {
-        return view("cruise.about"); 
+        $about = \App\Models\Page::byCategory(2);
+        return view("cruise.about", compact('about')); 
     }
 
     public function contact(Request $request)
     {
+        $contact = \App\Models\Page::byCategory(3);
         if($request->submit) {
             $validator = Validator::make($request->all(), [
                 'name' => 'required',
@@ -68,7 +70,7 @@ class CruiseController extends Controller
             $request->session()->flash('submitted', 'Thank you for contacting us. We\'ll get back to you within 48 hours');
         }
         
-        return view("cruise.contact");
+        return view("cruise.contact", compact('contact'));
     }
 
     public function eugene()
