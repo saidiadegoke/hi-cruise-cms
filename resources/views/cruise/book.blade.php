@@ -41,6 +41,7 @@
                                 <input type="hidden" name="package" value="{{$package->id}}">
                                 <input type="hidden" name="amount" value="{{$package->price}}">
                                 <input type="hidden" name="yacht" value="{{$package->yacht->id}}">
+                                <input type="hidden" name="package-session" value="{{session()->pull('package')}}">
                                 <div class="form-group">
                                 @if(count($errors->all()) > 0)
 		              @foreach($errors->all() as $error)
@@ -67,10 +68,14 @@
                                 <label>Email address</label>
                                         <input type="email" value="{{ session()->pull('email')?: old('email') }}" class="form-control" placeholder="Email address" name="email">
                                     </div>
-                                    <div class="col-md-5">
-                                    <label>No of seats</label>
-                                        <input type="number" value="{{ session()->pull('num_seat')?: old('num_seat') }}" class="form-control" placeholder="No of Seat" name="num_seat">
-                                    </div>
+                                    @if(strtolower($package->name) != 'royal package')
+                                        <div class="col-md-5">
+                                        <label>No of seats</label>
+                                            <input type="number" min="0" value="{{ session()->pull('num_seat')?: old('num_seat') }}" class="form-control" placeholder="No of Seat" name="num_seat">
+                                        </div>
+                                    @else
+                                        <input type="hidden" value="1" class="form-control" placeholder="No of Seat" name="num_seat">
+                                    @endif
                                 </div>
                                 
                             </div> 

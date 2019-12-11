@@ -88,12 +88,14 @@ class RegisterController extends Controller
     }
 
     public function redirectTo() {
-        return url('/customer');
+        return (session()->has('name') && session()->has('package'))? url('/package/' . session('package')): url('/customer');
     }
 
     protected function registered(Request $request, $user)
     {
         $request->session()->flash('registered', true);
         $request->session()->flash('registeredMessage', 'Thank you registering. Your account has been created successfully');
+
+
     }
 }

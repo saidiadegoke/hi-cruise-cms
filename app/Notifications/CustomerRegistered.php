@@ -46,7 +46,7 @@ class CustomerRegistered extends Notification
                     ->greeting('Hello ' . $this->customer->firstname . ',')
                     ->line('Thank you for registering on Hi-Impact Cruise Website.')
                     ->line('Your account has been created and activated. Please follow the link below to login to your account.')
-                    ->action('My Cuise Account', url('/customer'))
+                    ->action('My Cruise Account', url('/customer'))
                     ->line('Thank you for registering!');
     }
 

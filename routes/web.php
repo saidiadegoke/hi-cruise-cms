@@ -60,7 +60,8 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     Route::get('/customers/pdf','CustomerController@export_pdf');
     Route::any('/emaillist', 'Admin\AdminController@emaillist')->name('emaillist');
     Route::any('/emaillist/export', 'Admin\AdminController@export')->name('emaillist.export');
-    Route::any('/export-reservatiion', 'Admin\AdminController@exportReservations')->name('export.reservation');
+    Route::any('/export-reservation', 'Admin\AdminController@exportReservations')->name('export.reservation');
+    Route::any('/export-payment', 'Admin\AdminController@exportPayments')->name('export.payments');
 	Route::get('page-categories/pages/{category_id}', 'Admin\PageCategoriesController@pages')->name('page-categories.pages');
 });
 

@@ -13,10 +13,28 @@ class PaymentsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $payments = Payment::orderBy('created_at', 'desc')->paginate(10);
-        return view('payments.index', compact('payments'));
+        $from = $to = $q = null;
+        $payments = Payment::orderBy('created_at', 'desc');
+
+        if($request->from) {
+            $from = Carbon::createFromDate($request->from)->toDateTimeString();
+            $payments->where('updated_at' , '>=', $from);
+        }
+        if($request->to) {
+            $to = Carbon::createFromDate($request->to)->toDateTimeString();
+            $payments->where('updated_at' , '<=', $to);
+        }
+        if($request->q) {
+            $payments->orWhere('email' , 'LIKE', '%'.$request->q.'%');
+            $payments->orWhere('name' , 'LIKE', '%'.$request->q.'%');
+        }
+
+        $payments = $payments->paginate(10);
+
+        
+        return view('payments.index', compact('payments', 'from', 'to', 'q'));
     }
 
     /**

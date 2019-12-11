@@ -32,7 +32,7 @@
 								<td>{{$payment->reservation && $payment->reservation->package? $payment->reservation->package->name: 'N/a'}}</td>
 							</tr>
 							<tr>
-								<th>Package name</th>
+								<th>Package description</th>
 								<td>{!! $payment->reservation && $payment->reservation->package? $payment->reservation->package->description: 'N/a' !!}</td>
 							</tr>
 							<tr>

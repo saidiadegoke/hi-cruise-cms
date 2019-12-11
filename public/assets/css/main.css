@@ -365,6 +365,7 @@ text-transform: capitalize;
 font-weight: 600;
 padding: 0px 10px;
 border: 1px solid rgba(251, 252, 255, 0.72);
+background: black;
 }
 section.double-col{padding: 0px; margin: 0px;} section.double-col:before{content: ''; background: #fff; width: 50%; height: 100%; position: absolute; left: 0; display: block;} section.double-col:after{content: ''; background: #f1f1f1; width: 50%; height: 100%; position: absolute; right: 0; display: block;}
 section.double-col div.col-md-6{margin: 0px; min-height: 400px;}

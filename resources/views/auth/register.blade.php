@@ -9,6 +9,19 @@
 @endsection
 
 @section('content')
+<style>
+.field-icon {
+  float: right;
+  margin-left: -25px;
+  margin-top: -25px;
+  position: relative;
+  z-index: 2;
+  right: 30px;
+  cursor: pointer;
+  color: black;
+  top: -20px;
+}
+  </style>
 <section class="primary-color no-margin pad-10 mid-space marg-Top-60">
     <div class="container">
         <div class="col-md-12">
@@ -70,8 +83,9 @@
 
                   <div class="form-group">
                         
-                        <label for="password" class="col-form-label text-md-right">{{ __('Password') }}</label>
-                            <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                        <label for="password" class="col-form-label text-md-right" style="width: 100%;">{{ __('Password') }}(<span style="font-size: 10px;display: inline-block;float: none;">Minimun of 6 characters</span>)</label>
+                            <input id="password-field" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                            <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
                             <div>
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
@@ -103,4 +117,19 @@
       </div>
     </section>
     
+@endsection
+
+@section('scripts')
+<script>
+$(".toggle-password").click(function() {
+
+  $(this).toggleClass("fa-eye fa-eye-slash");
+  var input = $($(this).attr("toggle"));
+  if (input.attr("type") == "password") {
+    input.attr("type", "text");
+  } else {
+    input.attr("type", "password");
+  }
+});
+</script>
 @endsection

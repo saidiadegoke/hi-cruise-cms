@@ -12,6 +12,7 @@ use App\Models\SubscriptionList;
 use Illuminate\Support\Carbon;
 use App\Exports\MailListExport;
 use App\Exports\ReservationExport;
+use App\Exports\PaymentExport;
 use PDF;
 
 class AdminController extends Controller
@@ -56,6 +57,10 @@ class AdminController extends Controller
 
     public function exportReservations(Request $request) {
         return (new ReservationExport($request->from, $request->to, $request->q))->download('reservations.xlsx');
+    }
+
+    public function exportPayments(Request $request) {
+        return (new PaymentExport($request->from, $request->to, $request->q))->download('payments.xlsx');
     }
 
     public function export_maillist_pdf(Request $request) {
