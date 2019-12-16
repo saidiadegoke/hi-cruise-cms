@@ -15,6 +15,7 @@ use PDF;
 use App\Models\Package;
 use App\Models\Decoration;
 use App\Models\EventEntertainment;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class ReservationController extends Controller
 {
@@ -73,7 +74,10 @@ class ReservationController extends Controller
     public function printReciept(Reservation $reservation)
     {
         $payment = Payment::where('reservation_id', '=', $reservation->id)->get();
-        $pdf = PDF::loadView('cruise.receipt', compact('payment', 'reservation'));
+        $qrcode_name = time();
+        $qrpath = 'storage/app/public/qrcodes/' . $qrcode_name . '.png';
+        QrCode::encoding('UTF-8')->format('png')->size(120)->margin(0)->generate($reservation->reference, $qrpath);
+        $pdf = PDF::loadView('cruise.receipt', compact('payment', 'reservation', 'qrpath'));
         return $pdf->download('reservation_receipt.pdf');
     }
 

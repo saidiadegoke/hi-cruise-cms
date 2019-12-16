@@ -16,6 +16,8 @@
     <link type="text/css" href="{{asset('public/assets/css/slider.css')}}" rel="stylesheet">
     <link type="text/css" href="{{asset('public/assets/css/main.css')}}" rel="stylesheet">
     <link type="text/css" href="{{asset('public/assets/css/responsive.css')}}" rel="stylesheet">
+    <link type="text/css" href="{{asset('public/assets/css/custom.css')}}" rel="stylesheet">
+
     <script src="https://kit.fontawesome.com/459a83cc19.js"></script>
     @yield("styles")
 

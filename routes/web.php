@@ -27,6 +27,7 @@ Route::any('/subscribe', 'CruiseController@subscribe')->name('subscribe');
 
 Route::any('/details', 'ReservationController@fetchDetails')->name('details');
 Route::any('/package/{package}', 'ReservationController@details')->name('package_details');
+Route::post("verify-code", "PaymentController@verifyCode")->name("verify-code");
 
 Route::group(['middleware' => ['web']], function () {
     // your routes here
@@ -43,6 +44,8 @@ Route::get('/print_receipt/{reservation}', "ReservationController@printReciept")
 
 Route::get('/support', "HomeController@support")->name('support')->middleware('auth');
 Route::post('/support', "HomeController@contactSupport")->name('support');
+
+Route::any('/verify-ticket', "PaymentController@verifyTicket")->name("verify-ticket");
 
 Route::prefix('admin')->middleware('auth')->group(function () {
     Route::get('/', 'Admin\AdminController@index')->name('admin');

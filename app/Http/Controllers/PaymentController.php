@@ -11,6 +11,7 @@ use \Carbon\Carbon;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 use App\Notifications\CustomerMadeReservation;
+use Illuminate\Support\Facades\Log;
 
 class PaymentController extends Controller
 {
@@ -26,7 +27,8 @@ class PaymentController extends Controller
 
     public function response($reference, $reservation)
     {
-        return view('cruise.response', compact('reservation'));
+        $booking = Reservation::find($reservation)->first();
+        return view('cruise.response', compact('reservation', 'booking'));
     }
 
     public function offlinePayment(Request $request)
@@ -85,6 +87,7 @@ class PaymentController extends Controller
         // Convert the amount back to Naira
         $amount = (int) $paymentDetails['data']['amount'] / 100;
 
+Log::info(json_encode($paymentDetails));
 
         if ($paymentDetails['data']['status'] == 'success') {
 
@@ -100,10 +103,11 @@ class PaymentController extends Controller
                 'start_date' => Carbon::parse($metaData['start_date'])->format('Y-m-d'),
                 //'finish_date' => Carbon::parse($metaData['finish_date'])->format('Y-m-d'),
                 'package_id' => $metaData['package_id'],
+                'used' => 0,
 
             ]);
 
-            $uniqueCode = 'HC' . str_pad($reservation->id, 4, 0, STR_PAD_LEFT);
+            $uniqueCode = 'HC' . str_pad($reservation->id, 7, 0, STR_PAD_LEFT);
             $reservation->reference = $uniqueCode;
             $reservation->save();
 
@@ -138,5 +142,27 @@ class PaymentController extends Controller
         // Now you have the payment details,
         // you can store the authorization_code in your db to allow for recurrent subscriptions
         // you can then redirect or do whatever you want
+    }
+
+    public function verifyTicket() {
+        return view("payments.verify-ticket");
+    }
+
+    public function verifyCode(Request $request) {
+        $reference = $request->post("reference");
+        $reservation = Reservation::where(['reference' => $reference])->first();
+        if($reservation && $reservation->used == 0) {
+            $reservation->used = 1;
+            $reservation->save();
+            return [
+                "error" => false,
+                "message" => "Ticket validated!"
+            ];
+        } else {
+            return [
+                "error" => true,
+                "message" => "Invalid ticket"
+            ];
+        }
     }
 }

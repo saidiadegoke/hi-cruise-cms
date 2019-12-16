@@ -79,19 +79,19 @@
             </form>
         </div>
     </section>
-    <section class="no-margin pad-5">
+    <!--section class="no-margin pad-5">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
                     <h2 id="getting-started" class="text-center countdown" style=""></h2>
                     <p class="lead text-center" style="margin-bottom: 50px; color: #ffd700;">to official launch on October 1st, 2019</p>
                 <div class="text-center lead announce fallDown">
-                        {!! \App\Models\Page::getContent('intro-text') !!}
+                        {{-- !! \App\Models\Page::getContent('intro-text') !!--}}
                 </p>
                 </div>
             </div>
         </div>
-    </section>
+    </section-->
     <section class="">
         <div class="container">
             <h4 class="all-caps">Our Yachts</h4>
@@ -228,7 +228,7 @@
     <section class="no-margin padded gold-background">
         <div class="container">
             <div class="col-md-4">
-                <h4>Recieve latest info on deals/discounts</h4>
+                <h4>Recieve latest info on deals/discounts 0</h4>
             </div>
             <div class="col-md-8">
                 <form action="{{ route('subscribe') }}" method="post">

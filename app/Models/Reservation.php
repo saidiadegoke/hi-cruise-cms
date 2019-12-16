@@ -8,7 +8,7 @@ class Reservation extends Model
 {
     //
     protected $fillable = [
-        'package_id', 'name', 'phone', 'email', 'address', 'start_date', 'finish_date',  'seats', 'customer_id', 'reference'
+        'package_id', 'name', 'phone', 'email', 'address', 'start_date', 'finish_date',  'seats', 'customer_id', 'reference', 'used',
     ];
 
     protected $appends = ['package_name', 'package_description', 'date', 'payment_made', 'amount'];

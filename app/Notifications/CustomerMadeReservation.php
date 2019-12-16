@@ -44,11 +44,14 @@ class CustomerMadeReservation extends Notification
      */
     public function toMail($notifiable)
     {
+        $url = url('/print_receipt/'. $this->reservation->id);
+        //$url = route('print_receipt',['reservation' => $this->reservation->id]);
+
         return (new MailMessage)
                     ->greeting('Hello ' . $this->customer->firstname . ',')
                     ->line('Thank you for booking a reservation with us. Your reservation details is as follows:')
                     ->line($this->reservation->package? $this->reservation->package->description: 'Contact admin for details')
-                    //->action('', url('/'))
+                    ->action('View Ticket', $url)
                     ->line('Thank you for using our application!');
     }
 

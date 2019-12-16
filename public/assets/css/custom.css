@@ -1,0 +1,63 @@
+.receipt-wrapper {
+	display: block;
+	padding: 20px 0;
+}
+
+.receipt-wrapper .table {
+	margin-top: 20px;
+}
+
+.receipt-wrapper .logo {
+	height: auto; 
+	width: 250px;
+	margin: auto;
+}
+
+.receipt-wrapper .logo img {
+	height: auto;
+	width: 100%;
+}
+
+.receipt-wrapper .table div small, .receipt-wrapper .table div big {
+	text-align: left;
+	display: block;
+}
+
+.receipt-wrapper .table div big {
+	font-size: 14px;
+	white-space: nowrap;
+	font-weight: 600;
+}
+
+.receipt-wrapper .table .row {
+	border-bottom: 1px solid #efefef8a;
+	margin-bottom: 10px;
+	padding-bottom: 5px;
+}
+
+.receipt-wrapper p {
+    margin: 0 0 0;
+    font-size: 9px;
+}
+
+.receipt-wrapper h4 {
+	margin: 0 0 0 0;
+	font-size: 14px;
+	font-weight: 600;
+	margin-bottom: 20px;
+	text-align: center;
+}
+
+.receipt-wrapper h4:after {
+	display: none;
+}
+
+.color-gold {
+	color: #e0ae63;
+}
+
+.receipt-footer {
+	display: block;
+	text-align: center;
+	margin: 20px;
+}

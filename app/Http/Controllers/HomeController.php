@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Yacht;
 use App\ModeDbls\SupportTicket;
+use Illuminate\Support\Str;
 
 class HomeController extends Controller
 {
@@ -25,7 +26,8 @@ class HomeController extends Controller
     {
         $about = \App\Models\Page::byCategory(2);
         $yachts = Yacht::all();
-        return view('cruise.home', compact('yachts', 'about'));
+        $rdn = Str::random(6);
+        return view('cruise.home', compact('yachts', 'about', 'rdn'));
     }
 
     public function contactSupport(Request $request)

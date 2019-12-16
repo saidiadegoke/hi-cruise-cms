@@ -10,13 +10,35 @@
             @include('layouts.partials.flash')
         </div>
 
-        <div class="btn-group" role="group" aria-label="Button group">
-            <a href="{{route('reservations', ['customer'=> auth()->user()->id]) }}" class="btn btn-primary" type="button">View Reservations</a>
-            <a href="{{route('print_receipt',['reservation' => $reservation]) }}" class="btn btn-secondary">Print Receipt</a>
-        </div>
+        @include('reservations.receipt')
+
+        
         
     
         
     </div>
 </section>
+@endsection
+
+@section('scripts')
+<script type="text/javascript">
+    function PrintElem(elem)
+{
+    var mywindow = window.open('', 'PRINT', 'height=400,width=600');
+
+    mywindow.document.write('<html><head><title>' + document.title  + '</title>');
+    mywindow.document.write('</head><body >');
+    mywindow.document.write('<h1>' + document.title  + '</h1>');
+    mywindow.document.write(document.getElementById(elem).innerHTML);
+    mywindow.document.write('</body></html>');
+
+    mywindow.document.close(); // necessary for IE >= 10
+    mywindow.focus(); // necessary for IE >= 10*/
+
+    mywindow.print();
+    mywindow.close();
+
+    return true;
+}
+</script>
 @endsection

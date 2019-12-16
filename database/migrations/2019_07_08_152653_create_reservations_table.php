@@ -25,6 +25,7 @@ class CreateReservationsTable extends Migration
             $table->string('address')->nullable();
             $table->string('reference')->nullable();
             $table->bigIncrements('id');
+            $table->boolean('used');
             $table->timestamps();
         });
     }
