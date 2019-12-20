@@ -114,7 +114,7 @@ class CustomerController extends Controller
 
     public function reservation(Request $request) {
         $reservation = Reservation::find($request->reservation);
-
+        //dd($reservation);
         if(!$reservation) {
             return redirect()->back();
         }

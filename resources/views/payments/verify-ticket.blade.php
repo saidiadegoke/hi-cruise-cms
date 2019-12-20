@@ -18,7 +18,7 @@ h4:after {
         <img src="{{ asset('public/assets/img/logo-icon.png') }}" alt="" class="iconic" />
         <div class="col-md-4 middle-place bordered">
           <div class="container">
-             <form id="verifyCodeForm" method="POST" action="{{ route('verify-code') }}" >
+             <form id="verifyCodeForm" method="POST" action="{{ route('verify-code') }}" onsubmit="return false;" >
                 @csrf
               <h4>Verify Reservation Tickets</h4>
               <div class="form-group">
@@ -59,6 +59,8 @@ $("#reference").on("change", function() {
         } else {
           $("#verifyResponse").show().html("Verification failed! Please retry");
         }
+
+        $("#reference").val("").focus();
     });
 
     console.log(v)

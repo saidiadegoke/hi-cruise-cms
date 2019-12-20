@@ -8,7 +8,7 @@
         <thead>          
             <tr>
           <th scope="col">S/N</th>
-          <th scope="col">Start Date</th>
+          <th scope="col">Cruise Date</th>
           <th scope="col">Finish Date</th>
           <th scope="col">No of Seats</th>
           <th>&nbsp;</th>
@@ -25,7 +25,7 @@
         <td>{{$reservation->start_date}}</td>
         <td>{{$reservation->finish_date}}</td>
         <td>{{$reservation->seats}}</td>
-        <td><a href="#">View</a></td>
+        <td><a href="{{ url('payments/' . $reservation->payment->reference . '/' . $reservation->id  ) }}">View</a></td>
         </tr>
         @php 
             $index++;

@@ -89,19 +89,38 @@
                                 </div>
                             
                             <div class="form-group">
-                                <div class="col-md-10 col-md-offset-1">
-                                    <h4>Select Preferred Payment Method</h4>
+                                <div class="col-md-12 col-md-offset-0">
+                                    <big>Select Preferred Payment Method</big>
                                 </div>
                                 <div class="row">
                                     <div class="form-check form-check-inline col-md-5 col-md-offset-1">
                                         <label class="form-check-label">
-                                            <input class="form-check-input" type="radio" {{ session()->pull('payment_method') == 'offline' || old('payment_method') == 'offline'? 'checked': '' }} name="payment_method" id="payment_method" value="offline"> Offline Payment
+                                            <input class="form-check-input" type="radio" {{ session()->pull('payment_method') == 'offline' || old('payment_method') == 'offline'? 'checked': '' }} name="payment_method" id="payment_method_offline" value="offline"> Offline Payment
                                         </label>
                                     </div>
 
                                     <div class="form-check form-check-inline col-md-5">
                                         <label class="form-check-label">
-                                            <input class="form-check-input" type="radio" {{ session()->pull('payment_method') == 'paystack' || old('payment_method') == 'paystack'? 'checked': '' }} name="payment_method" id="payment_method" value="paystack"> Online Payment
+                                            <input class="form-check-input" type="radio" {{ session()->pull('payment_method') == 'paystack' || old('payment_method') == 'paystack'? 'checked': '' }} name="payment_method" id="payment_method_paystack" value="paystack"> Online Payment
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-md-12 col-md-offset-0">
+                                    <big>Select Preferred Cruise Time {{ session()->get('session') }}</big>
+                                </div>
+                                <div class="row">
+                                    <div class="form-check form-check-inline col-md-5 col-md-offset-1">
+                                        <label class="form-check-label">
+                                            <input class="form-check-input" type="radio" {{ session()->pull('session') == 'day' || old('session') == 'day'? 'checked': '' }} name="session" id="session_day" value="day"> Day Cruise (11:00 AM - 3:00 PM)
+                                        </label>
+                                    </div>
+
+                                    <div class="form-check form-check-inline col-md-5">
+                                        <label class="form-check-label">
+                                            <input class="form-check-input" type="radio" {{ session()->pull('session') == 'night' || old('session') == 'night'? 'checked': '' }} name="session" id="session_night" value="night"> Night Cruise (5:00 PM - 9:00 PM)
                                         </label>
                                     </div>
                                 </div>

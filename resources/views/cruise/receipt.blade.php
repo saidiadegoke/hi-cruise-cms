@@ -153,12 +153,12 @@ div.col-md-7 {
 			<table class="table">
     	<tr class="ro">
     		<td class="col-md-7">
-    			<small>Date</small>
+    			<small>Cruise Date</small>
     			<big>{!! date('l, jS M Y', strtotime($reservation->start_date)) !!}</big>
     		</td>
     		<td class="col-md-5">
     			<small>Time</small>
-    			<big>08:30 AM</big>
+    			<big>{{ $reservation->session == 'day'? '11:00 AM': '5:00 PM' }}</big>
     		</td>
     	</tr>
     	<tr class="ro color-gold">
@@ -182,6 +182,11 @@ div.col-md-7 {
     		</td>
     	</tr>
     </table>
+
+    <div style="overflow: hidden; margin: 2em auto; width: 160px;">
+        <div style="background-color: #fff; width: 100%; text-align: center;">{!! DNS1D::getBarcodeHTML($reservation->reference, "C128", 1.2) !!}</div>
+    </div>
+
 <p>Bring this ticket printed on a paper or as saved image at your smart phone screen</p>
 		
 	</div>

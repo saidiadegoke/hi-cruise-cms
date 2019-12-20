@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Yacht extends Model
 {
     //
-    protected $fillable = ["name", "description"];
+    protected $fillable = ["name", "description", "publish"];
 
     protected $with = ["packages"];
     public function packages()

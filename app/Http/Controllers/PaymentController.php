@@ -12,6 +12,9 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 use App\Notifications\CustomerMadeReservation;
 use Illuminate\Support\Facades\Log;
+use Notification;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\ReservationBooked;
 
 class PaymentController extends Controller
 {
@@ -27,7 +30,8 @@ class PaymentController extends Controller
 
     public function response($reference, $reservation)
     {
-        $booking = Reservation::find($reservation)->first();
+        $booking = Reservation::where(['id' => $reservation])->first();
+
         return view('cruise.response', compact('reservation', 'booking'));
     }
 
@@ -70,6 +74,7 @@ class PaymentController extends Controller
             'phone' => request('phone'),
             'email' => request('email'),
             'address' => request('address'),
+            'session' => request('session'),
         ]);
         $request->request->set('quantity', (int) request('num_seat'));
         return Paystack::getAuthorizationUrl()->redirectNow();
@@ -87,7 +92,7 @@ class PaymentController extends Controller
         // Convert the amount back to Naira
         $amount = (int) $paymentDetails['data']['amount'] / 100;
 
-Log::info(json_encode($paymentDetails));
+//Log::info(json_encode($paymentDetails));
 
         if ($paymentDetails['data']['status'] == 'success') {
 
@@ -104,7 +109,7 @@ Log::info(json_encode($paymentDetails));
                 //'finish_date' => Carbon::parse($metaData['finish_date'])->format('Y-m-d'),
                 'package_id' => $metaData['package_id'],
                 'used' => 0,
-
+                'session' => $metaData['session'],
             ]);
 
             $uniqueCode = 'HC' . str_pad($reservation->id, 7, 0, STR_PAD_LEFT);
@@ -133,6 +138,26 @@ Log::info(json_encode($paymentDetails));
             $user = Auth::user();
             $customer = $user->customer;
             $customer->notify(new CustomerMadeReservation($customer, $reservation));
+
+            /*Notification::route('mail', 'molatunde@solutionmi.com')
+            ->route('mail', 'rasheedsaidi@yahoo.com')
+            ->notify(new CustomerMadeReservation($customer, $reservation));*/
+
+            $to = "info@hi-impactcruise.com";
+            $subject = "Message from Contact Form";
+            $txt = "A customer has just ordered a reservation. " . "\r\n";
+            $txt .= "Please find the details below: " . "\r\n";
+            $txt .= "Package: " . "\r\n";
+            $txt .= "Payment: " . "\r\n";
+            $headers = "From: 'Reservation Booked' <info@hi-impactcruise.com>" . "\r\n" .
+            "BCC: rasheedsaidi@yahoo.com";
+
+            //mail($to,$subject,$txt,$headers);
+
+            Mail::to(config('mail.adminEmail'))
+                ->bcc(config('mail.adminEmail1'))
+                ->send(new ReservationBooked($reservation));
+
             return redirect(route('response', ['reference' => $paymentDetails['data']['reference'], 'reservation' => $reservation->id]))->with('success', 'Reservation Booked!');
         } else {
             return redirect('response')->with('error', 'Payment unsuccessful, Try again!');
@@ -159,6 +184,8 @@ Log::info(json_encode($paymentDetails));
                 "message" => "Ticket validated!"
             ];
         } else {
+            $reservation->used = 0;
+            $reservation->save();
             return [
                 "error" => true,
                 "message" => "Invalid ticket"

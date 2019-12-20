@@ -17,6 +17,7 @@ class CreateYachtsTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->text('description');
+            $table->boolean('publish')->default(true);
             $table->timestamps();
         });
     }

@@ -25,7 +25,8 @@ class HomeController extends Controller
     public function index()
     {
         $about = \App\Models\Page::byCategory(2);
-        $yachts = Yacht::all();
+        $yachts = Yacht::where(['publish' => 1])->get();
+        //dd($yachts);
         $rdn = Str::random(6);
         return view('cruise.home', compact('yachts', 'about', 'rdn'));
     }

@@ -61,21 +61,29 @@
                           <th>Reservation Code</th><td>{{ $reservation->reference }}</td>
                         </tr>
                         <tr>
+                          <th>Cruise Session</th><td>{{ $reservation->getSession($reservation->session) }}</td>
+                        </tr>
+                        <tr>
                           <th>Description</th><td>{!! $reservation->package->description !!}</td>
                         </tr>
                         <tr>
-                          <th>Start date</th><td>{{ $reservation->start_date }}</td>
+                          <th>Cruise date</th><td>{{ $reservation->start_date }}</td>
+                        </tr>
+                        <tr>
+                          <th>Payment date</th><td>{{ $reservation->payment->created_at }}</td>
                         </tr>
                         <tr>
                           <th>Price</th><td>{{ $reservation->package->price }}</td>
                         </tr>
                         <tr>
-                          <th>Status</th><td></td>
+                          <th>Status</th><td>{{ $reservation->user == 0? 'Active': 'Used' }}</td>
                         </tr>
                       </table>
                  </div>
               </div>
-
+              <div style="text-align: center;">
+                <a href="{{ url('payments/' . $reservation->payment->reference . '/' . $reservation->id  ) }}">View Ticket</a>
+              </div>
             </div>
           </div>
         </div>

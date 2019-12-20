@@ -40,4 +40,22 @@ class User extends Authenticatable
     public function customer() {
         return $this->hasOne('App\Models\Customer');
     }
+
+    public function routeNotificationForMail()
+    {
+        return $this->emailsToArray();
+    }
+
+    public function emailsToArray() {
+        $adminEmail = config('mail.adminEmail');
+        $emails = null;
+        if($adminEmail) { 
+            $emails = array_map('trim', explode(',', config('mail.adminEmail')));         
+            if($this->email) {
+                $emails[] = $this->email; 
+            }
+        }
+        //perform more checks that you need
+        return $emails?: [$this->email];
+    }
 }

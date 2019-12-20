@@ -10,7 +10,7 @@
         <thead>          
             <tr>
           <th scope="col">S/N</th>
-          <th scope="col">Start Date</th>
+          <th scope="col">Cruise Date</th>
           <th scope="col">No of Seats</th>
           <th>&nbsp;</th>
         </tr>

@@ -85,7 +85,7 @@ return [
     |
     */
 
-    'username' => env('MAIL_USERNAME', 'noreply@hi-impactcruise.com'),
+    'username' => env('MAIL_USERNAME', 'no-reply@hi-impactcruise.com'),
 
     'password' => env('MAIL_PASSWORD', 'NPH+RAqb-hIc'),
 
@@ -133,5 +133,6 @@ return [
     */
 
     'log_channel' => env('MAIL_LOG_CHANNEL'),
+    'adminEmail' => 'molatunde@solutionmi.com, rasheedsaidi@gmail.com',
 
 ];

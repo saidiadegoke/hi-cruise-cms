@@ -21,6 +21,7 @@ class CreatePackagesTable extends Migration
             $table->string('description');
             $table->bigInteger('price')->nullable();
             $table->string('type')->nullable();
+            $table->boolean('publish')->default(true);
             $table->timestamps();
         });
     }

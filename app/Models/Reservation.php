@@ -8,7 +8,7 @@ class Reservation extends Model
 {
     //
     protected $fillable = [
-        'package_id', 'name', 'phone', 'email', 'address', 'start_date', 'finish_date',  'seats', 'customer_id', 'reference', 'used',
+        'package_id', 'name', 'phone', 'email', 'address', 'start_date', 'finish_date',  'seats', 'customer_id', 'reference', 'used', 'session',
     ];
 
     protected $appends = ['package_name', 'package_description', 'date', 'payment_made', 'amount'];
@@ -44,6 +44,14 @@ class Reservation extends Model
 
     public function getAmountAttribute() {
         return $this->payment? "&#8358; " . number_format($this->payment->amount, 2): 'N/a';
+    }
+
+    public function getSession1Attribute() {
+        return $this->session == 'day'? '11:00 AM - 3:00 PM': '5:00 PM - 9:00 PM';
+    }
+
+    public function getSession($session) {
+        return $session == 'day'? 'Day (11:00 AM - 3:00 PM)': 'Night (5:00 PM - 9:00 PM)';
     }
 
 }
