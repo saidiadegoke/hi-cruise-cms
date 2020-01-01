@@ -327,6 +327,7 @@
                                                         <a href="{{ route('about') }}">Our Core Values</a>
                                                     </div>
                                                     <div class="kt-footer__nav-section">
+                                                        <a href="{{route('verify-ticket')}}">Verify Tickets</a>
                                                         <a href="#">Site Settings</a>
                                                         <a href="#">Site Pages</a>
                                                     </div>
@@ -356,7 +357,7 @@
                             <div class="kt-container">
                                 <div class="kt-footer__wrapper">
                                     <div class="kt-footer__logo">
-                                        <a href="demo2/index.html">
+                                        <a href="{{ url('/') }}">
                                             <img alt="Logo" style="width: 150px;" src="{{ asset('public/portal/images/logo.png') }}">
                                         </a>
                                         <div class="kt-footer__copyright">

@@ -29,7 +29,6 @@
                       <li><a href="{{route('customer.index')}}">My Profile</a></li>
                       <li><a href="{{route('reservations', ['customer' => $sessionUser->customer->id])}}">Reservations</a></li>
                       <li><a href="{{route('support')}}">Contact Support</a></li>
-                      <li><a href="{{route('verify-ticket')}}">Verify Tickets</a></li>
                       {{--<li><a href="{{route('customer.notifications')}}">Notifications</a></li>--}}
                     </ul>
                   </a>
