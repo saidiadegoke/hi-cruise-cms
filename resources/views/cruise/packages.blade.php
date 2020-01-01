@@ -6,7 +6,7 @@
       <div class="container">
         <h4 class="all-caps">Packages</h4>
         <!--h4 class="center">Our Yatchs</h4-->
-        <div class="col-md-6 flyInRight">
+        <div class="col-md-6 col-md-offset-3 flyInRight">
           <div class="container product-box-cont">
             <div class="product-box">
               <h4>Eugene 1</h4>
@@ -37,7 +37,7 @@
             </div>
           </div>
         </div>
-        <div class="col-md-6 flyInLeft">
+        {{-- <!--div class="col-md-6 flyInLeft">
           <div class="container product-box-cont">
             <div class="product-box">
               <h4>Eugene</h4>
@@ -64,7 +64,7 @@
               <a href="{{route('package',['yacht'=> 2])}}" class="btn btn-primary">view packages</a>
             </div>
           </div>
-        </div>
+        </div--> --}}
       </div>
     </section>
    
