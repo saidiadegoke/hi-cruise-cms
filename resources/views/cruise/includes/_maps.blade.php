@@ -25,7 +25,7 @@ $contact = \App\Models\Page::byCategory(3);
           <div style="text-align: center">{!! $contact['address-ilupeju'] !!}</div>
 </div>
 <div class="col-md-6">
-          <h5 class="text-center">Boarding Office</h5>
+          <h5 class="text-center">Boarding Terminal</h5>
           <div class="text-center" style="margin-bottom: 2em;">Hi-Impact Cruise Boarding Terminal, <br>opposite Lagos House, outer marina, Lagos.</div>
         </div>
       </div>
