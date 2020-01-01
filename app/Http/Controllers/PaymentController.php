@@ -19,7 +19,6 @@ use App\Mail\ReservationBooked;
 class PaymentController extends Controller
 {
 
-
     public function __construct(Request $request)
     {
         //dd($request->all());
