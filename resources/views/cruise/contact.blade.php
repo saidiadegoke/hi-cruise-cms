@@ -23,9 +23,15 @@
           <div class="col-md-6 floater-img1">
             <!--span class="sp-cap">We will love to hear from you</span>
             <img src="{{asset('public/assets/img/contact.jpg')}}" alt="" class="floater-img" /-->
-            <h4 class="center">Contact</h4>
+            <h3 class="center" style="text-align: center;">Contact</h3>
+            <h4 class="center">Head Office</h4>
           <div class="lead" style="text-align: center">{!! $contact['address-ilupeju'] !!}</div>
+
+          <h4 class="center">BOARDING TERMINAL</h4>
+<p class="lead text-center">Hi-Impact Cruise Boarding Terminal,
+opposite Lagos House, outer marina, Lagos.</p>
           <p class="text-center">Or</p>
+          <h4 class="center">Corporate Office</h4>
           <div class="lead" style="text-align: center">{!! $contact['address-hiimpact'] !!}</div>
           <div class="lead" style="text-align: center">{!! $contact['admin-email'] !!}</div>
           <div class="lead" style="text-align: center">{!! $contact['phone-numbers'] !!}</div>
