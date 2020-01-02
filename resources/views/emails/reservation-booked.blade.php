@@ -23,6 +23,6 @@
     <div id="app">
         A customer has just booked a reservation with the details below:
     </div>
-    @include('reservations.receipt')
+    @include('reservations.detail')
 </body>
 </html>
