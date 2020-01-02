@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Log;
 use Notification;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\ReservationBooked;
+use App\Common\Utility;
 
 class PaymentController extends Controller
 {
@@ -111,7 +112,7 @@ class PaymentController extends Controller
                 'session' => $metaData['session'],
             ]);
 
-            $uniqueCode = 'HC' . str_pad($reservation->id, 7, 0, STR_PAD_LEFT);
+            $uniqueCode = Utility::generateReservationNo(), //'HC' . str_pad($reservation->id, 7, 0, STR_PAD_LEFT);
             $reservation->reference = $uniqueCode;
             $reservation->save();
 

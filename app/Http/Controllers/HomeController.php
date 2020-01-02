@@ -26,7 +26,7 @@ class HomeController extends Controller
     {
         $about = \App\Models\Page::byCategory(2);
         $yachts = Yacht::where(['publish' => 1])->get();
-        //dd($yachts);
+        //dd();
         $rdn = Str::random(6);
         return view('cruise.home', compact('yachts', 'about', 'rdn'));
     }

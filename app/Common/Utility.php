@@ -13,6 +13,20 @@ class Utility
     	return '';
     }
 
+    public static function generateReservationNo() {
+    	$characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+
+		// generate a pin based on 2 * 7 digits + a random character
+		$pin = 'HC'.mt_rand(1000, 9999)
+		    . mt_rand(1000, 9999);
+		    //. $characters[rand(0, strlen($characters) - 1)];
+
+		// shuffle the result
+		//$string = str_shuffle($pin);
+
+		return $pin;
+    }
+
 	public static function allCategories() {
 		return [
 			[
