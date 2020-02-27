@@ -140,6 +140,21 @@
                                 </div>
                                 </div>
 
+                                <div class="form-group">
+                            <div class="row">
+                                    <div class="col-md-12">
+                                    
+                                    <div class="form-check">
+  <input class="form-check-input" type="checkbox" value="" {{ old('terms_and_conditions')? 'checked': '' }} name="terms_and_conditions" id="tos">
+  <label class="form-check-label" for="tos">
+    I have read and accept the <a style="color: #ffcc78;" href="{{ route('toc') }}" target="_blank" >terms and conditions</a> of Hi-Impact Cruise.
+  </label>
+</div>
+
+                                    </div>
+                                </div>
+                                </div>
+
                             <div class="form-group">
                                 <div class="col-md-10 col-md-offset-1">
                                 <input type="hidden" name="baseURL" value="{{url('/')}}" id="baseURL" />

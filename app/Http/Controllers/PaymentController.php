@@ -53,6 +53,7 @@ class PaymentController extends Controller
             'address' => 'required',
             'payment_method' => ['required'],
             'start_date' => 'required',
+            'terms_and_conditions' => ['accepted'],
         ])->validate();
 
         if (request('payment_method') !== 'paystack') {
@@ -112,7 +113,7 @@ class PaymentController extends Controller
                 'session' => $metaData['session'],
             ]);
 
-            $uniqueCode = Utility::generateReservationNo(), //'HC' . str_pad($reservation->id, 7, 0, STR_PAD_LEFT);
+            $uniqueCode = Utility::generateReservationNo(); //'HC' . str_pad($reservation->id, 7, 0, STR_PAD_LEFT);
             $reservation->reference = $uniqueCode;
             $reservation->save();
 

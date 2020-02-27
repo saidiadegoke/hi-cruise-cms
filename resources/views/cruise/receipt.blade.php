@@ -186,7 +186,7 @@ div.col-md-7 {
     <div style="overflow: hidden; margin: 2em auto; width: 160px;">
         <div style="background-color: #fff; width: 100%; text-align: center;">{!! DNS1D::getBarcodeHTML($reservation->reference, "C128", 1.2) !!}</div>
     </div>
-
+<p>Upon purchasing a ticket, the Hi-Impact Cruise ticket holder is insured.</p>
 <p>Bring this ticket printed on a paper or as saved image at your smart phone screen</p>
 		
 	</div>
