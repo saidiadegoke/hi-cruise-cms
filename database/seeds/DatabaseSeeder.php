@@ -23,6 +23,8 @@ class DatabaseSeeder extends Seeder
             PageCategoriesTableSeeder::class,
             CountriesTableSeeder::class,
             StatesTableSeeder::class,
+            CruiseAvailableDaysTableSeeder::class,
+            CruiseDateSettingsTableSeeder::class,
         ]);
     }
 }

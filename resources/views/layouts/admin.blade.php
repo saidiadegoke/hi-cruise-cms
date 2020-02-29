@@ -328,8 +328,8 @@
                                                     </div>
                                                     <div class="kt-footer__nav-section">
                                                         <a href="{{route('verify-ticket')}}">Verify Tickets</a>
-                                                        <a href="#">Site Settings</a>
-                                                        <a href="#">Site Pages</a>
+                                                        <a href="{{ route('admin.settings') }}">Site Settings</a>
+                                                        <a href="{{ route('admin.settings.cruise') }}">Cruise Days Settings</a>
                                                     </div>
                                                 </div>
                                             </div>

@@ -54,6 +54,7 @@ class PaymentController extends Controller
             'payment_method' => ['required'],
             'start_date' => 'required',
             'terms_and_conditions' => ['accepted'],
+            'session' => 'required',
         ])->validate();
 
         if (request('payment_method') !== 'paystack') {

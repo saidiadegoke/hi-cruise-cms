@@ -24,7 +24,6 @@ Route::get('/gallery', 'CruiseController@gallery')->name('gallery');
 Route::get('/packages', 'CruiseController@packages')->name('packages');
 Route::any('/subscribe', 'CruiseController@subscribe')->name('subscribe');
 
-
 Route::any('/details', 'ReservationController@fetchDetails')->name('details');
 Route::any('/package/{package}', 'ReservationController@details')->name('package_details');
 Route::post("verify-code", "PaymentController@verifyCode")->name("verify-code");
@@ -66,6 +65,10 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     Route::any('/export-reservation', 'Admin\AdminController@exportReservations')->name('export.reservation');
     Route::any('/export-payment', 'Admin\AdminController@exportPayments')->name('export.payments');
 	Route::get('page-categories/pages/{category_id}', 'Admin\PageCategoriesController@pages')->name('page-categories.pages');
+    Route::get('/settings', 'Admin\SettingsController@index')->name('admin.settings');
+    Route::post('/settings/update', 'Admin\SettingsController@update')->name('admin.settings.update');
+    Route::get('/settings/cruise', 'Admin\SettingsController@cruise')->name('admin.settings.cruise');
+    Route::post('/settings/cruise-update', 'Admin\SettingsController@cruiseUpdate')->name('admin.settings.cruise.update');
 });
 
 Route::get('/events', "Admin\EventController@all");

@@ -16,6 +16,10 @@ use App\Models\Package;
 use App\Models\Decoration;
 use App\Models\EventEntertainment;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
+use App\Models\CruiseAvailableDay;
+use App\Models\CruiseDateSetting;
+use App\Common\CruiseDate;
+use App\Models\CustomDay;
 
 class ReservationController extends Controller
 {
@@ -93,10 +97,24 @@ class ReservationController extends Controller
 
     public function details(Package $package)
     {
-        //dd(request('booking'));
+        $setting = new CruiseDateSetting();
+        $startDate = $setting->getItem("cruise_start_date")? : date('Y-m-d');
+        $date = new CruiseDate($startDate);
+        
+        $days = CruiseAvailableDay::all();
+        $customDates = CustomDay::all();
+        $activeDays = [];
+        foreach($days as $d) {
+            if($d->available == 1)
+                $activeDays[] = strtolower($d->short);
+        }
+
+        $dates = $date->cruiseDateItems($setting->getItem("days_per_page"), $activeDays, $customDates);
+
         if($package->type == 'event') {
             return view('cruise.event');
         }
-        return view('cruise.book', compact('package'));
+        //var_dump(old());
+        return view('cruise.book', compact('package', 'dates'));
     }
 }

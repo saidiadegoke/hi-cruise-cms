@@ -83,8 +83,22 @@
                             <div class="row">
                                     <div class="col-md-7">
                                     <label>Date</label>
-                                    <input style="color: black;" value="{{ session()->pull('start_date')?: old('start_date') }}" type="text" class="form-control date pick_date" name="start_date" id="start_date" disabled>
+                                    <select name="start_date" class="form-control" style="color: white; padding-left: 2em;">
+                                        <option value="">Select date
+                                        @foreach($dates as $date)
+                                            <option value="{{ $date->getDate() }}" {{ session()->pull('start_date') == $date->getDate() || old('start_date') == $date->getDate()? 'selected': '' }}>{{ $date->getLabel() }}</option>
+                                        @endforeach
+                                    </select>
                                     </div>
+                                    <!--div class="col-md-5">
+                                    <label>Cruise Time</label>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                    Day &nbsp;<input style="color: black;" value="day" type="radio" class="form-control1" name="session" id="session-day"> </div>
+                                    <div class="col-md-6">
+                                    Night &nbsp;<input style="color: black;" value="night" type="radio" class="form-control1" name="session" id="session-night"></div>
+                                </div>
+                                    </div-->
                                 </div>
                                 </div>
                             
@@ -145,7 +159,7 @@
                                     <div class="col-md-12">
                                     
                                     <div class="form-check">
-  <input class="form-check-input" type="checkbox" value="" {{ old('terms_and_conditions')? 'checked': '' }} name="terms_and_conditions" id="tos">
+  <input class="form-check-input" type="checkbox" {{ session('terms_and_conditions') || old('terms_and_conditions')? 'checked': '' }} name="terms_and_conditions" id="tos">
   <label class="form-check-label" for="tos">
     I have read and accept the <a style="color: #ffcc78;" href="{{ route('toc') }}" target="_blank" >terms and conditions</a> of Hi-Impact Cruise.
   </label>
@@ -238,6 +252,13 @@
         })
 
         });
+
+            /**
+            <div class="col-md-7">
+                                    <label>Date</label>
+                                    <input style="color: black;" value="{{ session()->pull('start_date')?: old('start_date') }}" type="text" class="form-control date pick_date" name1="start_date1" id="start_date" disabled>
+                                    </div>
+                                    */
         </script>
         
         @endsection
