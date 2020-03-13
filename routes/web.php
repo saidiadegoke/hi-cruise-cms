@@ -84,4 +84,6 @@ Route::middleware('auth')->group(function() {
 	Route::get('/my/notifications', 'CustomerController@notifications')->name('customer.notifications');
 	Route::get('/my/support', 'CustomerController@support')->name('customer.support');
     Route::get('/my/reservation', 'CustomerController@reservation')->name('customer.reservation');
+
+    Route::resource('offlines', 'OfflinesController');
 });

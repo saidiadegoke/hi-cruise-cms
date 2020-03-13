@@ -59,7 +59,7 @@
                                             Reference: {{$reservation->reference}}
                                         </a>
                                         <p class="kt-widget5__desc">
-                                            Payment made: {{ $reservation->payment? 'Yes': 'No' }}
+                                            Paid at: {{ $reservation->payment? date('d M, Y H:i A', strtotime($reservation->payment->created_at)): 'N/A' }}
                                         </p>
                                         <p class="kt-widget5__desc">
                                             Cruise time: {{ ucfirst($reservation->session) }}

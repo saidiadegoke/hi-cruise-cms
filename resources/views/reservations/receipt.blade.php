@@ -18,8 +18,8 @@
     			<big>{!! date('l, jS M Y', strtotime($booking->start_date)) !!}</big>
     		</div>
     		<div class="col-md-5">
-    			<small>Time</small>
-    			<big>{{ $booking->session == 'day'? '11:00 AM': '5:00 PM' }}</big>
+    			<small>Cruise Time</small>
+    			<big>{{ ucfirst($booking->session) }}</big>
     		</div>
     	</div>
     	<div class="row color-gold">
@@ -29,7 +29,7 @@
     		</div>
     		<div class="col-md-5">
     			<small>Time</small>
-    			<big>9:00 AM</big>
+    			<big>{{ $booking->session == 'day'? '11:00 AM': '5:00 PM' }}</big>
     		</div>
     	</div>
     	<div class="row">

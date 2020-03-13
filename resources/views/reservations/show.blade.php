@@ -42,6 +42,10 @@
 								<td>{!! $reservation->package? $reservation->package->description: 'N/a' !!}</td>
 							</tr>
 							<tr>
+								<th>Paid at</th>
+								<td>{{ $reservation->payment? date('d M, Y H:i A', strtotime($reservation->payment->created_at)): 'N/A' }}</td>
+							</tr>
+							<tr>
 								<th>Cruise date</th>
 								<td>{{ date('d F, Y', strtotime($reservation->start_date)) }}</td>
 							</tr>
