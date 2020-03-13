@@ -50,8 +50,8 @@
                                             Package: {{$reservation->package? $reservation->package->name: 'N/a'}}
                                         </p>
                                         <div class="kt-widget5__info">
-                                            <span>Date:</span>
-                                            <span class="kt-font-info">{{ date('d F, Y', strtotime($reservation->created_at)) }}</span>
+                                            <span>Cruise date:</span>
+                                            <span class="kt-font-info">{{ date('d F, Y', strtotime($reservation->start_date)) }}</span>
                                         </div>
                                     </div>
                                     <div class="kt-widget5__section">
@@ -60,6 +60,9 @@
                                         </a>
                                         <p class="kt-widget5__desc">
                                             Payment made: {{ $reservation->payment? 'Yes': 'No' }}
+                                        </p>
+                                        <p class="kt-widget5__desc">
+                                            Cruise time: {{ ucfirst($reservation->session) }}
                                         </p>
                                     </div>
                                 </div>

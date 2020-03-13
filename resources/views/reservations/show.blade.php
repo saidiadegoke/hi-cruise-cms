@@ -34,7 +34,7 @@
 								<td>{{$reservation->package? $reservation->package->name: 'N/a'}}</td>
 							</tr>
 							<tr>
-								<th>Reservation Code</th>
+								<th>Reservation code</th>
 								<td>{{ $reservation->reference }}</td>
 							</tr>
 							<tr>
@@ -42,8 +42,12 @@
 								<td>{!! $reservation->package? $reservation->package->description: 'N/a' !!}</td>
 							</tr>
 							<tr>
-								<th>Date</th>
-								<td>{{ date('d F, Y', strtotime($reservation->created_at)) }}</td>
+								<th>Cruise date</th>
+								<td>{{ date('d F, Y', strtotime($reservation->start_date)) }}</td>
+							</tr>
+							<tr>
+								<th>Cruise time</th>
+								<td>{{ ucfirst($reservation->session) }}</td>
 							</tr>
 							<tr>
 								<th>Payment made</th>
