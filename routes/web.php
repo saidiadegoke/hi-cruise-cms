@@ -36,6 +36,7 @@ Route::get('/payment/offline', 'PaymentController@offlinePayment')->name('offlin
 Route::get('/payment/callback', 'PaymentController@handleGatewayCallback');
 Route::get('/{customer}/reservations', 'ReservationController@all')->name('reservations');
 Route::post('/reservations/new', 'ReservationController@store')->name('reserve');
+
 Route::get('payments/{reference?}/{reservation?}', "PaymentController@response")->name('response');
 Route::get('/toc', 'CruiseController@toc')->name('toc');
 
@@ -85,5 +86,11 @@ Route::middleware('auth')->group(function() {
 	Route::get('/my/support', 'CustomerController@support')->name('customer.support');
     Route::get('/my/reservation', 'CustomerController@reservation')->name('customer.reservation');
 
+    Route::post('/reservation/book', 'ReservationController@book')->name('reservation.book');
+    Route::get('/reservation/submitted', 'ReservationController@submitted')->name('reservation.submitted');
+
+    Route::get('/offlines/submitted', 'OfflinesController@submitted')->name('offlines.submitted');
+    Route::post('/offlines/pay', 'OfflinesController@pay')->name('offlines.pay');
+    Route::post('/offlines/reservation', 'OfflinesController@reservation')->name('offlines.reservation');
     Route::resource('offlines', 'OfflinesController');
 });

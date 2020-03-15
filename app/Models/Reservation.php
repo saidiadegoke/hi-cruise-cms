@@ -8,10 +8,10 @@ class Reservation extends Model
 {
     //
     protected $fillable = [
-        'package_id', 'name', 'phone', 'email', 'address', 'start_date', 'finish_date',  'seats', 'customer_id', 'reference', 'used', 'session',
+        'package_id', 'name', 'phone', 'email', 'address', 'start_date', 'finish_date',  'seats', 'customer_id', 'reference', 'used', 'session', 'amount',
     ];
 
-    protected $appends = ['package_name', 'package_description', 'date', 'payment_made', 'amount'];
+    protected $appends = ['package_name', 'package_description', 'date', 'payment_made'];
 
     public function customer()
     {
@@ -42,8 +42,8 @@ class Reservation extends Model
         return $this->payment? 'Yes': 'No';   
     }
 
-    public function getAmountAttribute() {
-        return $this->payment? "&#8358; " . number_format($this->payment->amount, 2): 'N/a';
+    public function getAmountAttribute1() {
+        return $this->amount? "&#8358; " . number_format($this->amount, 2): 'N/a';
     }
 
     public function getSession1Attribute() {

@@ -36,12 +36,14 @@
                         </div>
 
                         <div class="col-md-6">
-                            <form action="{{route('pay')}}" method="post">
-                            @csrf
+                            <form id="offline_form" action="{{route('reservation.book')}}" method="post">
+                                @csrf
                                 <input type="hidden" name="package" value="{{$package->id}}">
                                 <input type="hidden" name="amount" value="{{$package->price}}">
                                 <input type="hidden" name="yacht" value="{{$package->yacht->id}}">
                                 <input type="hidden" name="package-session" value="{{session()->pull('package')}}">
+                                <input type="hidden" class="paystack_url" value="{{route('pay')}}">
+                                <input type="hidden" class="offline_url" value="{{route('offlines.store')}}">
                                 <div class="form-group">
                                 @if(count($errors->all()) > 0)
 		              @foreach($errors->all() as $error)
@@ -252,6 +254,18 @@
         })
 
         });
+
+            $('input[name=payment_method').change( function(e) {
+                var url = $(".paystack_url").val();
+                if($(this).val() == "offline") {
+                    url = $(".offline_url").val();
+                } else {
+                    url = $(".paystack_url").val();
+                }
+
+                //$("#offline_form").attr("action", url);
+
+            })
 
             /**
             <div class="col-md-7">

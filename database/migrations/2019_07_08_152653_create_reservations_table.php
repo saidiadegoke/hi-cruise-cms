@@ -27,6 +27,7 @@ class CreateReservationsTable extends Migration
             $table->bigIncrements('id');
             $table->boolean('used');
             $table->string('session');
+            $table->double('amount', 12, 2)->nullable();
             $table->timestamps();
         });
     }

@@ -20,6 +20,9 @@ use App\Models\CruiseAvailableDay;
 use App\Models\CruiseDateSetting;
 use App\Common\CruiseDate;
 use App\Models\CustomDay;
+use Illuminate\Support\Facades\Validator;
+use App\Common\Utility;
+use \Carbon\Carbon;
 
 class ReservationController extends Controller
 {
@@ -116,5 +119,48 @@ class ReservationController extends Controller
         }
         //var_dump(old());
         return view('cruise.book', compact('package', 'dates'));
+    }
+
+    public function book(Request $request) {
+        Validator::make($request->all(), [
+            'name' => 'required',
+            'email' => ['required', 'string', 'email'],
+            'phone' => 'required',
+            'address' => 'required',
+            'num_seat' => 'required',
+            'payment_method' => ['required'],
+            'start_date' => 'required',
+            'terms_and_conditions' => ['accepted'],
+            'session' => 'required',
+        ])->validate();
+
+        $metaData = $request->all();
+        $uniqueCode = Utility::generateReservationNo();
+        $totalPayable = (double) $request->amount * (double) request('num_seat');
+
+        $reservation = Reservation::create([
+            'customer_id' => auth()->user()->id,
+            'seats' => $metaData['num_seat'],
+            'name' => $metaData['name'],
+            'phone' => $metaData['phone'],
+            'email' => $metaData['email'],
+            'address' => $metaData['address'],
+            'start_date' => Carbon::parse($metaData['start_date'])->format('Y-m-d'),
+            'package_id' => $metaData['package'],
+            'used' => 0,
+            'session' => $metaData['session'],
+            'reference' => $uniqueCode,
+            'amount' => $totalPayable,
+        ]);
+
+        return redirect()->route('reservation.submitted', ['id' => $reservation, 'mode' => $request->payment_method]);
+    }
+
+    public function submitted(Request $request)
+    {
+        $reservation = Reservation::where('id', $request->id)->first();
+        $mode = $request->mode;
+        
+        return view('offline.submitted', compact('reservation', 'mode'));
     }
 }
