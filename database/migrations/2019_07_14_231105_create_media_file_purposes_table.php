@@ -17,6 +17,7 @@ class CreateMediaFilePurposesTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('slug');
+            $table->boolean('published');
             $table->timestamps();
         });
     }

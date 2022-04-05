@@ -6,37 +6,20 @@
       <div class="container">
         <h4 class="all-caps">Packages</h4>
         <!--h4 class="center">Our Yatchs</h4-->
+        @foreach($yachts as $yacht)
+        @if($yacht->publish == 1 && $yacht->purpose == 'yacht')
         <div class="col-md-6 col-md-offset-3 flyInRight">
           <div class="container product-box-cont">
             <div class="product-box">
               <h4>Eugene 1</h4>
-              <img src="{{ asset('public/assets/img/banners/eugene1_bn.jpg') }}" alt="" />
-              <p class="opaque">
-                Eugene 1 is our luxury 140ft three-storey yacht which comes with
-                top of the range features such as; Exquisite interior design,
-                Fully air-conditioned interior with chilling capacity of
-                528,000BTU, Guest capacity: 600 (Banquet) & 1000 (standing),
-                Automated sunroof, In-built 32 CCTV Cameras, Automated Sensor
-                Doors, Hygienic Toilets, 230KW power generation, 4 Cabin rooms
-                and so much more...
-              </p>
-              <ul>
-                <li>Exquisite interior design.</li>
-                <li>
-                  Fully air-conditioned interior with chilling capacity of
-                  528,000BTU.
-                </li>
-                <li>Guest capacity: 600 (Banquet) & 1000 (standing)</li>
-                <li>Automated sunroof</li>
-                <li>In-built 32 CCTV Cameras</li>
-                <li>Automated Sensor Doors</li>
-                <li>Hygienic Toilets</li>
-                <li>4 Cabin rooms and so much more</li>
-              </ul>
+              <img src="{{ $yacht->yachtphoto()? 'public'. \Illuminate\Support\Facades\Storage::url($yacht->yachtphoto()->file->filename): asset('public/assets/img/banners/eugene1_bn.jpg') }}" alt="" />
+              {!! $yacht->description !!}
               <a href="{{route('package',['yacht'=> 1])}}" class="btn btn-primary">view packages</a>
             </div>
           </div>
         </div>
+        @endif
+        @endforeach
         {{-- <!--div class="col-md-6 flyInLeft">
           <div class="container product-box-cont">
             <div class="product-box">

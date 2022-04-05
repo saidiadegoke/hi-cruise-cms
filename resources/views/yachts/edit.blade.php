@@ -58,11 +58,47 @@
 							<textarea class="form-control" name="description" placeholder="Enter description">{{ old('description')? old('description'): $yacht->description }}</textarea>
 							<span class="form-text text-muted">Optional</span>
 						</div>
+						<div class="form-group">
+							<div class="row">
+								<div class="col-md-4">
+									<label>Publish yacht:</label>
+									<div class="kt-radio-list">
+										<label class="kt-radio">
+											<input type="radio" name="publish" value="1" {{ old('publish') == '1' || $yacht->publish == 1? 'checked': '' }}> Yes
+											<span></span>
+										</label>
+										<label class="kt-radio">
+											<input type="radio" name="publish" value="0" {{ old('publish') == '0'  || $yacht->publish == 0? 'checked': '' }}> No
+											<span></span>
+										</label>
+									</div>
+								</div>
+
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="row">
+								<div class="col-md-4">
+									<label>Show on homepage:</label>
+									<div class="kt-radio-list">
+										<label class="kt-radio">
+											<input type="radio" name="show_on_home" value="1" {{ old('show_on_home') == '1' || $yacht->show_on_home == 1? 'checked': '' }}> Yes
+											<span></span>
+										</label>
+										<label class="kt-radio">
+											<input type="radio" name="show_on_home" value="0" {{ old('show_on_home') == '0' || $yacht->show_on_home == 0? 'checked': '' }}> No
+											<span></span>
+										</label>
+									</div>
+								</div>
+
+							</div>
+						</div>
 					</div>
 				</div>
 				<div class="kt-portlet__foot">
 					<div class="kt-form__actions">
-						<button type="submit" class="btn btn-primary">Submit</button>
+						<button type="submit" class="btn btn-primary">Edit</button>
 						<a href="{{ route('admin') }}" type="reset" class="btn btn-secondary">Cancel</a>
 					</div>
 				</div>

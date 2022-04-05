@@ -21,15 +21,15 @@ class CruiseDateItem
 	}
 
 	public function isDay() {
-		return intval($this->day) == 1;
+		return intval($this->day) === 1;
 	}
 
 	public function isNight() {
-		return intval($this->night) == 1;
+		return intval($this->night) === 1;
 	}
 
 	public function isAvailable() {
-		return intval($this->available) == 1;
+		return intval($this->available) === 1;
 	}
 
 	public function setDate($date) {

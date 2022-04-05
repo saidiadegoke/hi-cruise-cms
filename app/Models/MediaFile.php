@@ -18,6 +18,10 @@ class MediaFile extends Model
         return $this->belongsTo('App\Models\UploadedFile', 'source');
     }
 
+    public function yacht() {
+        return $this->belongsTo('App\Models\Yacht');
+    }
+
     public function mediaFilePurpose()
     {
         return $this->belongsTo('App\Models\MediaFilePurpose', 'purpose');

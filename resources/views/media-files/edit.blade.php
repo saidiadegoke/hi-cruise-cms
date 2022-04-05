@@ -49,7 +49,7 @@
 						<div class="form-group row">
 							<label class="col-form-label col-sm-12">Purpose</label>
 							<div class="col-sm-12">
-								<select name="page" class="form-control">
+								<select name="page" class="form-control" name="purpose">
 									<option value="">Select Purpose</option>
 									@foreach(\App\Models\MediaFilePurpose::all() as $purpose)
 										<option value="{{ $purpose->id }}" {{ $mediaFile->purpose == $purpose->id? 'selected': '' }}>{{ $purpose->name }}</option>

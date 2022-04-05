@@ -60,7 +60,16 @@ class AdminController extends Controller
     }
 
     public function exportPayments(Request $request) {
-        return (new PaymentExport($request->from, $request->to, $request->q))->download('payments.xlsx');
+        return (new PaymentExport($request->from, $request->to, $request->q))->download('payments.xlsx', null, 
+            [
+                'Customer Name',
+                'Package Name',
+                'Cruise Date',
+                'Payment Date',
+                'Payment Method',
+                'Amount Paid',
+                'Payment Status'
+            ]);
     }
 
     public function export_maillist_pdf(Request $request) {

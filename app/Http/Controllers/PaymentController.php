@@ -28,9 +28,22 @@ class PaymentController extends Controller
         $this->middleware('auth');
     }
 
-    public function response($reference, $reservation)
+    public function index(Request $request) {
+        return view('cruise.response');
+    }
+
+    public function paymentResponse($reference, $reservation)
     {
         $booking = Reservation::where(['id' => $reservation])->first();
+        $user = Auth::user();
+        $id = $booking->customer? $booking->customer->user_id: null;
+        if(!($user->id == $id || $user->usertype == 1)) {
+            return Auth::check()? redirect('/customer'): redirect('/');
+        }
+
+        if(!$booking->payment || intval($booking->payment->status) != 1) {
+            return redirect()->route('customer.reservation', ['reservation' => $booking->id]);
+        }
 
         return view('cruise.response', compact('reservation', 'booking'));
     }
@@ -47,38 +60,17 @@ class PaymentController extends Controller
     public function redirectToGateway(Request $request)
     {
         Validator::make($request->all(), [
-            'name' => 'required',
+            'amount' => 'required',
             'email' => ['required', 'string', 'email'],
-            'phone' => 'required',
-            'address' => 'required',
-            'payment_method' => ['required'],
-            'start_date' => 'required',
-            'terms_and_conditions' => ['accepted'],
-            'session' => 'required',
+            'reference' => 'required',
         ])->validate();
+//dd($request->all());
+        //$totalPayable = (int) $request->amount * (int) request('num_seat') * 100;
+        //$request->request->set('email', auth()->user()->email);
+        //$request->request->set('amount', $totalPayable);
+        //$request->request->set('reference', Paystack::genTranxRef());
+        //$request->request->set('key', config('paystack.secretKey'));
 
-        if (request('payment_method') !== 'paystack') {
-            return redirect()->route('offline_payment');
-        }
-
-        $totalPayable = (int) $request->amount * (int) request('num_seat') * 100;
-        $request->request->set('email', auth()->user()->email);
-        $request->request->set('amount', $totalPayable);
-        $request->request->set('reference', Paystack::genTranxRef());
-        $request->request->set('key', config('paystack.secretKey'));
-
-        $request->request->set('metadata', [
-            'package_id' => request('package'),
-            'seats' => request('num_seat'),
-            'start_date' => Carbon::createFromFormat('Y-m-d', request('start_date')),
-            //'finish_date' => Carbon::createFromFormat('Y-m-d', request('finish_date')),
-            'name' => request('name'),
-            'phone' => request('phone'),
-            'email' => request('email'),
-            'address' => request('address'),
-            'session' => request('session'),
-        ]);
-        $request->request->set('quantity', (int) request('num_seat'));
         return Paystack::getAuthorizationUrl()->redirectNow();
     }
 
@@ -90,7 +82,6 @@ class PaymentController extends Controller
     {
         $paymentDetails = Paystack::getPaymentData();
 
-
         // Convert the amount back to Naira
         $amount = (int) $paymentDetails['data']['amount'] / 100;
 
@@ -100,7 +91,7 @@ class PaymentController extends Controller
 
             $metaData = $paymentDetails['data']['metadata'];
 
-            $reservation = Reservation::create([
+            /*$reservation = Reservation::create([
                 'customer_id' => auth()->user()->id,
                 'seats' => $metaData['seats'],
                 'name' => $metaData['name'],
@@ -112,30 +103,32 @@ class PaymentController extends Controller
                 'package_id' => $metaData['package_id'],
                 'used' => 0,
                 'session' => $metaData['session'],
-            ]);
+            ]); */
 
-            $uniqueCode = Utility::generateReservationNo(); //'HC' . str_pad($reservation->id, 7, 0, STR_PAD_LEFT);
-            $reservation->reference = $uniqueCode;
-            $reservation->save();
+            //$uniqueCode = Utility::generateReservationNo(); //'HC' . str_pad($reservation->id, 7, 0, STR_PAD_LEFT);
+            //$reservation->reference = $uniqueCode;
+            //$reservation->save();
 
-            $paystack = AppPaystack::create([
-                'reference' => $paymentDetails['data']['reference'],
+            $paystack = AppPaystack::updateOrCreate([
+                'reference' => $paymentDetails['data']['reference'], ], [
                 'transaction_date' => Carbon::parse($paymentDetails['data']['transaction_date']),
                 'amount' => $amount,
                 'channel' => $paymentDetails['data']['channel']
             ]);
 
-
-            Payment::create([
+            Payment::updateOrCreate([
                 'reference' => $paymentDetails['data']['reference'],
                 'customer_id' => auth()->user()->id,
-                'reservation_id' => $reservation->id,
+                'reservation_id' => $paymentDetails['data']['metadata']['reservation_id'],
+            ], [
                 'method' => 'paystack',
                 'amount' => $amount,
                 'status' => 1,
                 'payable_id' => $paystack->id,
                 'payable_type' => 'App\Models\Paystack',
             ]);
+
+            $reservation = Reservation::where('id', $paymentDetails['data']['metadata']['reservation_id'])->first();
 
             $user = Auth::user();
             $customer = $user->customer;
@@ -178,6 +171,7 @@ class PaymentController extends Controller
     public function verifyCode(Request $request) {
         $reference = $request->post("reference");
         $reservation = Reservation::where(['reference' => $reference])->first();
+        
         if($reservation && $reservation->used == 0) {
             $reservation->used = 1;
             $reservation->save();
@@ -186,8 +180,8 @@ class PaymentController extends Controller
                 "message" => "Ticket validated!"
             ];
         } else {
-            $reservation->used = 0;
-            $reservation->save();
+            //$reservation->used = 0;
+            //$reservation->save();
             return [
                 "error" => true,
                 "message" => "Invalid ticket"

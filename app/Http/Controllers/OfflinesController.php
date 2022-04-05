@@ -12,6 +12,9 @@ use Notification;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\ReservationBooked;
 use \Carbon\Carbon;
+use App\Notifications\CustomerMadeReservation;
+use App\Mail\PaymentApprovedWithTicket;
+use App\Mail\PaymentApprovalRequested;
 
 class OfflinesController extends Controller
 {
@@ -145,29 +148,64 @@ class OfflinesController extends Controller
 
         $reservation = Reservation::where('id', $request->reservation_id)->first();
 
-        $offline = Offline::create([
+        $offline = Offline::updateOrCreate([
+            'reference_no' => $request->reference,], [
             'amount_paid' => $request->amount_paid,
             'account' => $request->account,
             'date_paid_at' => date('Y-m-d', strtotime($request->date_paid_at)),
             'time_paid_at' => $request->time_paid_at,
-            'reference_no' => $request->reference,
             'status' => $request->approve? 1: 2
         ]);
 
+
         if($offline) {
-            $payment = Payment::create([
+            $payment = Payment::updateOrCreate([
                 'reference' => $request->reference,
                 'customer_id' => $reservation->customer_id,
                 'reservation_id' => $reservation->id,
+            ], [
                 'method' => 'offline',
                 'amount' => $request->amount_paid,
                 'status' => $offline->status,
                 'payable_id' => $offline->id,
                 'payable_type' => 'App\Models\Offline',
             ]);
-        }
+            
+            $user = $request->user();
+            $customer = $user->customer;
+            $customer->notify(new CustomerMadeReservation($customer, $reservation));
 
-        return redirect()->route('offlines.reservation', ['id' => $reservation->id]);
+            /*Notification::route('mail', 'molatunde@solutionmi.com')
+            ->route('mail', 'rasheedsaidi@yahoo.com')
+            ->notify(new CustomerMadeReservation($customer, $reservation));*/
+
+            $to = "info@hi-impactcruise.com";
+            $subject = "OFFLINE Payment Request";
+            $txt = "A customer has just ordered a reservation. " . "\r\n";
+            $txt .= "Please find the details below: " . "\r\n";
+            $txt .= "Package: " . "\r\n";
+            $txt .= "Payment: " . "\r\n";
+            $headers = "From: 'Reservation Booked' <info@hi-impactcruise.com>" . "\r\n" .
+            "BCC: rasheedsaidi@yahoo.com";
+
+            //mail($to,$subject,$txt,$headers);
+
+            /*Mail::to($reservation->email)
+                ->bcc(config('mail.adminEmail1'))
+                ->cc(config('mail.adminEmail'))
+                ->send(new ReservationBooked($reservation)); */
+
+            if($offline->status != 1) {
+                Mail::to($reservation->email)->send(new PaymentApprovalRequested($offline));
+            } else {
+                Mail::to($reservation->email)->send(new PaymentApprovedWithTicket($reservation));
+            }
+
+        }
+        
+        
+
+        return redirect()->route('customer.reservation', ['reservation' => $reservation->id]);
     }
 
     public function reservation(Request $request) {
@@ -178,5 +216,40 @@ class OfflinesController extends Controller
         }
         return view('offline.reservation', compact('reservation'));
 
+    }
+
+    public function approve(Request $request) {
+        Validator::make($request->all(), [
+            'reservation_id' => ['required'],
+            'payable_id' => ['required'],
+        ])->validate();
+
+        $reservation = Reservation::where('id', $request->reservation_id)->first();
+        if(!$reservation) {
+            throw new Exception("Page not found!");
+        }
+
+        $offline = $reservation->payment? $reservation->payment->payable: Offline::where('id', $request->payable_id)->first();
+
+        if($offline) {
+            $offline->status = 1;
+            $offline->save();
+
+            $payment = Payment::updateOrCreate([
+                'reference' => $reservation->reference,
+                'customer_id' => $reservation->customer_id,
+                'reservation_id' => $reservation->id,
+            ], [
+                'method' => 'offline',
+                'amount' => $reservation->amount,
+                'status' => $offline->status,
+                'payable_id' => $offline->id,
+                'payable_type' => 'App\Models\Offline',
+            ]);
+
+            Mail::to($reservation->email)->send(new PaymentApprovedWithTicket($reservation));
+        }
+
+        return redirect()->route('bookings.show', ['id' => $reservation->id]);
     }
 }

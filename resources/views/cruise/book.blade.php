@@ -1,13 +1,25 @@
 @extends('layouts.cruise')
+@php
+    $d = [];
+    foreach($dates as $value) {
+                $d[$value->getDate()] = [
+                    'day' => $value->isDay(),
+                    'night' => $value->isNight(),
+                    'isAvailable' => $value->isAvailable(),
+                    'date' => $value->getDate(),
+                ];
+            }
+// strtolower($package->name) != 'royal package'
+@endphp
 @section('title') Book a reservation @endsection
 
     @section("styles")
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 
-        
     @endsection
 
 @section('content')
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <section class="pattern1 no-margin pad-10 mid-space" style="margin-top: 200px">
       <div class="container">
         <img src="{{asset('public/assets/img/logo-icon.png')}}" alt="" class="logo-icon-section" />
@@ -46,10 +58,13 @@
                                 <input type="hidden" class="offline_url" value="{{route('offlines.store')}}">
                                 <div class="form-group">
                                 @if(count($errors->all()) > 0)
-		              @foreach($errors->all() as $error)
-		              <p class="alert alert-danger">{{$error}}</p>
-		              @endforeach
-		            @endif
+                      @foreach($errors->all() as $error)
+                      <p class="alert alert-danger">{{$error}}</p>
+                      @endforeach
+                    @endif
+                    @if(session()->has('seat_limit'))
+                        <p class="alert alert-danger">{{ session()->pull('seat_limit') }}</p>
+                    @endif
                                 </div>
                                 <div class="form-group">
                                 <div class="row">
@@ -70,7 +85,7 @@
                                 <label>Email address</label>
                                         <input type="email" value="{{ session()->pull('email')?: old('email') }}" class="form-control" placeholder="Email address" name="email">
                                     </div>
-                                    @if(strtolower($package->name) != 'royal package')
+                                    @if(true)
                                         <div class="col-md-5">
                                         <label>No of seats</label>
                                             <input type="number" min="0" value="{{ session()->pull('num_seat')?: old('num_seat') }}" class="form-control" placeholder="No of Seat" name="num_seat">
@@ -85,7 +100,7 @@
                             <div class="row">
                                     <div class="col-md-7">
                                     <label>Date</label>
-                                    <select name="start_date" class="form-control" style="color: white; padding-left: 2em;">
+                                    <select name="start_date" class="form-control date-selector" style="color: black; background-color: white; padding-left: 2em;">
                                         <option value="">Select date
                                         @foreach($dates as $date)
                                             <option value="{{ $date->getDate() }}" {{ session()->pull('start_date') == $date->getDate() || old('start_date') == $date->getDate()? 'selected': '' }}>{{ $date->getLabel() }}</option>
@@ -128,15 +143,21 @@
                                     <big>Select Preferred Cruise Time {{ session()->get('session') }}</big>
                                 </div>
                                 <div class="row">
-                                    <div class="form-check form-check-inline col-md-5 col-md-offset-1">
+                                    {{--<div class="form-check form-check-inline col-md-10 col-md-offset-1">
                                         <label class="form-check-label">
-                                            <input class="form-check-input" type="radio" {{ session()->pull('session') == 'day' || old('session') == 'day'? 'checked': '' }} name="session" id="session_day" value="day"> Day Cruise (11:00 AM - 3:00 PM)
+                                            <input class="form-check-input" type="radio" {{ session()->pull('session') == 'day' || old('session') == 'night'? 'checked': '' }} name="session" id="session_day" value="night"> Cruise Time (4:00 PM - 7:00 PM)
+                                        </label>
+                                    </div>--}}
+                                    
+                                    <div class="form-check form-check-inline col-md-5 col-md-offset-1 day-checkbox">
+                                        <label class="form-check-label">
+                                            <input class="form-check-input" type="radio" {{ session()->pull('session') == 'day' || old('session') == 'day'? 'checked': '' }} name="session" id="session_day" value="day"> Day Cruise ({{\App\Common\Settings::get('day_from')}} - {{\App\Common\Settings::get('day_to')}})
                                         </label>
                                     </div>
 
-                                    <div class="form-check form-check-inline col-md-5">
+                                    <div class="form-check form-check-inline col-md-5 night-checkbox">
                                         <label class="form-check-label">
-                                            <input class="form-check-input" type="radio" {{ session()->pull('session') == 'night' || old('session') == 'night'? 'checked': '' }} name="session" id="session_night" value="night"> Night Cruise (5:00 PM - 9:00 PM)
+                                            <input class="form-check-input" type="radio" {{ session()->pull('session') == 'night' || old('session') == 'night'? 'checked': '' }} name="session" id="session_night" value="night"> Night Cruise ({{\App\Common\Settings::get('night_from')}} - {{\App\Common\Settings::get('night_to')}})
                                         </label>
                                     </div>
                                 </div>
@@ -170,6 +191,9 @@
                                     </div>
                                 </div>
                                 </div>
+                                <div class="form-group mt-2">
+                    <div class="g-recaptcha" data-sitekey="6LfPpK4UAAAAAIZGpMwuCwHWeKzL9LzKnleU_I12"></div>
+                  </div>
 
                             <div class="form-group">
                                 <div class="col-md-10 col-md-offset-1">
@@ -193,6 +217,36 @@
             <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
                
         <script>
+            const dateSelectors = @json(['dates' => $d, 'packageId' => $package->id, 'requestToken' => csrf_token()]);
+            $('.day-checkbox').hide();
+            $('.night-checkbox').hide();
+
+            ds();
+
+            function ds() {
+                var option = $('.date-selector').val();
+                console.log(option);
+                if(option) {
+                    console.log(dateSelectors);
+                    let item = dateSelectors['dates'][option];
+                    if(item) {
+                        if(item.day) {
+                            $('.day-checkbox').show();
+                        } else {
+                            $('.day-checkbox').hide();
+                        }
+
+                        if(item.night) {
+                            $('.night-checkbox').show();
+                        } else {
+                            $('.night-checkbox').hide();
+                        }
+                    }
+                } else {
+                    $('.day-checkbox').hide();
+                    $('.night-checkbox').hide();
+                }
+            }
             $(function(){            
         $.ajax({
             url: $('#baseURL').val() + '/package_details/{{$package->id}}',
@@ -238,7 +292,7 @@
                 
                 $('.date').flatpickr({
             mode: 'single',
-			minDate: 'today',
+            minDate: 'today',
             dateFormat: 'Y-m-d',
             enable: [
                 function(date) {
@@ -265,7 +319,63 @@
 
                 //$("#offline_form").attr("action", url);
 
-            })
+            });
+
+            $('.date-selector').change(function(e) {
+                var option = $(this).val();
+                console.log(option, dateSelectors['packageId']);
+
+                if(option) {
+                    checkAvailability(option, dateSelectors['packageId'])
+                    console.log(dateSelectors);
+                    let item = dateSelectors['dates'][option];
+                    if(item) {
+                        if(item.day) {
+                            $('.day-checkbox').show();
+                        } else {
+                            $('.day-checkbox').hide();
+                        }
+
+                        if(item.night) {
+                            $('.night-checkbox').show();
+                        } else {
+                            $('.night-checkbox').hide();
+                        }
+                    }
+                } else {
+                    $('.day-checkbox').hide();
+                    $('.night-checkbox').hide();
+                }
+            });
+
+            function checkAvailability($d, $id) {
+                let token = @json(['total_available' => $package->total_available]);
+
+                $.ajax({
+                    url: $('#baseURL').val() + '/check-availability',
+                    type: 'post',
+                    contentType: 'application/json',
+                    dataType: 'json',
+                    data: JSON.stringify({package_id: $id, date: $d}),
+                    failure:function(err){
+                        console.log("err");
+                    },
+                    success: function(resp){ 
+                        let count = resp;
+
+                        console.log("Received: ", count, " Versus: ", token['total_available'])
+
+                        if(count && count >= token['total_available']) {
+                            alert("The selected package is fully booked for " + $d);
+                            $('.date-selector').val("");
+                            $('.day-checkbox').hide();
+                            $('.night-checkbox').hide();
+                            return;
+                        }
+                    }
+
+                });
+            }
 
             /**
             <div class="col-md-7">

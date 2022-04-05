@@ -21,4 +21,24 @@ class Questionaire extends Model
     {
         return $this->hasMany(EventEntertainment::class);
     }
+
+    public function event_decoration() {
+        $decorations = $this->decorations;
+        $str = [];
+        foreach($decorations as $item) {
+            if($item)
+                $str[] = $item->name;
+        }
+        return implode($str, ", ");
+    }
+
+    public function event_entertainment() {
+        $decorations = $this->entertainments;
+        $str = [];
+        foreach($decorations as $item) {
+            if($item)
+                $str[] = $item->name;
+        }
+        return implode($str, ", ");
+    }
 }

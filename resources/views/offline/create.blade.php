@@ -24,7 +24,7 @@
                         <div class="form-group row my-4">
                         <label for="reference" class="col-sm-4 col-form-label">Reference No</label>
                         <div class="col-sm-8">
-                          {{ $reservation->reference }}
+                          {{ $reservation->reference }} ({!! $reservation->amount? "&#8358; " . number_format(doubleval($reservation->amount), 2): 'N/a' !!})
                           <input type="hidden" name="reference" value="{{ $reservation->reference }}">
                           <input type="hidden" name="reservation_id" value="{{ $reservation->id }}">
                         </div>
@@ -41,9 +41,9 @@
                         <label for="amount" class="col-sm-4 col-form-label">Account paid to</label>
                         <div class="col-sm-8">
                           <select class="form-control" style="color: black; background: #fff;" name="account">
-                              <option value="">Select account</option>
-                              <option value="0014950454 - Diamond Bank" {{ old('account') == '0764970454 - First Bank'? 'selected': '' }}>7649750454 - Diamond Bank</option>
-                              <option value="0764970454 - First Bank" {{ old('account') == '0764970454 - First Bank'? 'selected': '' }}>0764970454 - First Bank</option>
+                              <!--option value="">Select account</option-->
+                              <option value="0814272699 - Access Bank" {{ old('account') == '0814272699 - Access Bank'? 'selected': '' }}>0814272699 - Access Bank</option>
+                              <option value="0606016622 - GTBank" {{ old('account') == '0606016622 - GTBank'? 'selected': '' }}>0606016622 - GTBank</option>
                           </select>
                         </div>
                       </div>

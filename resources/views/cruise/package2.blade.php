@@ -67,7 +67,7 @@
               <li>Serene and secure ambience.</li>
               <li>*Extra cruise time attracts =N=100,000 per hour.</li>
             </ul>
-            <button type="submit" class="btn btn-primary">Book Now</button>
+            <button type="submit" class="btn btn-primary">Book Now3</button>
             </form>
           </div>
           @endforeach

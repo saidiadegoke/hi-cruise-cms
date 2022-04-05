@@ -29,3 +29,8 @@
     RewriteCond %{HTTP_HOST} ^www\.hi-impactcruise\.com$
     RewriteRule ^(.*)$ "http\:\/\/hi-impactcruise\.com/$1" [R=301,L]
 </IfModule>
+
+<Files .env>
+    Order allow,deny
+    Deny from all
+</Files>

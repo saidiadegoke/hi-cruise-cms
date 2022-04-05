@@ -80,6 +80,18 @@
 									@endforeach
 								</td>
 							</tr>
+							<tr>
+								<th>Total available</th>
+								<td>
+									{{$package->total_available}}
+								</td>
+							</tr>
+							<tr>
+								<th>Published</th>
+								<td>
+									{{$package->publish === 1? 'Yes': 'No'}}
+								</td>
+							</tr>
 						</table>
 						
 					</div>

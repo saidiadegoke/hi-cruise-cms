@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Package extends Model
 {
-    protected $fillable = ["name", "description", "price", "yacht_id", "type", "publish"];
+    protected $fillable = ["name", "description", "price", "yacht_id", "type", "publish", "total_available"];
     //
     public function yacht()
     {

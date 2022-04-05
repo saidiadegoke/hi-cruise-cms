@@ -20,10 +20,10 @@
                     <form>
                             <div class="row">
                                 <div class="col-md-3">
-                                    <input placeholder="From date" id="from" type="text" class="form-control date" name="from">
+                                    <input placeholder="From date" value="{{ old('from') }}" id="from" type="text" class="form-control date" name="from">
                                 </div>
                                 <div class="col-md-3">
-                                    <input placeholder="To date" id="to" type="text" class="form-control date" name="to">
+                                    <input placeholder="To date" value="{{ old('to') }}" id="to" type="text" class="form-control date" name="to">
                                 </div>
                                 <div class="col-md-4">
                                     <input placeholder="Search term" type="text" value="{{ old('q') }}" class="form-control" name="q">
@@ -51,8 +51,8 @@
                                             Package: {{$payment->reservation && $payment->reservation->package? $payment->reservation->package->name: 'N/a'}}
                                         </p>
                                         <div class="kt-widget5__info">
-                                            <span>Date:</span>
-                                            <span class="kt-font-info">{{ date('d F, Y', strtotime($payment->created_at)) }}</span>
+                                            <span>Cruise Date:</span>
+                                            <span class="kt-font-info">{{ date('d F, Y', strtotime($payment->reservation && $payment->reservation->start_date? $payment->reservation->start_date: $payment->created_at)) }}</span>
                                         </div>
                                     </div>
                                     <div class="kt-widget5__section">

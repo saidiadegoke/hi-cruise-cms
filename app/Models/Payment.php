@@ -25,4 +25,16 @@ class Payment extends Model
     public function reservation() {
     	return $this->belongsTo('App\Models\Reservation');
     }
+
+    public function payable()
+    {
+        return $this->morphTo();
+    }
+
+    public function getStartDateAttribute() {
+        return $this->reservation? $this->reservation->start_date: '';
+    }
+
+    protected $appends = ['start_date'];
+
 }

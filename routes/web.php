@@ -13,6 +13,8 @@
 
 Auth::routes();
 
+Route::post('/test', 'HomeController@test');
+
 Route::get('/', 'HomeController@index')->name('home');
 
 Route::get('/about', 'CruiseController@about')->name('about');
@@ -26,6 +28,7 @@ Route::any('/subscribe', 'CruiseController@subscribe')->name('subscribe');
 
 Route::any('/details', 'ReservationController@fetchDetails')->name('details');
 Route::any('/package/{package}', 'ReservationController@details')->name('package_details');
+Route::any('/check-availability', 'ReservationController@check_availability')->name('check_availability');
 Route::post("verify-code", "PaymentController@verifyCode")->name("verify-code");
 
 Route::group(['middleware' => ['web']], function () {
@@ -36,18 +39,16 @@ Route::get('/payment/offline', 'PaymentController@offlinePayment')->name('offlin
 Route::get('/payment/callback', 'PaymentController@handleGatewayCallback');
 Route::get('/{customer}/reservations', 'ReservationController@all')->name('reservations');
 Route::post('/reservations/new', 'ReservationController@store')->name('reserve');
+Route::post('/reservations/send-mail', 'ReservationController@sendMail')->name('reservation.sendMail');
 
-Route::get('payments/{reference?}/{reservation?}', "PaymentController@response")->name('response');
 Route::get('/toc', 'CruiseController@toc')->name('toc');
-
-Route::get('/print_receipt/{reservation}', "ReservationController@printReciept")->name('print_receipt');
 
 Route::get('/support', "HomeController@support")->name('support')->middleware('auth');
 Route::post('/support', "HomeController@contactSupport")->name('support');
 
 Route::any('/verify-ticket', "PaymentController@verifyTicket")->name("verify-ticket");
 
-Route::prefix('admin')->middleware('auth')->group(function () {
+Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
     Route::get('/', 'Admin\AdminController@index')->name('admin');
     Route::resource('slides', 'Admin\SlidesController');
     Route::resource('yachts', 'Admin\YachtController');
@@ -70,6 +71,13 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     Route::post('/settings/update', 'Admin\SettingsController@update')->name('admin.settings.update');
     Route::get('/settings/cruise', 'Admin\SettingsController@cruise')->name('admin.settings.cruise');
     Route::post('/settings/cruise-update', 'Admin\SettingsController@cruiseUpdate')->name('admin.settings.cruise.update');
+
+    Route::resource('questionaires', 'Admin\QuestionairesController');
+
+    Route::get('/tickets', 'Admin\TicketsController@index')->name('tickets.index');
+    Route::any('/tickets/export', 'Admin\TicketsController@export')->name('tickets.export');
+    Route::get('/tickets/{id}', 'Admin\TicketsController@show')->name('tickets.show');
+
 });
 
 Route::get('/events', "Admin\EventController@all");
@@ -79,7 +87,7 @@ Route::get('/package_details/{package}', "Admin\PackageController@single");
 Route::get('/yacht/{yacht}', "Admin\YachtController@detail")->name('package');
 Route::post('/dropzone/store', 'Admin\SlidesController@fileStore')->name('dropzone.store');
 
-Route::middleware('auth')->group(function() {
+Route::middleware(['auth', 'owner'])->group(function() {
 	Route::resource('customer', 'CustomerController');
 	Route::get('/my/reservations', 'CustomerController@reservations')->name('customer.reservations');
 	Route::get('/my/notifications', 'CustomerController@notifications')->name('customer.notifications');
@@ -91,6 +99,37 @@ Route::middleware('auth')->group(function() {
 
     Route::get('/offlines/submitted', 'OfflinesController@submitted')->name('offlines.submitted');
     Route::post('/offlines/pay', 'OfflinesController@pay')->name('offlines.pay');
+    Route::post('/offlines/approve', 'OfflinesController@approve')->name('offlines.approve');
     Route::post('/offlines/reservation', 'OfflinesController@reservation')->name('offlines.reservation');
     Route::resource('offlines', 'OfflinesController');
+
+    Route::post('/flutterwave/pay', 'FlutterwaveController@pay')->name('flutterwave.pay');
+    Route::any('/flutterwave/process', 'FlutterwaveController@process')->name('flutterwave.process');
+    //Route::any('/response', 'FlutterwaveController@process');
+    Route::get('/print_receipt/{reservation}', "ReservationController@printReciept")->name('print_receipt');
+
+    Route::get('/payments', "PaymentController@index")->name('payments.index');
+    Route::get('payments/{reference?}/{reservation?}', "PaymentController@paymentResponse")->name('response');
+
+});
+
+Route::get('mailable', function () {
+
+    $event = [
+        "fullname" => "Test User",
+        "organization" => "Organization Name",
+        "contact_email" => "required@email.com",
+        "contact_number" => "67859458678",
+        "event_type" => "Type",
+        "guests" => "10",
+        "event_date" => "2000-04-03",
+        "catering" => "Yes",
+        "yacht_state" => "Good",
+        "event_duration" => "1 week",
+        "event_setup_duration" => "2 days",
+        "decoration" => "Screen, Outdoor, Carpet",
+        "entertainment" => "Life Band, Karoke, Photographer",
+    ];
+
+    return new App\Mail\EventFormSubmitted($event);
 });

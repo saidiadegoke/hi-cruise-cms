@@ -22,6 +22,7 @@ class CruiseDate extends \DateTime
 	}
 
 	public function getDays($n, $activeDays) {
+
 		$dates = [];
 
 		for($i=1; $i<$n+1; $i++) {
@@ -32,7 +33,6 @@ class CruiseDate extends \DateTime
 			}
 			
 		}
-
 		return $dates;
 	}
 
@@ -52,9 +52,9 @@ class CruiseDate extends \DateTime
 			} else {
 				$items[] = new CruiseDateItem(
 					$date,
-					1,
-					1,
-					1
+					0,
+					0,
+					0
 				);
 			}
 		}

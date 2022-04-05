@@ -79,7 +79,6 @@ class MediaFilePurposesController extends Controller
      */
     public function edit(MediaFilePurpose $mediaFilePurpose)
     {
-        //
         return view('media-file-purposes.edit', compact('mediaFilePurpose'));
     }
 
@@ -94,9 +93,13 @@ class MediaFilePurposesController extends Controller
     {
         Validator::make($request->all(), [
             'name' => 'required',
+            'published' => 'required',
         ])->validate();
-
-        $mediaFilePurpose->update($request-all());
+        
+        $mediaFilePurpose->name = $request->name;
+        $mediaFilePurpose->published = $request->published? 1: 0;
+        $mediaFilePurpose->save();
+        
         if($mediaFilePurpose) {
             return redirect()->route('media-file-purposes.show', ['mediaFilePurpose' => $mediaFilePurpose->id]);
         }

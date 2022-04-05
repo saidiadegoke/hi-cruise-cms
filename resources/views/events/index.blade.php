@@ -7,12 +7,15 @@
             <a href="{{ route('events.create') }}" class="btn btn-label-primary btn-bold btn-icon-h kt-margin-l-10">
                 Add New Event
             </a>
+            <a href="{{ route('questionaires.index') }}" class="btn btn-label-primary btn-bold btn-icon-h kt-margin-l-10">
+                Event Questionaires
+            </a>
         </div>
         <div class="kt-subheader__toolbar">
             <div class="kt-subheader__wrapper">
                 <a href="#" class="btn kt-subheader__btn-daterange" id="kt_dashboard_daterangepicker" data-toggle="kt-tooltip" title="Select dashboard daterange" data-placement="left">
                     <span class="kt-subheader__btn-daterange-title" id="kt_dashboard_daterangepicker_title">Today</span>&nbsp;
-                    <span class="kt-subheader__btn-daterange-date" id="kt_dashboard_daterangepicker_date">Aug 16</span>
+                    <span class="kt-subheader__btn-daterange-date" id="kt_dashboard_daterangepicker_date">{{date('M j')}}</span>
                     <i class="flaticon2-calendar-1"></i>
                 </a>
             </div>

@@ -10,7 +10,7 @@ class MediaFilePurpose extends Model
      * Fillables
      */
     protected $fillable = [
-        'name',
+        'name', 'published',
     ];
 
     public function mediaFiles() {

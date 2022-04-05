@@ -26,9 +26,13 @@ class HomeController extends Controller
     {
         $about = \App\Models\Page::byCategory(2);
         $yachts = Yacht::where(['publish' => 1])->get();
-        //dd();
+        //dd(\Illuminate\Support\Facades\Storage::url($yachts[0]->yachthome()->file->filename));
         $rdn = Str::random(6);
         return view('cruise.home', compact('yachts', 'about', 'rdn'));
+    }
+
+    public function test(Request $request) {
+        return ['error' => true, 'data' => $request->all()];
     }
 
     public function contactSupport(Request $request)

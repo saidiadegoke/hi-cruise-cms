@@ -52,8 +52,6 @@ class YachtController extends Controller
 
         $yacht = Yacht::create(request()->all());
 
-
-
         // $this->uploadImages($request, $yacht);
         return redirect()->route('yachts.show', ['yacht' => $yacht->id]);
     }
@@ -97,7 +95,7 @@ class YachtController extends Controller
             'name' => 'required',
             'description' => 'required',
         ]);
-
+//dd($request->all());
         $yacht->update(request()->all());
 
         return redirect()->route('yachts.show', ['yacht' => $yacht->id]);
@@ -123,15 +121,17 @@ class YachtController extends Controller
 
     public function packages(Yacht $yacht)
     {
-        return $yacht->packages;
+        $packages = [];
+        foreach($yacht->packages as $package) {
+            if($package && $package->publish == 1) {
+                $packages[] = $package;
+            }
+        }
+        return $packages;
     }
 
     public function detail(Yacht $yacht)
     {
-        if ($yacht->id == 1) {
-            return view('cruise.eugene1', compact('yacht'));
-        } else {
-            return view('cruise.eugene', compact('yacht'));
-        }
+        return view('cruise.eugene1', compact('yacht'));
     }
 }

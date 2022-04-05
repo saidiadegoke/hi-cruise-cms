@@ -8,7 +8,7 @@ class Reservation extends Model
 {
     //
     protected $fillable = [
-        'package_id', 'name', 'phone', 'email', 'address', 'start_date', 'finish_date',  'seats', 'customer_id', 'reference', 'used', 'session', 'amount',
+        'package_id', 'name', 'phone', 'email', 'address', 'start_date', 'finish_date',  'seats', 'customer_id', 'reference', 'used', 'session', 'amount', 'payment_method',
     ];
 
     protected $appends = ['package_name', 'package_description', 'date', 'payment_made'];
@@ -47,11 +47,11 @@ class Reservation extends Model
     }
 
     public function getSession1Attribute() {
-        return $this->session == 'day'? '11:00 AM - 3:00 PM': '5:00 PM - 9:00 PM';
+        return $this->session == 'day'? \App\Common\Settings::get('day_from') . ' - ' . \App\Common\Settings::get('day_to'): \App\Common\Settings::get('night_from') . ' - ' . \App\Common\Settings::get('night_to');
     }
 
     public function getSession($session) {
-        return $session == 'day'? 'Day (11:00 AM - 3:00 PM)': 'Night (5:00 PM - 9:00 PM)';
+        return $session == 'day'? 'Day (' . \App\Common\Settings::get('day_from') . ' - ' . \App\Common\Settings::get('day_to') . ')': 'Night (' . \App\Common\Settings::get('night_from') . ' - ' . \App\Common\Settings::get('night_to') . ')';
     }
 
 }

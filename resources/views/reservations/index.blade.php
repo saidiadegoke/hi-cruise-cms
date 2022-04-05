@@ -76,7 +76,7 @@
                             @else
                                 <div class="row">
                                     <div class="col-xl-12 text-center">
-                                        <p class="lead">No reservation found. <a href="{{ route('reservations.create') }}">Click here</a> to create reservations</p>
+                                        <p class="lead">No reservation found.</p>
                                     </div>
                                 </div>
                             @endif

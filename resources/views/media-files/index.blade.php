@@ -30,7 +30,7 @@
                                     </div>
                                     <div class="kt-widget5__section">
                                         <a href="#" class="kt-widget5__title">
-                                            Media file title
+                                            Type: {{$mediaFile->mediaFilePurpose->name}}, Yatch: {{$mediaFile->yacht->name}}
                                         </a>
                                         <p class="kt-widget5__desc">
                                             Media file description

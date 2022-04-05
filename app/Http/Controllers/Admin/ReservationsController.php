@@ -30,6 +30,7 @@ class ReservationsController extends Controller
         if($request->q) {
             $reservations->orWhere('email' , 'LIKE', '%'.$request->q.'%');
             $reservations->orWhere('name' , 'LIKE', '%'.$request->q.'%');
+            $reservations->orWhere('reference' , 'LIKE', '%'.$request->q.'%');
         }
 
         $reservations = $reservations->paginate(10);

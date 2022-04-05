@@ -67,13 +67,13 @@
                           <th>Description</th><td>{!! $reservation->package->description !!}</td>
                         </tr>
                         <tr>
-                          <th>Cruise date</th><td>{{ $reservation->start_date }}</td>
+                          <th>Cruise date</th><td>{!! date('l, jS M Y', strtotime($reservation->start_date)) !!}</td>
                         </tr>
                         <tr>
-                          <th>Payment date</th><td>{{ $reservation->payment->created_at }}</td>
+                          <th>Payment date</th><td>{!!  $reservation->payment? date('l, jS M Y', strtotime($reservation->payment->created_at)): 'Not paid' !!}</td>
                         </tr>
                         <tr>
-                          <th>Price</th><td>{{ $reservation->package->price }}</td>
+                          <th>Price</th><td>{!! $reservation->amount? "&#8358; " . number_format(doubleval($reservation->amount), 2): 'N/a' !!}</td>
                         </tr>
                         <tr>
                           <th>Status</th><td>{{ $reservation->user == 0? 'Active': 'Used' }}</td>
@@ -82,7 +82,12 @@
                  </div>
               </div>
               <div style="text-align: center;">
-                <a href="{{ url('payments/' . $reservation->payment->reference . '/' . $reservation->id  ) }}">View Ticket</a>
+                {{-- <a href="{{ url('payments/' . $reservation->payment->reference . '/' . $reservation->id  ) }}">View Ticket</a> --}}
+                @if($reservation->payment && $reservation->payment->status == 1)
+                <a href="{{ url('print_receipt/' . $reservation->id  ) }}">Print Ticket</a>
+                @else
+                  @include('cruise.includes._payment_info')
+                @endif
               </div>
             </div>
           </div>

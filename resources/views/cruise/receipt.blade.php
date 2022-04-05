@@ -168,7 +168,7 @@ div.col-md-7 {
     		</td>
     		<td class="col-md-5">
     			<small>Time</small>
-    			<big>{{ $reservation->session == 'day'? '11:00 AM': '5:00 PM' }}</big>
+    			<big>{{ $reservation->session == 'day'? \App\Common\Settings::get('day_from'): \App\Common\Settings::get('night_from') }}</big>
     		</td>
     	</tr>
     	<tr class="ro">
@@ -181,6 +181,16 @@ div.col-md-7 {
     			<big>{{ $reservation->seats }}</big>
     		</td>
     	</tr>
+        <tr class="ro">
+            <td class="col-md-7">
+                <small>Package</small>
+                <big>{{ $reservation->package? $reservation->package->name: 'N/a' }}</big>
+            </td>
+            <td class="col-md-5">
+                <small>Ticket value</small>
+                <big>{!! $reservation->amount? "N " . number_format(doubleval($reservation->amount), 2): 'N/a' !!}</big>
+            </td>
+        </tr>
     </table>
 
     <div style="overflow: hidden; margin: 2em auto; width: 160px;">

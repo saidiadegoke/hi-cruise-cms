@@ -18,6 +18,8 @@ class CreateYachtsTable extends Migration
             $table->string('name');
             $table->text('description');
             $table->boolean('publish')->default(true);
+            $table->boolean('show_on_home')->default(true);
+            $table->string('purpose')->default('yacht');
             $table->timestamps();
         });
     }

@@ -7,7 +7,7 @@
       <div class="container">
         <img src="{{asset('public/assets/img/logo-icon.png')}}" alt="" class="logo-icon-section" />
         <h3 class="all-caps">Event Reservations</h3>
-        
+
         <div class="row">
                 <div class="col-md-12">
                 <p class="text-center lead announce">
@@ -215,6 +215,10 @@ We look forward to working with you!
                                         <input class="form-control" type="text" name="event_setup_duration">
                                 </div>
                             </div>
+
+                            <div class="form-group mt-2">
+                    <div class="g-recaptcha" data-sitekey="6LfPpK4UAAAAAIZGpMwuCwHWeKzL9LzKnleU_I12"></div>
+                  </div>
 
                             
                             <div class="form-group">

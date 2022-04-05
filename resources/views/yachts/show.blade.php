@@ -59,17 +59,28 @@
 								<th>Descrition</th>
 								<td>{!! $yacht->description !!}</td>
 							</tr>
-							{{-- <tr>
+							<tr>
 								<th>Published</th>
 								<td>
-									@if($yacht->published == 1) 
+									@if($yacht->publish == 1) 
 										Yes 
 									@else 
 										No 
 									@endif
 
 								</td>
-							</tr> --}}
+							</tr>
+							<tr>
+								<th>Show on homepage</th>
+								<td>
+									@if($yacht->show_on_home == 1) 
+										Yes 
+									@else 
+										No 
+									@endif
+
+								</td>
+							</tr>
 						</table>
 						
 					</div>

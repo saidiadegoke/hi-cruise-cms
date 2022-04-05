@@ -28,6 +28,7 @@ class CreateReservationsTable extends Migration
             $table->boolean('used');
             $table->string('session');
             $table->double('amount', 12, 2)->nullable();
+            $table->string('payment_method')->nullable();
             $table->timestamps();
         });
     }

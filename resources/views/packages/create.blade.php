@@ -103,6 +103,30 @@
 							<span class="form-text text-muted">Select Multiple Where Applicable</span>
 						</div>
 
+						<div class="form-group">
+							<label>Total available</label>
+							<input type="number" class="form-control" name="total_available" placeholder="Total available" value="{{ old('total_available') }}">
+						</div>
+
+						<div class="form-group">
+							<div class="row">
+								<div class="col-md-4">
+									<label>Publish package:</label>
+									<div class="kt-radio-list">
+										<label class="kt-radio">
+											<input type="radio" name="publish" value="1" {{ old('publish') == '1'? 'checked': '' }}> Yes
+											<span></span>
+										</label>
+										<label class="kt-radio">
+											<input type="radio" name="publish" value="0" {{ old('publish') == '0'? 'checked': '' }}> No
+											<span></span>
+										</label>
+									</div>
+								</div>
+
+							</div>
+						</div>
+
 					</div>
 				</div>
 				<div class="kt-portlet__foot">

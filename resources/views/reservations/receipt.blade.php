@@ -29,7 +29,7 @@
     		</div>
     		<div class="col-md-5">
     			<small>Time</small>
-    			<big>{{ $booking->session == 'day'? '11:00 AM': '5:00 PM' }}</big>
+    			<big>{{ $booking->session == 'day'? \App\Common\Settings::get('day_from'): \App\Common\Settings::get('night_from') }}</big>
     		</div>
     	</div>
     	<div class="row">
@@ -42,6 +42,16 @@
     			<big>{{ $booking->seats }}</big>
     		</div>
     	</div>
+        <div class="row">
+            <div class="col-md-7">
+                <small>Package</small>
+                <big>{{ $booking->package? $booking->package->name: 'N/a' }}</big>
+            </div>
+            <div class="col-md-5">
+                <small>Ticket value</small>
+                <big>{!! $booking->amount? "&#8358; " . number_format(doubleval($booking->amount), 2): 'N/a' !!}</big>
+            </div>
+        </div>
     </div>
 
     <div style="overflow: hidden; margin: 2em auto; width: 150px;">

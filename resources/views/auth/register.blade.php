@@ -9,6 +9,11 @@
 @endsection
 
 @section('content')
+<script src="https://www.google.com/recaptcha/api.js" async defer></script> 
+<style>
+.form-group {
+  clear: both;
+}
 <style>
 .field-icon {
   float: right;
@@ -98,6 +103,9 @@
                   <div class="form-group">
                     <label for="password-confirm" class="col-form-label">{{ __('Confirm Password') }}</label>
                         <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                  </div>
+                  <div class="form-group mt-2">
+                    <div class="g-recaptcha" data-sitekey="6LfPpK4UAAAAAIZGpMwuCwHWeKzL9LzKnleU_I12"></div>
                   </div>
                   <div class="form-group">
                     <input

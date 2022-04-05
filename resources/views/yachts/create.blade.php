@@ -83,24 +83,42 @@
 								</select>
 							</div>
 						</div> --}}
-						{{-- <div class="form-group">
+						<div class="form-group">
 							<div class="row">
 								<div class="col-md-4">
 									<label>Publish yacht:</label>
 									<div class="kt-radio-list">
 										<label class="kt-radio">
-											<input type="radio" name="published" value="1" {{ old('published') == '1'? 'checked': '' }}> Yes
+											<input type="radio" name="publish" value="1" {{ old('publish') == '1'? 'checked': '' }}> Yes
 											<span></span>
 										</label>
 										<label class="kt-radio">
-											<input type="radio" name="published" value="0" {{ old('published') == '0'? 'checked': '' }}> No
+											<input type="radio" name="publish" value="0" {{ old('publish') == '0'? 'checked': '' }}> No
 											<span></span>
 										</label>
 									</div>
 								</div>
 
 							</div>
-						</div> --}}
+						</div>
+						<div class="form-group">
+							<div class="row">
+								<div class="col-md-4">
+									<label>Show on homepage:</label>
+									<div class="kt-radio-list">
+										<label class="kt-radio">
+											<input type="radio" name="show_on_home" value="1" {{ old('show_on_home') == '1'? 'checked': '' }}> Yes
+											<span></span>
+										</label>
+										<label class="kt-radio">
+											<input type="radio" name="show_on_home" value="0" {{ old('show_on_home') == '0'? 'checked': '' }}> No
+											<span></span>
+										</label>
+									</div>
+								</div>
+
+							</div>
+						</div>
 					</div>
 				</div>
 				<div class="kt-portlet__foot">

@@ -10,35 +10,71 @@
 
             <div>
                 <table>
+                    
                     <tr>
                         <td> 
                             Bank Name :
                         </td>
                         <td>
-                            Some Bank Name
+                            Access Bank
                         </td>
                     </tr>
+
+                    <tr>
+                        <td> 
+                            Account Number :
+                        </td>
+                        <td>
+                            0814272699
+                        </td>
+                    </tr>
+
+
 
                     <tr>
                         <td> 
                             Account Name :
                         </td>
                         <td>
-                            Some Account Name
+                            Solution Media & Infotech Limited
                         </td>
                     </tr>
 
+                    <tr>
+                        <th colspan="2" class="text-center">OR</th>
+                    </tr>
+
+                    <tr>
+                        <td> 
+                            Bank Name :
+                        </td>
+                        <td>
+                            GTBank
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td> 
+                            Account Number :
+                        </td>
+                        <td>
+                            0606016622
+                        </td>
+                    </tr>
 
 
                     <tr>
                         <td> 
-                            Account Num :
+                            Account Name :
                         </td>
                         <td>
-                            Some Account Num
+                            Solution Media and Infotech - Hi-impact Cruise.
                         </td>
                     </tr>
 
+                     <tr>
+                        <th colspan="2">&nbsp;</th>
+                    </tr>
 
 
                     <tr>

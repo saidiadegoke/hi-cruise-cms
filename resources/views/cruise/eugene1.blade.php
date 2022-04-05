@@ -105,24 +105,29 @@ Please <a style="color: #ffcc78;" href="{{ route('details') }}"
             </div>
         </div>
     </section>
+    @if(count($yacht->packages) > 0 && $yacht->packages[0]->type === 'package')
  <section class="primary-color no-margin pad-10 mid-space set-bg-base">
       <div class="container">
         <h4 class="all-caps">{{$yacht->name}} PACKAGES</h4>
         <div class="col-md-12">
-          <div class="col-md-4 package-listing">
-            <h4 class="center no-float">PRESTIGE PACKAGE</h4>
+          @foreach($yacht->packages as $package)
+          @if($package->type === 'package' && $package->publish === 1)
+            <div class="col-md-{{count($yacht->packages) > 2? ('4'): '6'}} col-md-offset-{{count($yacht->packages) > 1? '0': '3'}} package-listing">
+            <h4 class="center no-float">{{$package->name}}</h4>
             <!--span>&#8358; 30,000 p/head</span-->
-            <span class="span-price" style="position: relative">&#8358; 30,000 <em class="subprice">
+            <span class="span-price" style="position: relative"> {!! "&#8358; " . number_format(doubleval($package->price), 0) !!} <em class="subprice">
             (per person)</em></span>
-            {!! $yacht->packages[0]->description !!}
+            {!! $package->description !!}
             <form class="form-horizontal" action="{{route('details')}}" method="post">
               @csrf
             <input type="hidden" name="type" value="{{$yacht->id}}">
-            <input type="hidden" name="package" value="1">
+            <input type="hidden" name="package" value="{{$package->id}}">
             <button class="btn btn-primary" style="width: 100%; margin-top: 1.2em;">Book Now</button>
             </form>
           </div>
-          <div class="col-md-4 package-listing">
+          @endif
+          @endforeach
+         {{-- <div class="col-md-4 package-listing">
             <h4 class="center no-float">DELUXE PACKAGE</h4>
             <span class="span-price" style="position: relative">&#8358; 35,000 <em class="subprice">
             (per person)</em></span>
@@ -145,10 +150,11 @@ Please <a style="color: #ffcc78;" href="{{ route('details') }}"
             <input type="hidden" name="package" value="3">
             <button class="btn btn-primary" style="width: 100%; margin-top: 1.2em;">Book Now</button>
             </form>
-          </div>
+          </div>--}}
         </div>
       </div>
     </section>
+    @endif
     <section class="primary-color no-margin pad-10">
       <div class="container">
         <div class="col-md-12">

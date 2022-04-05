@@ -10,12 +10,14 @@
             @include('layouts.partials.flash')
         </div>
 
-        @include('reservations.receipt')
+        @if(isset($booking) && isset($reservation))
+        @include('reservations.receipt_dark')
+        @else
+        <div class="alert alert-info">
+            Payment record not found! Please go back and retry. Or try another payment method
+        </div>
+        @endif
 
-        
-        
-    
-        
     </div>
 </section>
 @endsection

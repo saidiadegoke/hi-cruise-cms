@@ -9,6 +9,9 @@
                     <h4 class="text-center">
                         Reservation Reservation
                     </h4>
+                    @if(session()->has('payment_response'))
+                        <div class="alert alert-info">{{session()->get('payment_response')}}</div>
+                    @endif
                 </div>
             </div>
             
@@ -41,7 +44,7 @@
                         <td>{{ $reservation->created_at? date('d M, Y H:i A', strtotime($reservation->created_at)): 'N/A' }}</td>
                     </tr>
 
-                    @if($reservation->mode == 'offline')
+                    @if($reservation->payment_method == 'offline' || $mode == 'offline')
                     <tr>
                         <td>Payment status</td>
                         <td>
@@ -54,40 +57,66 @@
                             Bank Name :
                         </td>
                         <td>
-                            Some Bank Name
+                            Access Bank
                         </td>
                     </tr>
+
+                    <tr>
+                        <td> 
+                            Account Number :
+                        </td>
+                        <td>
+                            0814272699
+                        </td>
+                    </tr>
+
+
+
+                    <tr>
+                        <td> 
+                            Account Name :
+                        </td>
+                        <td>
+                            Solution Media & Infotech Limited
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <th colspan="2" class="text-center">OR</th>
+                    </tr>
+
+                    <tr>
+                        <td> 
+                            Bank Name :
+                        </td>
+                        <td>
+                            GTBank
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td> 
+                            Account Number :
+                        </td>
+                        <td>
+                            0606016622
+                        </td>
+                    </tr>
+
 
                     <tr>
                         <td> 
                             Account Name :
                         </td>
                         <td>
-                            Some Account Name
+                            Solution Media and Infotech - Hi-impact Cruise.
                         </td>
                     </tr>
 
-
-
-                    <tr>
-                        <td> 
-                            Account Num :
-                        </td>
-                        <td>
-                            Some Account Num
-                        </td>
+                     <tr>
+                        <th colspan="2">&nbsp;</th>
                     </tr>
 
-
-
-                    <tr>
-                        <td> 
-                            Amount :
-                        </td>
-                        <td>
-                            Payable Amount
-                        </td>
-                    </tr>
                     <tr>
                         <td colspan="2" class="text-center lead">Have you paid?</td>
                     </tr>
@@ -99,7 +128,7 @@
                     @else
                         <tr>
                             <td colspan="2">
-
+                                @include('payments.forms.flutter')
                             </td>
                         </tr>
 

@@ -6,7 +6,7 @@
             <h3 class="kt-subheader__title">Dashboard</h3>
             <span class="kt-subheader__separator kt-subheader__separator--v"></span>
             <a href="{{ route('packages.create') }}" class="btn btn-label-primary btn-bold btn-icon-h kt-margin-l-10">
-                Add New Slide
+                Add New Package
             </a>
         </div>
         <div class="kt-subheader__toolbar">

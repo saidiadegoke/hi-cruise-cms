@@ -47,7 +47,7 @@
         <h4 class="all-caps">{{$yacht->name}} Packages</h4>
         <div class="col-md-12">
           @foreach ($yacht->packages as $package)
-              
+              @if($package->publish == 1)
           
           <div class="col-md-6 package-listing">
             <form action="{{route('details')}}" method="post">
@@ -73,9 +73,10 @@
               <li>Serene and secure ambience.</li>
               <li>*Extra cruise time attracts =N=100,000 per hour.</li>
             </ul>
-            <button type="submit" class="btn btn-primary">Book Now</button>
+            <button type="submit" class="btn btn-primary">Book Now2</button>
             </form>
           </div>
+          @endif
           @endforeach
         </div>
       </div>

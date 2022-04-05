@@ -101,7 +101,7 @@ class CustomerController extends Controller
 
     public function reservations() {
         $user = Auth::user();
-        $customer = $user->customer; dd($user);
+        $customer = $user->customer;
 
         return redirect()->route('reservations', ['customer' => $customer->id]);
     }
@@ -117,6 +117,12 @@ class CustomerController extends Controller
         //dd($reservation);
         if(!$reservation) {
             return redirect()->back();
+        }
+
+        $user = Auth::user();
+        $id = $reservation->customer? $reservation->customer->user_id: null;
+        if(!($user->id == $id || $user->usertype == 1)) {
+            return Auth::check()? redirect('/customer'): redirect('/');
         }
 
         return view('customer.reservation', compact('reservation'));

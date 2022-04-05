@@ -53,7 +53,11 @@
         </div><!-- End Carousel -->
     </section>
     
-    <section class="no-margin">
+    <section class="no-margin">@foreach ($yachts as $yacht)
+                            
+                                <option value="{{ $yacht->id }}">{{ $yacht->name }}</option>
+                            
+                        @endforeach
         <div class="container">
             <form action="{{route('details')}}" class="bookings" method="POST">
                 @csrf
@@ -61,7 +65,9 @@
                     <select class="form-control" name="type" id="selectPackage" required>
                         <option value="">Select Yacht</option>
                         @foreach ($yachts as $yacht)
-                            <option value="{{ $yacht->id }}">{{ $yacht->name }}</option>
+                            @if($yacht->publish === 1 && $yacht->show_on_home === 1)
+                                <option value="{{ $yacht->id }}">{{ $yacht->name }}</option>
+                            @endif
                         @endforeach
                     </select>
                 </div>
@@ -78,6 +84,13 @@
                 </div>
             </form>
         </div>
+        <div>
+                    @foreach ($yachts as $yacht)
+                            @if($yacht->publish === 1 && $yacht->show_on_home === 1)
+                                <p> {{ $yacht->id }} - {{ $yacht->name }}</p>
+                            @endif
+                        @endforeach
+                        </div>
     </section>
     <!--section class="no-margin pad-5">
         <div class="container">
@@ -96,21 +109,22 @@
         <div class="container">
             <h4 class="all-caps">Our Yachts</h4>
             @foreach ($yachts as $yacht)
+                @if($yacht->publish === 1)
                  <div class="col-md-6">
-                <div class="container product-box-cont">
-                    <div class="product-box">
-                        <h4>{{$yacht->name}}</h4>
-                        <p>{!! $yacht->description !!}</p>
-                        <a href="{{route('package',['yacht'=>$yacht->id])}}" class="btn btn-primary">Learn more</a>
+                    <div class="container product-box-cont">
+                        <div class="product-box">
+                            <h4>{{$yacht->name}}</h4>
+                            <p>{!! substr($yacht->description, 0, 300) . '...' !!}</p>
+                            <a href="{{route('package',['yacht'=>$yacht->id])}}" class="btn btn-primary">Learn more</a>
+                        </div>
+                        @if($yacht->yachthome())
+                        <img src="{{'public' . \Illuminate\Support\Facades\Storage::url($yacht->yachthome()->file->filename)}}" alt="" class="base-pic">
+                        @else
+                        <img src="{{asset('public/assets/img/banners/b1.jpg')}}" alt="" class="base-pic">
+                        @endif
                     </div>
-                    @if($yacht->id == 1)
-                    <img src="{{asset('public/assets/img/banners/bn01.jpg')}}" alt="" class="base-pic">
-                    @else
-                    <img src="{{asset('public/assets/img/banners/b1.jpg')}}" alt="" class="base-pic">
-                    @endif
                 </div>
-            </div>
-
+                @endif
             @endforeach
         </div>
     </section>
@@ -283,6 +297,7 @@
                             } else {
                                 options = resp.map(item => '<option value="' + item.id + '">' + item.name + '</option>');
                             }
+                            options.unshift($('<option value="">Select a Package</option>'));
                             $('#listPackage').html(options);
                         }
                     });

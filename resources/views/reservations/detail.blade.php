@@ -55,9 +55,9 @@ $reservation = $booking;
                       </table>
                  </div>
               </div>
-              <div style="text-align: center;">
+              {{-- <!--div style="text-align: center;">
                 <a href="{{ url('payments/' . $reservation->payment->reference . '/' . $reservation->id  ) }}">View Ticket</a>
-              </div>
+              </div--> --}} 
             </div>
           </div>
         </div>

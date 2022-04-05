@@ -11,6 +11,8 @@ use App\User;
 use App\Models\MediaFile;
 use App\Models\MediaFilePurpose;
 use App\Models\SubscriptionList;
+use App\Models\ContactLog;
+use App\Models\Yacht;
 
 class CruiseController extends Controller
 {
@@ -65,7 +67,8 @@ class CruiseController extends Controller
             $headers = "From: 'Hi-Impact Cruise' <info@hi-impactcruise.com>" . "\r\n" .
             "BCC: rasheedsaidi@gmail.com";
 
-            mail($to,$subject,$txt,$headers);
+            //mail($to,$subject,$txt,$headers);
+            ContactLog::create(['name' => $request->name, 'email' => $request->email, 'phone' => $request->phone, 'comment' => htmlentities($request->comment)]);
 
             $request->session()->flash('submitted', 'Thank you for contacting us. We\'ll get back to you within 48 hours');
         }
@@ -93,6 +96,7 @@ class CruiseController extends Controller
 
     public function packages()
     {
-        return view("cruise.packages");
+        $yachts = Yacht::where('purpose', 'yacht')->get();
+        return view("cruise.packages", compact('yachts'));
     }
 }

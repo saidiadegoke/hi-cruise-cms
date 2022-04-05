@@ -69,6 +69,7 @@
         <link href="{{ asset('public/portal/vendors/custom/vendors/line-awesome/css/line-awesome.css') }}" rel="stylesheet" type="text/css" />
         <link href="{{ asset('public/portal/vendors/custom/vendors/flaticon/flaticon.css') }}" rel="stylesheet" type="text/css" />
         <link href="{{ asset('public/portal/vendors/custom/vendors/flaticon2/flaticon.css') }}" rel="stylesheet" type="text/css" />
+        <link rel="stylesheet" type="text/css" href="https://code.jquery.com/ui/1.12.0/themes/smoothness/jquery-ui.css">
         <link href="{{ asset('public/portal/vendors/general/@fortawesome/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css" />
 
         <!--end:: Global Optional Vendors -->
@@ -248,7 +249,7 @@
                                             </li>
                                             <li class="kt-menu__item"><a href="{{ route('media-file-purposes.index') }}" class="kt-menu__link"><span class="kt-menu__link-text">Media File Purposes</span><i class="kt-menu__ver-arrow la la-angle-right"></i></a>
                                             </li>
-                                            <li class="kt-menu__item"><a href="{{ route('payments.index') }}" class="kt-menu__link"><span class="kt-menu__link-text">Payments</span><i class="kt-menu__ver-arrow la la-angle-right"></i></a>
+                                            <li class="kt-menu__item"><a href="{{ url('/admin/payments') }}" class="kt-menu__link"><span class="kt-menu__link-text">Payments</span><i class="kt-menu__ver-arrow la la-angle-right"></i></a>
                                             </li>
                                             <li class="kt-menu__item"><a href="{{ route('bookings.index') }}" class="kt-menu__link"><span class="kt-menu__link-text">Reservations</span><i class="kt-menu__ver-arrow la la-angle-right"></i></a>
                                             </li>
@@ -328,6 +329,7 @@
                                                     </div>
                                                     <div class="kt-footer__nav-section">
                                                         <a href="{{route('verify-ticket')}}">Verify Tickets</a>
+                                                        <a href="{{route('tickets.index')}}">Tickets</a>
                                                         <a href="{{ route('admin.settings') }}">Site Settings</a>
                                                         <a href="{{ route('admin.settings.cruise') }}">Cruise Days Settings</a>
                                                     </div>

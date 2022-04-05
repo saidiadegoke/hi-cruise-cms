@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Yacht extends Model
 {
     //
-    protected $fillable = ["name", "description", "publish"];
+    protected $fillable = ["name", "description", "publish", "show_on_home", "purpose"];
 
     protected $with = ["packages"];
     public function packages()
@@ -33,6 +33,20 @@ class Yacht extends Model
     public function banner()
     {
         $banner_purpose_id = \App\Models\MediaFilePurpose::where('name', 'banner')->get()->pluck('id')->first();
+        $banner = $banner_purpose_id ? \App\Models\MediaFile::where('purpose', $banner_purpose_id) : null;
+        return $banner ? $banner->where('yacht_id', $this->id)->get()->first() : '';
+    }
+
+    public function yachthome()
+    {
+        $banner_purpose_id = \App\Models\MediaFilePurpose::where('name', 'yachthome')->get()->pluck('id')->first();
+        $banner = $banner_purpose_id ? \App\Models\MediaFile::where('purpose', $banner_purpose_id) : null;
+        return $banner ? $banner->where('yacht_id', $this->id)->get()->first() : '';
+    }
+
+    public function yachtphoto()
+    {
+        $banner_purpose_id = \App\Models\MediaFilePurpose::where('name', 'yacht')->get()->pluck('id')->first();
         $banner = $banner_purpose_id ? \App\Models\MediaFile::where('purpose', $banner_purpose_id) : null;
         return $banner ? $banner->where('yacht_id', $this->id)->get()->first() : '';
     }

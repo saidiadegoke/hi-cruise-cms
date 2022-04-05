@@ -115,29 +115,33 @@ class SettingsController extends Controller
         
         $days = CruiseAvailableDay::all();
         $customDates = CustomDay::all();
-        $activeDays = [];
+        $activeDays = []; 
         foreach($days as $d) {
             if($d->available == 1)
                 $activeDays[] = strtolower($d->short);
         }
 
         $dates = $date->cruiseDateItems($setting->getItem("days_per_page"), $activeDays, $customDates);
-
+//dd($dates);
         return view('settings.cruise', compact('dates'));
     }
 
     public function cruiseUpdate(Request $request) {
         $days = $request->days;
         $nights = $request->nights;
-        foreach($request->dates as $date=>$value) {            
-            $isDay = array_key_exists($date, $days)? intval($days[$date]): null;
-            $isNight = array_key_exists($date, $nights)? intval($nights[$date]): null;
+        //dd($request->dates);
+        foreach($request->dates as $date=>$value) {  
             $isAvailable = intval($value);
+            if($isAvailable == 1) {         
+                $isDay = array_key_exists($date, $days)? intval($days[$date]): null;
+                $isNight = array_key_exists($date, $nights)? intval($nights[$date]): null;
 
-            if(!($isDay == 1 && $isNight == 1 && $isAvailable == 1)) {
-                $customDate = CustomDay::updateorCreate(['date' => $date], ['day' => $isDay, 'night' => $isNight, 'available' => $isAvailable]); 
-            } else {
-                CustomDay::where('date', $date)->delete();
+                //if(!($isDay == 1 && $isNight == 1 && $isAvailable == 1)) {
+                if($isDay == 1 || $isNight == 1) {
+                    $customDate = CustomDay::updateorCreate(['date' => $date], ['day' => $isDay, 'night' => $isNight, 'available' => $isAvailable]); 
+                } else {
+                    CustomDay::where('date', $date)->delete();
+                }
             }
         }
         return redirect()->route('admin.settings.cruise');
